@@ -18,12 +18,12 @@ export function ArticleCard({
         {article.category}
       </p>
       <h3
-        className="mt-4 text-lg font-bold leading-snug text-[#E8E6FF]"
+        className="mt-4 text-lg font-bold leading-snug text-[#0D0D0F]"
         style={{ fontFamily: "var(--font-space-grotesk)" }}
       >
         {article.title}
       </h3>
-      <p className="mt-3 text-sm leading-7 text-[#9896B6]">{article.excerpt}</p>
+      <p className="mt-3 text-sm leading-7 text-[#6B6A8F]">{article.excerpt}</p>
       <div className="mt-6 flex items-center justify-between">
         <span className="text-xs font-medium uppercase tracking-widest text-[#9896B6]">
           {article.readTime}

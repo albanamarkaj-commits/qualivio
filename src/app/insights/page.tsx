@@ -5,43 +5,30 @@ import { articles } from "@/data/articles";
 
 export const metadata: Metadata = {
   title: "Articles & Insights",
-  description:
-    "Pharmacovigilance, drug safety, regulatory affairs, clinical quality, and life sciences insights from Qualivio.",
+  description: "Pharmacovigilance, drug safety, regulatory affairs, clinical quality, and life sciences insights from Qualivio.",
 };
 
-const categories = [
-  "All",
-  "Pharmacovigilance",
-  "Drug Safety",
-  "Regulatory Affairs",
-  "Clinical Quality",
-  "Compliance",
-];
+const categories = ["All", "Pharmacovigilance", "Drug Safety", "Regulatory Affairs", "Clinical Quality", "Compliance"];
 
 export default function InsightsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-[#0D0D0F] px-6 pb-20 pt-24">
-        <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/8 blur-[100px]" />
+      {/* Hero — white */}
+      <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
+        <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/6 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#4ECDC4]">
-            Insights
-          </p>
-          <h1
-            className="text-4xl font-bold leading-tight text-[#E8E6FF] sm:text-5xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
-          >
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#4ECDC4]">Insights</p>
+          <h1 className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl" style={{ fontFamily: "var(--font-space-grotesk)" }}>
             Clear thinking for complex life sciences topics.
           </h1>
           <div className="mx-auto mt-6 h-px w-16 bg-[#7C6AF7]" />
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#9896B6]">
-            Practical articles designed for pharmacovigilance, regulatory,
-            quality, and clinical professionals.
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
+            Practical articles designed for pharmacovigilance, regulatory, quality, and clinical professionals.
           </p>
         </div>
       </section>
 
+      {/* Articles — white */}
       <Section>
         {/* Category filters */}
         <div className="mb-10 flex flex-wrap gap-2">
@@ -50,8 +37,8 @@ export default function InsightsPage() {
               key={cat}
               className={`rounded-full border px-4 py-2 text-sm transition-colors ${
                 cat === "All"
-                  ? "border-[#7C6AF7] bg-[#7C6AF7]/15 text-[#7C6AF7]"
-                  : "border-[#2E2E36] text-[#9896B6] hover:border-[#7C6AF7] hover:text-[#E8E6FF]"
+                  ? "border-[#7C6AF7] bg-[#7C6AF7]/10 text-[#7C6AF7]"
+                  : "border-[#E5E4F0] text-[#6B6A8F] hover:border-[#7C6AF7] hover:text-[#0D0D0F]"
               }`}
             >
               {cat}
@@ -60,26 +47,16 @@ export default function InsightsPage() {
         </div>
 
         {/* Featured article */}
-        <div className="mb-10 rounded-2xl border border-[#7C6AF7]/30 bg-[#1A1A1E] p-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#4ECDC4]">
-            Featured
-          </p>
-          <h2
-            className="mt-3 text-2xl font-bold text-[#E8E6FF] sm:text-3xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
-          >
+        <div className="mb-10 rounded-2xl border border-[#7C6AF7]/20 bg-[#F5F4FF] p-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#4ECDC4]">Featured</p>
+          <h2 className="mt-3 text-2xl font-bold text-[#0D0D0F] sm:text-3xl" style={{ fontFamily: "var(--font-space-grotesk)" }}>
             {articles[0].title}
           </h2>
-          <p className="mt-4 max-w-3xl text-[#9896B6]">{articles[0].excerpt}</p>
+          <p className="mt-4 max-w-3xl text-[#6B6A8F]">{articles[0].excerpt}</p>
           <div className="mt-6 flex items-center gap-4">
-            <span className="text-xs font-medium uppercase tracking-widest text-[#9896B6]">
-              {articles[0].readTime}
-            </span>
-            <span className="text-[#2E2E36]">·</span>
-            <a
-              href={`/insights/${articles[0].slug}`}
-              className="text-sm font-semibold text-[#7C6AF7] hover:text-[#4ECDC4] transition-colors"
-            >
+            <span className="text-xs font-medium uppercase tracking-widest text-[#9896B6]">{articles[0].readTime}</span>
+            <span className="text-[#E5E4F0]">·</span>
+            <a href={`/insights/${articles[0].slug}`} className="text-sm font-semibold text-[#7C6AF7] hover:text-[#4ECDC4] transition-colors">
               Read article →
             </a>
           </div>
