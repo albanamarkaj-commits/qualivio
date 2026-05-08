@@ -17,16 +17,25 @@ export default function Icon() {
           borderRadius: "7px",
         }}
       >
-        <div
-          style={{
-            color: "white",
-            fontSize: "22px",
-            fontWeight: "800",
-            lineHeight: 1,
-          }}
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
         >
-          Q
-        </div>
+          {/* Circle — same proportions as QMark.tsx */}
+          <circle cx="10" cy="10" r="7" stroke="white" strokeWidth="2.2" />
+          {/* Short diagonal tail at 45° — matching the page logo */}
+          <line
+            x1="15"
+            y1="15"
+            x2="19"
+            y2="19"
+            stroke="white"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+        </svg>
       </div>
     ),
     { ...size }
