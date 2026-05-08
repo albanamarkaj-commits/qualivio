@@ -23,16 +23,16 @@ export default function Icon() {
           viewBox="0 0 24 24"
           fill="none"
         >
-          {/* Circle — same proportions as QMark.tsx */}
-          <circle cx="10" cy="10" r="7" stroke="white" strokeWidth="2.2" />
-          {/* Short diagonal tail at 45° — matching the page logo */}
+          {/* Circle — exact proportions from QMark.tsx: cx=size*0.44, r=size*0.38 */}
+          <circle cx="10.56" cy="10.56" r="9.12" stroke="white" strokeWidth="1.8" fill="none" />
+          {/* Tail at 45° — tailX1=cx+r*cos(π/4)≈17, tailX2=size*0.9≈21.6 */}
           <line
-            x1="15"
-            y1="15"
-            x2="19"
-            y2="19"
+            x1="17"
+            y1="17"
+            x2="21.6"
+            y2="21.6"
             stroke="white"
-            strokeWidth="2.2"
+            strokeWidth="1.8"
             strokeLinecap="round"
           />
         </svg>
