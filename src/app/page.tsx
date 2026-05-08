@@ -4,9 +4,11 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
 import { ArticleCard } from "@/components/ArticleCard";
+import { RegulatoryUpdateCard } from "@/components/RegulatoryUpdateCard";
 import { articles } from "@/data/articles";
 import { services } from "@/data/services";
 import { resources } from "@/data/resources";
+import { regulatoryUpdates } from "@/data/regulatory-updates";
 
 export default function Home() {
   return (
@@ -145,7 +147,89 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── 3. Consulting (priority #3) ── white */}
+      {/* ── 3. Regulatory Intelligence ── white */}
+      <Section
+        eyebrow="Regulatory Intelligence"
+        title="Latest pharmacovigilance updates."
+        description="Timely summaries of EMA GVP guideline revisions, procedural updates, and regulatory changes relevant to your pharmacovigilance operations."
+      >
+        {/* Latest update highlight */}
+        {(() => {
+          const latest = [...regulatoryUpdates].sort(
+            (a, b) =>
+              new Date(b.publishedDate).getTime() -
+              new Date(a.publishedDate).getTime()
+          )[0];
+          return (
+            <div className="mb-10 rounded-2xl border border-[#7C6AF7]/20 bg-[#F5F4FF] p-8">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="rounded-full bg-[#7C6AF7]/15 px-3 py-1 text-xs font-semibold text-[#7C6AF7]">
+                  {latest.source}
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#4ECDC4]">
+                  Latest Update
+                </span>
+                {latest.effectiveDate && (
+                  <span className="text-xs text-[#9896B6]">
+                    Effective{" "}
+                    {new Date(latest.effectiveDate).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </span>
+                )}
+              </div>
+              <h3
+                className="mt-4 text-2xl font-bold text-[#0D0D0F] sm:text-3xl"
+                style={{ fontFamily: "var(--font-space-grotesk)" }}
+              >
+                {latest.title}
+              </h3>
+              <p className="mt-3 max-w-3xl text-[#6B6A8F]">{latest.summary}</p>
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {latest.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-[#7C6AF7]/10 px-2.5 py-0.5 text-xs font-medium text-[#7C6AF7]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-6">
+                <Link
+                  href={`/regulatory-updates/${latest.slug}`}
+                  className="text-sm font-semibold text-[#7C6AF7] hover:text-[#4ECDC4] transition-colors"
+                >
+                  Read full update →
+                </Link>
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Cards grid – latest 3 */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[...regulatoryUpdates]
+            .sort(
+              (a, b) =>
+                new Date(b.publishedDate).getTime() -
+                new Date(a.publishedDate).getTime()
+            )
+            .slice(0, 3)
+            .map((update) => (
+              <RegulatoryUpdateCard key={update.slug} update={update} />
+            ))}
+        </div>
+        <div className="mt-12 text-center">
+          <Button href="/regulatory-updates" variant="ghost">
+            All Regulatory Updates →
+          </Button>
+        </div>
+      </Section>
+
+      {/* ── 4. Consulting (priority #4) ── white */}
       <Section
         eyebrow="Consulting"
         title="Specialised support for regulated life sciences teams."

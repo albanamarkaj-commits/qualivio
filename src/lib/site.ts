@@ -12,6 +12,7 @@ export const navItems = [
   { label: "Home", href: "/" },
   { label: "Education", href: "/resources" },
   { label: "Articles", href: "/insights" },
+  { label: "Regulatory Updates", href: "/regulatory-updates" },
   { label: "Consulting", href: "/consulting" },
   { label: "About", href: "/about" },
 ];
