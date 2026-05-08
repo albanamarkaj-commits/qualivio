@@ -11,7 +11,7 @@ export const articles = [
     title: "Building Inspection-Ready Safety Systems",
     category: "Compliance",
     excerpt:
-      "Key documentation, process, and quality principles for resilient drug safety operations under regulatory scrutiny.",
+      "Key documentation, process, and quality principles for resilient pharmacovigilance operations under regulatory scrutiny.",
     readTime: "7 min read",
     slug: "inspection-ready-safety-systems",
   },
@@ -25,7 +25,7 @@ export const articles = [
   },
   {
     title: "Understanding the ICSR Lifecycle",
-    category: "Drug Safety",
+    category: "Pharmacovigilance",
     excerpt:
       "From receipt to submission — a clear walkthrough of the individual case safety report workflow and key compliance points.",
     readTime: "8 min read",

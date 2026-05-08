@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact Qualivio for pharmacovigilance consulting, life sciences education, and drug safety support.",
+  description: "Contact Qualivio for pharmacovigilance consulting, regulatory support, and life sciences education.",
 };
 
 export default function ContactPage() {
@@ -15,7 +15,7 @@ export default function ContactPage() {
       <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/6 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#4ECDC4]">Contact</p>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#F7B731]">Contact</p>
           <h1 className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl" style={{ fontFamily: "var(--font-space-grotesk)" }}>
             Request a consultation or ask a focused question.
           </h1>

@@ -19,17 +19,17 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.qualiviopharma.com"),
   title: {
-    default: "Qualivio | Pharmacovigilance & Life Sciences Education",
+    default: "Qualivio | Pharmacovigilance Education & Consulting",
     template: "%s | Qualivio",
   },
   description:
-    "Trusted insights, education and consulting for pharmacovigilance, drug safety, and life sciences professionals.",
+    "Clear thinking for complex regulations. Pharmacovigilance education, consulting, and practical resources for life sciences professionals.",
   keywords: [
     "Qualivio",
     "Pharmacovigilance",
-    "Drug Safety",
     "Life Sciences",
     "Regulatory Affairs",
+    "Compliance",
     "PV Education",
     "Clinical Quality",
     "Consulting",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Qualivio",
     description:
-      "Trusted insights, education and consulting for pharmacovigilance, drug safety, and life sciences professionals.",
+      "Clear thinking for complex regulations. Pharmacovigilance education and consulting for life sciences professionals.",
     url: "https://www.qualiviopharma.com",
     siteName: "Qualivio",
     type: "website",

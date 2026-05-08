@@ -19,10 +19,10 @@ export function Footer() {
               Qualivio
             </span>
           </div>
-          <div className="mt-3 h-0.5 w-10 bg-[#4ECDC4]" />
+          <div className="mt-3 h-0.5 w-10 bg-[#F7B731]" />
           <p className="mt-5 max-w-sm text-sm leading-7 text-[#9896B6]">
-            {site.tagline} Pharmacovigilance, drug safety, and life sciences
-            consulting and education for professionals.
+            {site.tagline} Pharmacovigilance education, consulting, and
+            practical resources for life sciences professionals.
           </p>
           <a
             href={`mailto:${site.email}`}
@@ -71,7 +71,7 @@ export function Footer() {
             </a>
           </div>
           <p className="mt-6 text-xs leading-6 text-[#9896B6]">
-            Pharmacovigilance · Life Sciences · Drug Safety
+            Pharmacovigilance · Life Sciences · Regulatory Affairs
           </p>
         </div>
       </div>
@@ -81,7 +81,7 @@ export function Footer() {
           © {new Date().getFullYear()} Qualivio. All rights reserved.
         </p>
         <p className="text-xs text-[#9896B6]">
-          <a href={site.url} className="hover:text-[#4ECDC4] transition-colors">
+          <a href={site.url} className="hover:text-[#F7B731] transition-colors">
             www.qualiviopharma.com
           </a>
         </p>
