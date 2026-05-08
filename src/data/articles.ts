@@ -9,15 +9,15 @@ export const articles = [
   },
   {
     title: "Building Inspection-Ready Safety Systems",
-    category: "Compliance",
+    category: "Pharmacovigilance",
     excerpt:
       "Key documentation, process, and quality principles for resilient pharmacovigilance operations under regulatory scrutiny.",
     readTime: "7 min read",
     slug: "inspection-ready-safety-systems",
   },
   {
-    title: "Clinical Quality Trends for Life Sciences Teams",
-    category: "Clinical Quality",
+    title: "Life Sciences Trends Shaping Pharmacovigilance Practice",
+    category: "Life Sciences",
     excerpt:
       "How quality culture, training, and data integrity shape clinical and safety excellence in regulated environments.",
     readTime: "5 min read",
@@ -33,7 +33,7 @@ export const articles = [
   },
   {
     title: "Regulatory Expectations for Aggregate Reports",
-    category: "Regulatory Affairs",
+    category: "Pharmacovigilance",
     excerpt:
       "PSURs, DSURs, and ASRs explained: what regulators expect and how to structure submissions with confidence.",
     readTime: "9 min read",

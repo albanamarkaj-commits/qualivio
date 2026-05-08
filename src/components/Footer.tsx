@@ -71,7 +71,7 @@ export function Footer() {
             </a>
           </div>
           <p className="mt-6 text-xs leading-6 text-[#9896B6]">
-            Pharmacovigilance · Life Sciences · Regulatory Affairs
+            Pharmacovigilance · Life Sciences
           </p>
         </div>
       </div>

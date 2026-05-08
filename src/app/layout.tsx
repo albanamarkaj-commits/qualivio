@@ -28,10 +28,8 @@ export const metadata: Metadata = {
     "Qualivio",
     "Pharmacovigilance",
     "Life Sciences",
-    "Regulatory Affairs",
-    "Compliance",
+    "Life Sciences",
     "PV Education",
-    "Clinical Quality",
     "Consulting",
   ],
   openGraph: {

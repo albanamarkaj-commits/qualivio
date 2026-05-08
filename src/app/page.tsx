@@ -25,7 +25,7 @@ export default function Home() {
 
           {/* Eyebrow — gold */}
           <p className="mb-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#F7B731]">
-            Pharmacovigilance · Life Sciences · Regulatory Affairs
+            Pharmacovigilance · Life Sciences
           </p>
 
           {/* Headline — reduced from 7xl to 6xl max */}
@@ -61,7 +61,7 @@ export default function Home() {
       {/* ── Dark bar ── */}
       <div className="border-y border-[#2E2E36] bg-[#0D0D0F] px-6 py-6">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-8 text-xs font-medium uppercase tracking-widest text-[#9896B6]">
-          {["Pharmacovigilance", "Regulatory Affairs", "Compliance", "Life Sciences Education", "Consulting"].map(
+          {["Pharmacovigilance", "Life Sciences", "Education", "Consulting"].map(
             (item) => (
               <span key={item} className="flex items-center gap-2">
                 <span className="h-1 w-1 rounded-full bg-[#F7B731]" />

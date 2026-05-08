@@ -9,13 +9,7 @@ export const metadata: Metadata = {
     "Pharmacovigilance, regulatory affairs, clinical quality, and life sciences articles from Qualivio.",
 };
 
-const categories = [
-  "All",
-  "Pharmacovigilance",
-  "Regulatory Affairs",
-  "Clinical Quality",
-  "Compliance",
-];
+const categories = ["All", "Pharmacovigilance", "Life Sciences"];
 
 export default function InsightsPage() {
   return (
