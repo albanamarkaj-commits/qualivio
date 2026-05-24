@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { resources } from "@/data/resources";
+import { createDownloadToken } from "@/lib/download-tokens";
+
+const DOWNLOAD_TTL_DAYS = 7;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SITE_URL = process.env.SITE_URL ?? "https://www.qualiviopharma.com";
@@ -109,6 +113,24 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
   }
 
+  // Find the resource record so we know which file to issue a download for
+  const resourceRecord = resources.find((r) => r.title === resource);
+  if (!resourceRecord || !resourceRecord.file) {
+    return NextResponse.json(
+      { error: "This resource is not available for download." },
+      { status: 404 }
+    );
+  }
+
+  // Issue a signed, time-limited download link
+  const expiresAt = Date.now() + DOWNLOAD_TTL_DAYS * 24 * 60 * 60 * 1000;
+  const token = createDownloadToken({
+    file: resourceRecord.file,
+    email,
+    expiresAt,
+  });
+  const downloadUrl = `/api/download/${token}`;
+
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEADS_EMAIL;
   const from = process.env.RESEND_FROM ?? "Qualivio <onboarding@resend.dev>";
@@ -118,7 +140,7 @@ export async function POST(req: Request) {
       "[resource-download] RESEND_API_KEY or LEADS_EMAIL not set, lead logged only:",
       { firstName, lastName, email, companyPosition, resource }
     );
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, downloadUrl });
   }
 
   const resend = new Resend(apiKey);
@@ -161,5 +183,5 @@ export async function POST(req: Request) {
     console.error("[resource-download] Resend visitor error:", confirmResult.value.error);
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, downloadUrl });
 }

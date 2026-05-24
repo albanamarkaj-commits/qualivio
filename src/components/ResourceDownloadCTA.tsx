@@ -36,9 +36,9 @@ export function ResourceDownloadCTA({ title, file }: Props) {
     setError(null);
   }
 
-  function triggerDownload() {
+  function triggerDownload(url: string) {
     const a = document.createElement("a");
-    a.href = file;
+    a.href = url;
     a.download = file.split("/").pop() ?? "";
     document.body.appendChild(a);
     a.click();
@@ -61,13 +61,18 @@ export function ResourceDownloadCTA({ title, file }: Props) {
           resource: title,
         }),
       });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        downloadUrl?: string;
+      };
       if (!res.ok) {
         setStatus("error");
         setError(data.error ?? "Something went wrong. Please try again.");
         return;
       }
-      triggerDownload();
+      if (data.downloadUrl) {
+        triggerDownload(data.downloadUrl);
+      }
       close();
       setFirstName("");
       setLastName("");
