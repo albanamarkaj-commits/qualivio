@@ -102,7 +102,7 @@ export function ResourceDownloadCTA({ title, file }: Props) {
           className="fixed inset-0 z-50 flex items-center justify-center px-4"
         >
           <div
-            className="absolute inset-0 bg-[#0D0D0F]/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#0D0D0F]/75"
             onClick={close}
           />
           <div className="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
