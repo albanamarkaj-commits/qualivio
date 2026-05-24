@@ -17,8 +17,7 @@ export function ResourceDownloadCTA({ title, file }: Props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
-  const [position, setPosition] = useState("");
+  const [companyPosition, setCompanyPosition] = useState("");
 
   useEffect(() => {
     if (!open) return;
@@ -58,8 +57,7 @@ export function ResourceDownloadCTA({ title, file }: Props) {
           firstName,
           lastName,
           email,
-          company,
-          position,
+          companyPosition,
           resource: title,
         }),
       });
@@ -74,8 +72,7 @@ export function ResourceDownloadCTA({ title, file }: Props) {
       setFirstName("");
       setLastName("");
       setEmail("");
-      setCompany("");
-      setPosition("");
+      setCompanyPosition("");
     } catch {
       setStatus("error");
       setError("Network error. Please try again.");
@@ -191,36 +188,18 @@ export function ResourceDownloadCTA({ title, file }: Props) {
 
               <div>
                 <label
-                  htmlFor="dl-company"
+                  htmlFor="dl-company-position"
                   className="block text-xs font-semibold text-[#0D0D0F]"
                 >
-                  Company <span className="font-normal text-[#9896B6]">(optional)</span>
+                  Company &amp; Position <span className="font-normal text-[#9896B6]">(optional)</span>
                 </label>
                 <input
-                  id="dl-company"
-                  type="text"
-                  autoComplete="organization"
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                  placeholder="Acme Pharma"
-                  className={inputClasses}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="dl-position"
-                  className="block text-xs font-semibold text-[#0D0D0F]"
-                >
-                  Position <span className="font-normal text-[#9896B6]">(optional)</span>
-                </label>
-                <input
-                  id="dl-position"
+                  id="dl-company-position"
                   type="text"
                   autoComplete="organization-title"
-                  value={position}
-                  onChange={(e) => setPosition(e.target.value)}
-                  placeholder="QPPV / PV Manager"
+                  value={companyPosition}
+                  onChange={(e) => setCompanyPosition(e.target.value)}
+                  placeholder="PV Manager at Acme Pharma"
                   className={inputClasses}
                 />
               </div>

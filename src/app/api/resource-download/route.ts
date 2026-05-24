@@ -17,8 +17,7 @@ function leadNotificationHtml(p: {
   firstName: string;
   lastName: string;
   email: string;
-  company: string;
-  position: string;
+  companyPosition: string;
 }) {
   const fullName = `${p.firstName} ${p.lastName}`.trim();
   return `
@@ -27,8 +26,7 @@ function leadNotificationHtml(p: {
       <tr><td style="padding:6px 12px;color:#666">Resource</td><td style="padding:6px 12px"><strong>${esc(p.resource)}</strong></td></tr>
       <tr><td style="padding:6px 12px;color:#666">Name</td><td style="padding:6px 12px"><strong>${esc(fullName)}</strong></td></tr>
       <tr><td style="padding:6px 12px;color:#666">Email</td><td style="padding:6px 12px"><a href="mailto:${esc(p.email)}">${esc(p.email)}</a></td></tr>
-      <tr><td style="padding:6px 12px;color:#666">Company</td><td style="padding:6px 12px">${esc(p.company) || "—"}</td></tr>
-      <tr><td style="padding:6px 12px;color:#666">Position</td><td style="padding:6px 12px">${esc(p.position) || "—"}</td></tr>
+      <tr><td style="padding:6px 12px;color:#666">Company &amp; Position</td><td style="padding:6px 12px">${esc(p.companyPosition) || "—"}</td></tr>
     </table>
   `;
 }
@@ -86,8 +84,7 @@ export async function POST(req: Request) {
     firstName?: string;
     lastName?: string;
     email?: string;
-    company?: string;
-    position?: string;
+    companyPosition?: string;
     resource?: string;
   };
   try {
@@ -99,8 +96,7 @@ export async function POST(req: Request) {
   const firstName = (body.firstName ?? "").trim().slice(0, 100);
   const lastName = (body.lastName ?? "").trim().slice(0, 100);
   const email = (body.email ?? "").trim();
-  const company = (body.company ?? "").trim().slice(0, 200);
-  const position = (body.position ?? "").trim().slice(0, 200);
+  const companyPosition = (body.companyPosition ?? "").trim().slice(0, 300);
   const resource = (body.resource ?? "").trim().slice(0, 200) || "Unknown resource";
 
   if (!firstName) {
@@ -119,8 +115,8 @@ export async function POST(req: Request) {
 
   if (!apiKey || !to) {
     console.warn(
-      "[resource-download] RESEND_API_KEY or LEADS_EMAIL not set — lead logged only:",
-      { firstName, lastName, email, company, position, resource }
+      "[resource-download] RESEND_API_KEY or LEADS_EMAIL not set, lead logged only:",
+      { firstName, lastName, email, companyPosition, resource }
     );
     return NextResponse.json({ ok: true });
   }
@@ -138,8 +134,7 @@ export async function POST(req: Request) {
         firstName,
         lastName,
         email,
-        company,
-        position,
+        companyPosition,
       }),
     }),
     resend.emails.send({
