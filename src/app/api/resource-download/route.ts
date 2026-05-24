@@ -14,14 +14,18 @@ function esc(s: string) {
 
 function leadNotificationHtml(p: {
   resource: string;
+  firstName: string;
+  lastName: string;
   email: string;
   company: string;
   position: string;
 }) {
+  const fullName = `${p.firstName} ${p.lastName}`.trim();
   return `
     <h2 style="font-family:system-ui,sans-serif">New download lead</h2>
     <table style="font-family:system-ui,sans-serif;font-size:14px;border-collapse:collapse">
       <tr><td style="padding:6px 12px;color:#666">Resource</td><td style="padding:6px 12px"><strong>${esc(p.resource)}</strong></td></tr>
+      <tr><td style="padding:6px 12px;color:#666">Name</td><td style="padding:6px 12px"><strong>${esc(fullName)}</strong></td></tr>
       <tr><td style="padding:6px 12px;color:#666">Email</td><td style="padding:6px 12px"><a href="mailto:${esc(p.email)}">${esc(p.email)}</a></td></tr>
       <tr><td style="padding:6px 12px;color:#666">Company</td><td style="padding:6px 12px">${esc(p.company) || "—"}</td></tr>
       <tr><td style="padding:6px 12px;color:#666">Position</td><td style="padding:6px 12px">${esc(p.position) || "—"}</td></tr>
@@ -29,10 +33,13 @@ function leadNotificationHtml(p: {
   `;
 }
 
-function visitorConfirmationHtml(p: { resource: string }) {
+function visitorConfirmationHtml(p: { resource: string; firstName: string }) {
   return `
     <div style="font-family:system-ui,-apple-system,sans-serif;max-width:560px;margin:0 auto;padding:32px 24px;color:#0D0D0F">
       <h1 style="font-size:24px;margin:0 0 8px;line-height:1.3">Thanks for downloading!</h1>
+      <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 16px">
+        Hi ${esc(p.firstName)},
+      </p>
       <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 24px">
         Your copy of <strong>${esc(p.resource)}</strong> should have downloaded successfully.
         If anything went wrong, just reply to this email and we'll send it across directly.
@@ -64,10 +71,10 @@ function visitorConfirmationHtml(p: { resource: string }) {
 
       <p style="font-size:14px;line-height:1.6;color:#555;margin:0 0 8px">
         Have a question about PV auditing, compliance, or your safety setup?
-        Just reply to this email — we're happy to help.
+        Just reply to this email, we're happy to help.
       </p>
       <p style="font-size:14px;color:#999;margin:24px 0 0">
-        — The Qualivio team<br>
+        The Qualivio team<br>
         <a href="${SITE_URL}" style="color:#7C6AF7;text-decoration:none">qualiviopharma.com</a>
       </p>
     </div>
@@ -75,18 +82,33 @@ function visitorConfirmationHtml(p: { resource: string }) {
 }
 
 export async function POST(req: Request) {
-  let body: { email?: string; company?: string; position?: string; resource?: string };
+  let body: {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    company?: string;
+    position?: string;
+    resource?: string;
+  };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
+  const firstName = (body.firstName ?? "").trim().slice(0, 100);
+  const lastName = (body.lastName ?? "").trim().slice(0, 100);
   const email = (body.email ?? "").trim();
   const company = (body.company ?? "").trim().slice(0, 200);
   const position = (body.position ?? "").trim().slice(0, 200);
   const resource = (body.resource ?? "").trim().slice(0, 200) || "Unknown resource";
 
+  if (!firstName) {
+    return NextResponse.json({ error: "Please enter your first name." }, { status: 400 });
+  }
+  if (!lastName) {
+    return NextResponse.json({ error: "Please enter your last name." }, { status: 400 });
+  }
   if (!email || !EMAIL_RE.test(email) || email.length > 200) {
     return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
   }
@@ -98,7 +120,7 @@ export async function POST(req: Request) {
   if (!apiKey || !to) {
     console.warn(
       "[resource-download] RESEND_API_KEY or LEADS_EMAIL not set — lead logged only:",
-      { email, company, position, resource }
+      { firstName, lastName, email, company, position, resource }
     );
     return NextResponse.json({ ok: true });
   }
@@ -111,14 +133,21 @@ export async function POST(req: Request) {
       to,
       replyTo: email,
       subject: `New resource download: ${resource}`,
-      html: leadNotificationHtml({ resource, email, company, position }),
+      html: leadNotificationHtml({
+        resource,
+        firstName,
+        lastName,
+        email,
+        company,
+        position,
+      }),
     }),
     resend.emails.send({
       from,
       to: email,
       replyTo: to,
       subject: `Your ${resource} guide`,
-      html: visitorConfirmationHtml({ resource }),
+      html: visitorConfirmationHtml({ resource, firstName }),
     }),
   ]);
 

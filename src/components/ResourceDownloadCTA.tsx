@@ -13,6 +13,8 @@ export function ResourceDownloadCTA({ title, file }: Props) {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [position, setPosition] = useState("");
@@ -51,7 +53,14 @@ export function ResourceDownloadCTA({ title, file }: Props) {
       const res = await fetch("/api/resource-download", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, company, position, resource: title }),
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          company,
+          position,
+          resource: title,
+        }),
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
@@ -61,6 +70,8 @@ export function ResourceDownloadCTA({ title, file }: Props) {
       }
       triggerDownload();
       close();
+      setFirstName("");
+      setLastName("");
       setEmail("");
       setCompany("");
       setPosition("");
@@ -69,6 +80,9 @@ export function ResourceDownloadCTA({ title, file }: Props) {
       setError("Network error. Please try again.");
     }
   }
+
+  const inputClasses =
+    "mt-2 w-full rounded-lg border border-[#E5E4F0] bg-white px-4 py-3 text-sm text-[#0D0D0F] outline-none focus:border-[#7C6AF7] focus:ring-2 focus:ring-[#7C6AF7]/20";
 
   return (
     <>
@@ -118,6 +132,45 @@ export function ResourceDownloadCTA({ title, file }: Props) {
             <form onSubmit={onSubmit} className="mt-6 space-y-4">
               <div>
                 <label
+                  htmlFor="dl-first-name"
+                  className="block text-xs font-semibold text-[#0D0D0F]"
+                >
+                  First Name <span className="text-[#7C6AF7]">*</span>
+                </label>
+                <input
+                  id="dl-first-name"
+                  type="text"
+                  required
+                  autoFocus
+                  autoComplete="given-name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="Jane"
+                  className={inputClasses}
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="dl-last-name"
+                  className="block text-xs font-semibold text-[#0D0D0F]"
+                >
+                  Last Name <span className="text-[#7C6AF7]">*</span>
+                </label>
+                <input
+                  id="dl-last-name"
+                  type="text"
+                  required
+                  autoComplete="family-name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Doe"
+                  className={inputClasses}
+                />
+              </div>
+
+              <div>
+                <label
                   htmlFor="dl-email"
                   className="block text-xs font-semibold text-[#0D0D0F]"
                 >
@@ -127,11 +180,11 @@ export function ResourceDownloadCTA({ title, file }: Props) {
                   id="dl-email"
                   type="email"
                   required
-                  autoFocus
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@company.com"
-                  className="mt-2 w-full rounded-lg border border-[#E5E4F0] bg-white px-4 py-3 text-sm text-[#0D0D0F] outline-none focus:border-[#7C6AF7] focus:ring-2 focus:ring-[#7C6AF7]/20"
+                  placeholder="your@email.com"
+                  className={inputClasses}
                 />
               </div>
 
@@ -145,10 +198,11 @@ export function ResourceDownloadCTA({ title, file }: Props) {
                 <input
                   id="dl-company"
                   type="text"
+                  autoComplete="organization"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                   placeholder="Acme Pharma"
-                  className="mt-2 w-full rounded-lg border border-[#E5E4F0] bg-white px-4 py-3 text-sm text-[#0D0D0F] outline-none focus:border-[#7C6AF7] focus:ring-2 focus:ring-[#7C6AF7]/20"
+                  className={inputClasses}
                 />
               </div>
 
@@ -162,10 +216,11 @@ export function ResourceDownloadCTA({ title, file }: Props) {
                 <input
                   id="dl-position"
                   type="text"
+                  autoComplete="organization-title"
                   value={position}
                   onChange={(e) => setPosition(e.target.value)}
                   placeholder="QPPV / PV Manager"
-                  className="mt-2 w-full rounded-lg border border-[#E5E4F0] bg-white px-4 py-3 text-sm text-[#0D0D0F] outline-none focus:border-[#7C6AF7] focus:ring-2 focus:ring-[#7C6AF7]/20"
+                  className={inputClasses}
                 />
               </div>
 
