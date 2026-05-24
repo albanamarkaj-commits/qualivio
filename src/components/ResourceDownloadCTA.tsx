@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type Props = {
   title: string;
@@ -94,7 +95,7 @@ export function ResourceDownloadCTA({ title, file }: Props) {
         Download →
       </button>
 
-      {open && (
+      {open && typeof document !== "undefined" && createPortal(
         <div
           role="dialog"
           aria-modal="true"
@@ -239,7 +240,8 @@ export function ResourceDownloadCTA({ title, file }: Props) {
               </button>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
