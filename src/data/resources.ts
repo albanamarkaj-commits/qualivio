@@ -35,10 +35,11 @@ export const resources = [
     price: "£39",
   },
   {
-    title: "PV System Audit Guide",
+    title: "Pharmacovigilance Auditing",
     type: "Guide",
     description:
       "Practical guidance for conducting internal pharmacovigilance system audits and corrective action planning.",
     price: "Free",
+    file: "/resources/Qualivio_Pharmacovigilance_Auditing.pdf",
   },
 ];
