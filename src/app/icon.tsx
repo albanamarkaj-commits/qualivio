@@ -17,22 +17,23 @@ export default function Icon() {
           borderRadius: "7px",
         }}
       >
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          {/* Circle — exact proportions from QMark.tsx: cx=size*0.44, r=size*0.38 */}
-          <circle cx="10.56" cy="10.56" r="9.12" stroke="white" strokeWidth="1.8" fill="none" />
-          {/* Tail at 45° — tailX1=cx+r*cos(π/4)≈17, tailX2=size*0.9≈21.6 */}
-          <line
-            x1="17"
-            y1="17"
-            x2="21.6"
-            y2="21.6"
+        <svg width="28" height="28" viewBox="0 0 300 300" fill="none">
+          <circle
+            cx="140"
+            cy="135"
+            r="65"
+            fill="none"
             stroke="white"
-            strokeWidth="1.8"
+            strokeWidth="18"
+            strokeLinecap="round"
+          />
+          <line
+            x1="190"
+            y1="180"
+            x2="210"
+            y2="204"
+            stroke="white"
+            strokeWidth="18"
             strokeLinecap="round"
           />
         </svg>
