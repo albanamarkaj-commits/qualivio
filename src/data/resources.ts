@@ -69,9 +69,7 @@ export const resources: Resource[] = [
     type: "Guide",
     description:
       "Practical guidance for conducting internal pharmacovigilance system audits and corrective action planning.",
-    price: "$39",
-    priceCents: 3900,
-    currency: "usd",
+    price: "Free",
     file: "/resources/Qualivio_Pharmacovigilance_Auditing.pdf",
   },
 ];
