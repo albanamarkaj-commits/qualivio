@@ -153,14 +153,14 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
           role="dialog"
           aria-modal="true"
           aria-labelledby="dl-title"
-          className="fixed inset-0 z-50 overflow-y-auto"
+          onClick={close}
+          className="fixed inset-0 z-50 overflow-y-auto bg-[#0D0D0F]/75"
         >
-          <div
-            className="absolute inset-0 bg-[#0D0D0F]/75"
-            onClick={close}
-          />
-          <div className="relative flex min-h-full items-center justify-center p-4">
-            <div className="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl my-4">
+          <div className="flex min-h-full justify-center p-4">
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative my-auto w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl"
+            >
             <button
               type="button"
               onClick={close}
