@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 };
 
 const tiers = [
-  { name: "Free", price: "£0", description: "Introductory checklists and selected resources — no payment required.", cta: "Access for free", highlight: false },
-  { name: "Professional", price: "£29–£79", description: "Guides, short books, and focused mini courses for individual practitioners.", cta: "Browse resources", highlight: true },
+  { name: "Free", price: "€0", description: "Introductory checklists and selected resources, no payment required.", cta: "Access for free", highlight: false },
+  { name: "Professional", price: "€29–€79", description: "Guides, short books, and focused mini courses for individual practitioners.", cta: "Browse resources", highlight: true },
   { name: "Team", price: "Custom", description: "Training bundles and organisation-specific education programmes.", cta: "Contact us", highlight: false },
 ];
 

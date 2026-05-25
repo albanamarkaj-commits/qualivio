@@ -3,7 +3,7 @@
  * the protected copy to the project's private resources directory.
  *
  * Usage:
- *   node scripts/protect-pdf.mjs <source.pdf> <target.pdf>
+ *   node scripts/protect-pdf.mjs <source.pdf> <target.pdf> [title] [subject]
  *
  * Defaults to processing the Pharmacovigilance Auditing guide.
  */
@@ -19,23 +19,26 @@ const DEFAULT_TARGET =
 
 const source = process.argv[2] ?? DEFAULT_SOURCE;
 const target = process.argv[3] ?? DEFAULT_TARGET;
+const title =
+  process.argv[4] ?? "Pharmacovigilance Auditing";
+const subject =
+  process.argv[5] ??
+  "A Qualivio resource for pharmacovigilance and life sciences professionals.";
 
 const sourceBytes = await fs.readFile(source);
 const pdfDoc = await PDFDocument.load(sourceBytes);
 
 // Brand metadata. Visible under File → Properties in any PDF reader.
-pdfDoc.setTitle("Pharmacovigilance Auditing");
+pdfDoc.setTitle(title);
 pdfDoc.setAuthor("Qualivio");
-pdfDoc.setSubject(
-  "A practical guide to pharmacovigilance system audits from Qualivio."
-);
+pdfDoc.setSubject(subject);
 pdfDoc.setKeywords([
   "pharmacovigilance",
-  "PV audit",
   "Qualivio",
   "compliance",
   "EMA",
   "MHRA",
+  "life sciences",
 ]);
 pdfDoc.setProducer("Qualivio (qualiviopharma.com)");
 pdfDoc.setCreator("Qualivio");

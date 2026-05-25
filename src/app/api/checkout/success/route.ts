@@ -141,7 +141,7 @@ export async function GET(req: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEADS_EMAIL;
   const from = process.env.RESEND_FROM ?? "Qualivio <onboarding@resend.dev>";
-  const currency = (session.currency ?? resource.currency ?? "usd").toUpperCase();
+  const currency = (session.currency ?? resource.currency ?? "eur").toUpperCase();
   const amountFmt = ((session.amount_total ?? resource.priceCents ?? 0) / 100).toFixed(2);
   const amountDisplay = `${amountFmt} ${currency}`;
 
