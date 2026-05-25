@@ -199,6 +199,7 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
                   required
                   autoFocus
                   autoComplete="given-name"
+                  enterKeyHint="next"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="Jane"
@@ -218,6 +219,7 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
                   type="text"
                   required
                   autoComplete="family-name"
+                  enterKeyHint="next"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Doe"
@@ -237,6 +239,8 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
                   type="email"
                   required
                   autoComplete="email"
+                  enterKeyHint="next"
+                  inputMode="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
@@ -255,6 +259,7 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
                   id="dl-company-position"
                   type="text"
                   autoComplete="organization-title"
+                  enterKeyHint="send"
                   value={companyPosition}
                   onChange={(e) => setCompanyPosition(e.target.value)}
                   placeholder="PV Manager at Acme Pharma"
