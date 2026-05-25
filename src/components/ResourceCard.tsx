@@ -1,15 +1,14 @@
 import { Card } from "./Card";
 import { ResourceDownloadCTA } from "./ResourceDownloadCTA";
+import type { Resource } from "@/data/resources";
 
-export function ResourceCard({
-  resource,
-}: {
-  resource: { title: string; type: string; description: string; price: string; file?: string };
-}) {
+export function ResourceCard({ resource }: { resource: Resource }) {
   const isFree = resource.price === "Free";
-  const ctaLabel = isFree ? "Download →" : "Get access →";
-  const ctaClasses =
-    "mt-6 inline-block text-xs font-semibold text-[#4ECDC4] hover:text-[#7C6AF7] transition-colors";
+  // A resource is purchasable when it has both a file to deliver and a configured price.
+  const hasFile = !!resource.file;
+  const hasCheckout = !!resource.priceCents && !!resource.currency;
+  const canActivateCTA = hasFile && (isFree || hasCheckout);
+
   return (
     <Card>
       <div className="flex items-start justify-between gap-4">
@@ -35,10 +34,17 @@ export function ResourceCard({
         )}
       </div>
       <p className="mt-3 text-sm leading-7 text-[#6B6A8F]">{resource.description}</p>
-      {isFree && resource.file ? (
-        <ResourceDownloadCTA title={resource.title} file={resource.file} />
+      {canActivateCTA && resource.file ? (
+        <ResourceDownloadCTA
+          resourceId={resource.id}
+          title={resource.title}
+          price={resource.price}
+          file={resource.file}
+        />
       ) : (
-        <button className={ctaClasses}>{ctaLabel}</button>
+        <span className="mt-6 inline-block text-xs font-semibold text-[#9896B6]">
+          Coming soon
+        </span>
       )}
     </Card>
   );

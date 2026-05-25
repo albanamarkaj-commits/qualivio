@@ -4,13 +4,20 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 type Props = {
+  /** Stable resource id from data/resources.ts */
+  resourceId: string;
   title: string;
+  /** "Free" or display price like "$39". */
+  price: string;
+  /** Path within /private/resources/, used only to derive a sensible filename for free downloads. */
   file: string;
 };
 
 type Status = "idle" | "submitting" | "error";
 
-export function ResourceDownloadCTA({ title, file }: Props) {
+export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
+  const isFree = price === "Free";
+
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -49,8 +56,48 @@ export function ResourceDownloadCTA({ title, file }: Props) {
     e.preventDefault();
     setStatus("submitting");
     setError(null);
+
+    if (isFree) {
+      // Free flow: existing email-gated download.
+      try {
+        const res = await fetch("/api/resource-download", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            companyPosition,
+            resource: title,
+          }),
+        });
+        const data = (await res.json().catch(() => ({}))) as {
+          error?: string;
+          downloadUrl?: string;
+        };
+        if (!res.ok) {
+          setStatus("error");
+          setError(data.error ?? "Something went wrong. Please try again.");
+          return;
+        }
+        if (data.downloadUrl) {
+          triggerDownload(data.downloadUrl);
+        }
+        close();
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setCompanyPosition("");
+      } catch {
+        setStatus("error");
+        setError("Network error. Please try again.");
+      }
+      return;
+    }
+
+    // Paid flow: create Stripe Checkout Session and redirect.
     try {
-      const res = await fetch("/api/resource-download", {
+      const res = await fetch("/api/checkout/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -58,26 +105,20 @@ export function ResourceDownloadCTA({ title, file }: Props) {
           lastName,
           email,
           companyPosition,
-          resource: title,
+          resourceId,
         }),
       });
       const data = (await res.json().catch(() => ({}))) as {
         error?: string;
-        downloadUrl?: string;
+        url?: string;
       };
-      if (!res.ok) {
+      if (!res.ok || !data.url) {
         setStatus("error");
-        setError(data.error ?? "Something went wrong. Please try again.");
+        setError(data.error ?? "Could not start checkout. Please try again.");
         return;
       }
-      if (data.downloadUrl) {
-        triggerDownload(data.downloadUrl);
-      }
-      close();
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setCompanyPosition("");
+      // Full-page navigate to Stripe Checkout
+      window.location.href = data.url;
     } catch {
       setStatus("error");
       setError("Network error. Please try again.");
@@ -87,6 +128,16 @@ export function ResourceDownloadCTA({ title, file }: Props) {
   const inputClasses =
     "mt-2 w-full rounded-lg border border-[#E5E4F0] bg-white px-4 py-3 text-sm text-[#0D0D0F] outline-none focus:border-[#7C6AF7] focus:ring-2 focus:ring-[#7C6AF7]/20";
 
+  const ctaLabel = isFree ? "Download →" : `Buy ${price} →`;
+  const eyebrowLabel = isFree ? "Free Download" : `Purchase — ${price}`;
+  const submitLabel = isFree
+    ? status === "submitting"
+      ? "Sending..."
+      : "Download PDF"
+    : status === "submitting"
+      ? "Redirecting..."
+      : `Continue to payment — ${price}`;
+
   return (
     <>
       <button
@@ -94,7 +145,7 @@ export function ResourceDownloadCTA({ title, file }: Props) {
         onClick={() => setOpen(true)}
         className="mt-6 inline-block text-xs font-semibold text-[#4ECDC4] hover:text-[#7C6AF7] transition-colors"
       >
-        Download →
+        {ctaLabel}
       </button>
 
       {open && typeof document !== "undefined" && createPortal(
@@ -119,7 +170,7 @@ export function ResourceDownloadCTA({ title, file }: Props) {
             </button>
 
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#F7B731]">
-              Free Download
+              {eyebrowLabel}
             </p>
             <h3
               id="dl-title"
@@ -129,7 +180,9 @@ export function ResourceDownloadCTA({ title, file }: Props) {
               {title}
             </h3>
             <p className="mt-2 text-sm leading-6 text-[#6B6A8F]">
-              Enter your details to access this resource. We&apos;ll send you the file right away.
+              {isFree
+                ? "Enter your details to access this resource. We'll send you the file right away."
+                : "Enter your details and we'll take you to a secure Stripe checkout to complete the purchase."}
             </p>
 
             <form onSubmit={onSubmit} className="mt-6 space-y-4">
@@ -220,8 +273,14 @@ export function ResourceDownloadCTA({ title, file }: Props) {
                 disabled={status === "submitting"}
                 className="mt-2 w-full rounded-full bg-[#7C6AF7] py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#6a58e6] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {status === "submitting" ? "Sending..." : "Download PDF"}
+                {submitLabel}
               </button>
+
+              {!isFree && (
+                <p className="text-[11px] leading-5 text-[#9896B6] text-center">
+                  Secured by Stripe. Your card details never touch our servers.
+                </p>
+              )}
             </form>
           </div>
         </div>,
