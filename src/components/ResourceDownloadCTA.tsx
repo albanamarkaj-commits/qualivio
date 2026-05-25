@@ -154,22 +154,23 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
           aria-modal="true"
           aria-labelledby="dl-title"
           onClick={close}
-          className="fixed inset-0 z-50 overflow-y-auto bg-[#0D0D0F]/75"
+          className="fixed inset-0 z-50 bg-[#0D0D0F]/75"
         >
-          <div className="flex min-h-full justify-center p-4">
+          <div className="flex min-h-full items-center justify-center p-4">
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative my-auto w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl"
+              className="relative w-full max-w-md max-h-[calc(100vh-2rem)] flex flex-col rounded-2xl bg-white shadow-2xl"
             >
             <button
               type="button"
               onClick={close}
               aria-label="Close"
-              className="absolute right-4 top-4 text-[#6B6A8F] hover:text-[#0D0D0F] text-xl leading-none"
+              className="absolute right-4 top-4 z-10 text-[#6B6A8F] hover:text-[#0D0D0F] text-xl leading-none"
             >
               ×
             </button>
 
+            <div className="overflow-y-auto p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#F7B731]">
               {eyebrowLabel}
             </p>
@@ -288,6 +289,7 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
                 </p>
               )}
             </form>
+            </div>
             </div>
           </div>
         </div>,
