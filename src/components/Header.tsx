@@ -20,7 +20,7 @@ export function Header() {
           </span>
           <span
             className="text-xl font-medium text-[#E8E6FF] tracking-tight"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-wordmark)" }}
           >
             Qualivio
           </span>

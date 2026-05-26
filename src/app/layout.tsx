@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
-import { Sora, DM_Sans } from "next/font/google";
+import { Space_Grotesk, DM_Sans, Sora } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-// Brand display font: Sora, loaded at Medium (500) for the wordmark
-// and Bold (700) for headings. The CSS variable is kept generic so
-// references across the codebase don't need a rename if we ever swap
-// the underlying family again.
-const sora = Sora({
+// Display font for headings, titles, and eyebrows. Restored to Space
+// Grotesk after the Sora trial — Sora is reserved exclusively for the
+// "Qualivio" wordmark.
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-space-grotesk",
+});
+
+// Wordmark-only font. Loaded at Medium (500) to match the MP4 intro
+// and LinkedIn banner. Referenced via --font-wordmark and applied only
+// to the "Qualivio" text in the Header and Footer.
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-wordmark",
 });
 
 const dmSans = DM_Sans({
@@ -55,7 +63,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${dmSans.variable} h-full`}
+      className={`${spaceGrotesk.variable} ${sora.variable} ${dmSans.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-white text-[#0D0D0F] antialiased">
         <Header />
