@@ -41,19 +41,27 @@ const WORD = "Qualivio";
 const RING_CIRCUMFERENCE = 2 * Math.PI * 65;
 const TAIL_LENGTH_VISUAL = 49.24;
 
-// Same timeline as the runtime page (seconds).
-const T_TYPE_START = 0.35;
+// The video opens with a static "title card" of the final lockup so
+// LinkedIn (and any other platform that picks frame 0 as the
+// thumbnail) shows the full brand even when autoplay is off.
+const T_TITLE_HOLD = 0.7; // hold the final state at the start
+const T_TITLE_FADE = 0.3; // fade title card to black before animating
+const T_ANIM_START = T_TITLE_HOLD + T_TITLE_FADE; // 1.0s — animation begins here
+
+// Animation timeline (seconds). Shifted by T_ANIM_START so the
+// audio + visual cues stay in sync after the title card.
+const T_TYPE_START = T_ANIM_START + 0.35;
 const T_TYPE_STEP = 0.18;
-const T_TYPE_DONE = T_TYPE_START + WORD.length * T_TYPE_STEP; // 1.79
-const T_CARET_FADE = T_TYPE_DONE + 0.4; // 2.19
+const T_TYPE_DONE = T_TYPE_START + WORD.length * T_TYPE_STEP;
+const T_CARET_FADE = T_TYPE_DONE + 0.4;
 const T_CARET_FADE_DUR = 0.4;
-const T_RING_START = T_CARET_FADE + 0.15; // 2.34
+const T_RING_START = T_CARET_FADE + 0.15;
 const T_RING_DUR = 0.85;
-const T_TAIL_START = T_RING_START + T_RING_DUR - 0.05; // 3.14
+const T_TAIL_START = T_RING_START + T_RING_DUR - 0.05;
 const T_TAIL_DUR = 0.35;
-const T_CHIME = T_TAIL_START + T_TAIL_DUR + 0.05; // 3.54
-const T_TAGLINE = T_RING_START; // 2.34 — together with the lupe
-const T_TAGLINE_DUR = T_CHIME - T_RING_START; // 1.2
+const T_CHIME = T_TAIL_START + T_TAIL_DUR + 0.05;
+const T_TAGLINE = T_RING_START;
+const T_TAGLINE_DUR = T_CHIME - T_RING_START;
 const T_END_BUFFER = 1.5; // hold final state for 1.5 s
 
 export const INTRO_TOTAL_SEC = T_CHIME + T_END_BUFFER;
@@ -79,33 +87,56 @@ export const IntroComposition: React.FC = () => {
   const wordGap = 60 * designScale; // gap above and below wordmark
   const caretWidth = 5 * designScale;
 
-  // Letter reveal — one pop per letter, plus the caret animation.
+  // Title-card strength: 1 while we hold the static lockup at the start
+  // so platforms that pick frame 0 as the thumbnail show the full brand,
+  // 1→0 during the fade-out, 0 once the animation starts.
+  const titleStrength = clamp01((T_ANIM_START - t) / T_TITLE_FADE);
+
+  // Letter reveal — one pop per letter. During the title card the
+  // letters are forced to full visibility; during the fade they cross
+  // down with the rest of the title; from T_ANIM_START on, each letter
+  // follows its individual typing delay as before.
   const letters = WORD.split("").map((ch, i) => {
-    const reveal = clamp01((t - (T_TYPE_START + i * T_TYPE_STEP)) / 0.08);
-    return {
-      ch,
-      opacity: reveal,
-      translateY: (1 - reveal) * 2 * designScale,
-    };
+    const animReveal = clamp01((t - (T_TYPE_START + i * T_TYPE_STEP)) / 0.08);
+    const opacity = Math.max(animReveal, titleStrength);
+    const translateY =
+      t < T_ANIM_START ? 0 : (1 - opacity) * 2 * designScale;
+    return { ch, opacity, translateY };
   });
 
-  const caretOpacity = caretLifeOpacity(t);
+  // Caret stays hidden during the title card; only the animation phase
+  // gets the blink-then-fade behaviour.
+  const caretOpacity = caretLifeOpacity(t) * (1 - titleStrength);
 
-  // Q mark draw progress.
+  // Q mark draw progress. During the title card phase, the title
+  // strength keeps the ring/tail drawn (offset 0); during the fade,
+  // they "un-draw" smoothly; from T_ANIM_START on, the original draw
+  // animation takes over.
   const ringProgress = clamp01((t - T_RING_START) / T_RING_DUR);
   const tailProgress = clamp01((t - T_TAIL_START) / T_TAIL_DUR);
-  const ringDashOffset = RING_CIRCUMFERENCE * (1 - easeInOutCubic(ringProgress));
-  const tailDashOffset = TAIL_LENGTH_VISUAL * (1 - easeInOutCubic(tailProgress));
+  const animRingOffset = RING_CIRCUMFERENCE * (1 - easeInOutCubic(ringProgress));
+  const animTailOffset = TAIL_LENGTH_VISUAL * (1 - easeInOutCubic(tailProgress));
+  const ringDashOffset = animRingOffset * (1 - titleStrength);
+  const tailDashOffset = animTailOffset * (1 - titleStrength);
 
-  // Q glow + scale pulse on completion.
-  const glow = qGlow(t);
+  // Q glow: settled "halo" during the title card, fades out, then the
+  // chime glow logic takes over for the rest of the video.
+  const animGlow = qGlow(t);
+  const titleGlow = { blur: 12, alpha: 0.2, scale: 1 };
+  const glow = {
+    blur: titleGlow.blur * titleStrength + animGlow.blur * (1 - titleStrength),
+    alpha: titleGlow.alpha * titleStrength + animGlow.alpha * (1 - titleStrength),
+    scale: titleGlow.scale * titleStrength + animGlow.scale * (1 - titleStrength),
+  };
 
-  // Tagline fade.
-  const taglineOpacity = clamp01((t - T_TAGLINE) / T_TAGLINE_DUR);
-  // URL fades in just after the chime so it cascades in after the tagline.
+  // Tagline + URL: full opacity during title hold, fade with the card,
+  // then the animation phase fades them back in alongside the Q.
+  const animTaglineOpacity = clamp01((t - T_TAGLINE) / T_TAGLINE_DUR);
+  const taglineOpacity = Math.max(animTaglineOpacity, titleStrength);
   const T_URL_START = T_CHIME + 0.15;
   const T_URL_DUR = 0.5;
-  const urlOpacity = clamp01((t - T_URL_START) / T_URL_DUR);
+  const animUrlOpacity = clamp01((t - T_URL_START) / T_URL_DUR);
+  const urlOpacity = Math.max(animUrlOpacity, titleStrength);
 
   return (
     <AbsoluteFill
