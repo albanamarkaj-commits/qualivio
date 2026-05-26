@@ -28,7 +28,7 @@ export default function AboutPage() {
             className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl"
             style={{ fontFamily: "var(--font-space-grotesk)" }}
           >
-            A modern authority for pharmacovigilance and life sciences education.
+            A modern authority for life sciences education.
           </h1>
           <div className="mx-auto mt-6 flex items-center justify-center gap-2">
             <div className="h-px w-10 bg-[#7C6AF7]" />
