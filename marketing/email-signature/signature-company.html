@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Qualivio · Email Signature — Company</title>
+<style>
+  /* Preview-only chrome (NOT part of the signature) */
+  body { margin: 0; padding: 48px 24px; background: #F5F4FF; font-family: Arial, Helvetica, sans-serif; color: #0D0D0F; }
+  .preview-card { max-width: 720px; margin: 0 auto; background: #FFFFFF; border: 1px solid #E5E4F0; border-radius: 14px; padding: 36px; box-shadow: 0 8px 30px rgba(124, 106, 247, 0.08); }
+  .preview-card h1 { font-size: 16px; font-weight: 700; color: #7C6AF7; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 8px; }
+  .preview-card p.note { font-size: 13px; color: #6B6A8F; line-height: 1.55; margin: 0 0 24px; }
+  .preview-card .steps { background: #F5F4FF; border-radius: 10px; padding: 16px 20px; font-size: 13px; color: #0D0D0F; margin-bottom: 28px; }
+  .preview-card .steps b { color: #7C6AF7; }
+  .signature-wrap { padding: 28px; border: 1px dashed #E5E4F0; border-radius: 10px; background: #FFFFFF; }
+  .preview-card .reset-note { font-size: 12px; color: #6B6A8F; margin-top: 16px; line-height: 1.55; }
+</style>
+</head>
+<body>
+  <div class="preview-card">
+    <h1>Qualivio · Company Email Signature</h1>
+    <p class="note">
+      Generic signature for emails sent from the company address
+      (hello@qualiviopharma.com or any non-personal Qualivio address).
+      No individual name is exposed, so it stays appropriate when the
+      sender is "the company" rather than a specific team member.
+    </p>
+
+    <div class="steps">
+      <b>Quick steps</b><br>
+      1. Click anywhere inside the dashed box (auto-selects the signature).<br>
+      2. Press Ctrl+C to copy.<br>
+      3. Open Gmail → Settings → See all settings → General.<br>
+      4. Scroll to <b>Signature</b> → <b>Create new</b> → name it <i>Qualivio (Company)</i>.<br>
+      5. Paste with Ctrl+V → Save Changes at the bottom.
+    </div>
+
+    <div class="signature-wrap" id="signature-box">
+      <!-- ====================================================== -->
+      <!-- ============= SIGNATURE STARTS HERE ================== -->
+      <!-- ====================================================== -->
+      <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #0D0D0F; line-height: 1.4; border-collapse: collapse;">
+        <tr>
+          <td style="padding: 0 22px 0 0; vertical-align: top;">
+            <img
+              src="https://www.qualiviopharma.com/qmark.png"
+              width="72"
+              height="72"
+              alt="Qualivio"
+              style="display: block; border: 0; outline: none; text-decoration: none; border-radius: 12px;"
+            >
+          </td>
+          <td style="vertical-align: top; border-left: 2px solid #7C6AF7; padding: 0 0 0 20px;">
+            <div style="font-size: 22px; font-weight: 700; color: #0D0D0F; letter-spacing: -0.01em; line-height: 1.1;">
+              Qualivio
+            </div>
+            <div style="font-size: 10px; font-weight: 700; color: #F7B731; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 8px; line-height: 1.3;">
+              Pharmacovigilance&nbsp;·&nbsp;Quality Assurance&nbsp;|&nbsp;Life Sciences
+            </div>
+            <div style="font-size: 12px; color: #6B6A8F; margin-top: 8px; line-height: 1.5; font-style: italic;">
+              Clear thinking for complex regulations.
+            </div>
+
+            <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 14px; border-collapse: collapse;">
+              <tr>
+                <td style="font-size: 13px; color: #0D0D0F; padding: 0 0 4px 0; line-height: 1.5;">
+                  <a href="mailto:hello@qualiviopharma.com" style="color: #0D0D0F; text-decoration: none;">hello@qualiviopharma.com</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 13px; padding: 0 0 4px 0; line-height: 1.5;">
+                  <a href="https://www.qualiviopharma.com" style="color: #4ECDC4; text-decoration: none;">www.qualiviopharma.com</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 13px; padding: 0; line-height: 1.5;">
+                  <a href="https://www.linkedin.com/company/qualiviopharma" style="color: #7C6AF7; text-decoration: none; font-weight: 600;">LinkedIn →</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- ====================================================== -->
+      <!-- ============== SIGNATURE ENDS HERE =================== -->
+      <!-- ====================================================== -->
+    </div>
+
+    <p class="reset-note">
+      <b>To edit</b> (email address, LinkedIn URL, tagline): open this
+      file in a text editor and change the lines between
+      <i>SIGNATURE STARTS HERE</i> and <i>SIGNATURE ENDS HERE</i>, then
+      reload this page and re-copy.
+    </p>
+  </div>
+
+  <script>
+    const box = document.getElementById("signature-box");
+    box.addEventListener("click", () => {
+      const range = document.createRange();
+      range.selectNodeContents(box);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    });
+  </script>
+</body>
+</html>
