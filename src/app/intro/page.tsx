@@ -54,54 +54,53 @@ function getAudioCtx(ref: React.MutableRefObject<AudioContext | null>) {
   return ref.current;
 }
 
-function scheduleKeystroke(ctx: AudioContext, when: number) {
-  // iOS-style soft keyboard tap with a touch more brightness than the
-  // pure sine version (which read as too muffled). Two thin layers:
-  //   1. A triangle pulse at ~850–1050 Hz with a small downward pitch
-  //      sweep. Triangle gives a clearer "tk" character than sine while
-  //      staying warm.
-  //   2. A 5 ms lowpassed noise transient on top for crispness.
-  // Per-press frequency jitter keeps consecutive taps from feeling
-  // mechanical when fired eight times in a row.
+const TYPING_MP3_URL = "/audio/keyboard-typing.mp3";
 
-  const toneFreq = 850 + Math.random() * 200; // 850–1050 Hz
-
-  const tone = ctx.createOscillator();
-  tone.type = "triangle";
-  tone.frequency.setValueAtTime(toneFreq, when);
-  tone.frequency.exponentialRampToValueAtTime(toneFreq * 0.72, when + 0.022);
-
-  const toneGain = ctx.createGain();
-  toneGain.gain.setValueAtTime(0, when);
-  toneGain.gain.linearRampToValueAtTime(0.12, when + 0.002);
-  toneGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.035);
-
-  tone.connect(toneGain).connect(ctx.destination);
-  tone.start(when);
-  tone.stop(when + 0.05);
-
-  // Subtle noise transient for click crispness — short and lowpassed
-  // so it stays soft.
-  const noiseLen = Math.floor(ctx.sampleRate * 0.005);
-  const buf = ctx.createBuffer(1, noiseLen, ctx.sampleRate);
-  const d = buf.getChannelData(0);
-  for (let i = 0; i < noiseLen; i++) {
-    d[i] = (Math.random() * 2 - 1) * (1 - i / noiseLen);
+/**
+ * Load and decode the typing sound effect once, then cache the buffer.
+ * Returns null on any failure so callers can fall back gracefully.
+ */
+async function loadTypingBuffer(ctx: AudioContext): Promise<AudioBuffer | null> {
+  try {
+    const res = await fetch(TYPING_MP3_URL);
+    if (!res.ok) return null;
+    const arr = await res.arrayBuffer();
+    return await new Promise<AudioBuffer | null>((resolve) => {
+      ctx.decodeAudioData(
+        arr,
+        (b) => resolve(b),
+        () => resolve(null),
+      );
+    });
+  } catch {
+    return null;
   }
-  const noise = ctx.createBufferSource();
-  noise.buffer = buf;
+}
 
-  const filter = ctx.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.value = 2500;
-
-  const noiseGain = ctx.createGain();
-  noiseGain.gain.setValueAtTime(0.03, when);
-  noiseGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.008);
-
-  noise.connect(filter).connect(noiseGain).connect(ctx.destination);
-  noise.start(when);
-  noise.stop(when + 0.015);
+/**
+ * Schedule one play of the typing SFX starting at `when`. The clip can be
+ * much longer than the visible typing window, so we fade it out and stop
+ * it before the Q mark begins drawing to avoid audio bleeding into the
+ * logo reveal moment.
+ */
+function scheduleTypingClip(
+  ctx: AudioContext,
+  buffer: AudioBuffer,
+  when: number,
+  fadeOutStart: number,
+  fadeOutEnd: number,
+  gainValue = 0.55,
+) {
+  const src = ctx.createBufferSource();
+  src.buffer = buffer;
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(gainValue, when);
+  gain.gain.setValueAtTime(gainValue, fadeOutStart);
+  gain.gain.linearRampToValueAtTime(0.0001, fadeOutEnd);
+  src.connect(gain).connect(ctx.destination);
+  src.start(when);
+  src.stop(fadeOutEnd + 0.02);
+  return src;
 }
 
 function scheduleLogoClick(ctx: AudioContext, when: number) {
@@ -157,29 +156,68 @@ function scheduleLogoClick(ctx: AudioContext, when: number) {
   fifth.stop(when + 0.65);
 }
 
-function scheduleSoundtrack(ctx: AudioContext) {
+function scheduleSoundtrack(
+  ctx: AudioContext,
+  typingBuffer: AudioBuffer | null,
+): { typingSource: AudioBufferSourceNode | null } {
   const now = ctx.currentTime + 0.05;
-  for (let i = 0; i < WORD.length; i++) {
-    scheduleKeystroke(ctx, now + T_TYPE_START + i * T_TYPE_STEP);
+  let typingSource: AudioBufferSourceNode | null = null;
+  if (typingBuffer) {
+    // Start at T_TYPE_START. Hold full volume through the visible typing
+    // window, then fade out before the Q mark begins drawing so the
+    // recorded clip never bleeds into the logo reveal.
+    typingSource = scheduleTypingClip(
+      ctx,
+      typingBuffer,
+      now + T_TYPE_START,
+      now + T_TYPE_DONE,
+      now + T_RING_START - 0.05,
+    );
   }
   scheduleLogoClick(ctx, now + T_CHIME);
+  return { typingSource };
 }
 
 export default function IntroPage() {
   const audioCtxRef = useRef<AudioContext | null>(null);
+  const typingBufferRef = useRef<AudioBuffer | null>(null);
+  const activeTypingRef = useRef<AudioBufferSourceNode | null>(null);
   const [runKey, setRunKey] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const [showReplay, setShowReplay] = useState(false);
 
-  const start = () => {
+  const start = async () => {
     setHasStarted(true);
     setShowReplay(false);
     setRunKey((k) => k + 1);
+
     const ctx = getAudioCtx(audioCtxRef);
-    if (ctx) {
-      if (ctx.state === "suspended") ctx.resume().catch(() => {});
-      scheduleSoundtrack(ctx);
+    if (!ctx) return;
+    if (ctx.state === "suspended") {
+      try {
+        await ctx.resume();
+      } catch {
+        // ignore — audio just stays silent
+      }
     }
+
+    // Stop any in-flight clip from the previous run so replays do not overlap.
+    if (activeTypingRef.current) {
+      try {
+        activeTypingRef.current.stop();
+      } catch {
+        // already stopped — ignore
+      }
+      activeTypingRef.current = null;
+    }
+
+    // Lazy-load the typing MP3 on the first play (user gesture unlocked it).
+    if (!typingBufferRef.current) {
+      typingBufferRef.current = await loadTypingBuffer(ctx);
+    }
+
+    const { typingSource } = scheduleSoundtrack(ctx, typingBufferRef.current);
+    activeTypingRef.current = typingSource;
   };
 
   useEffect(() => {
