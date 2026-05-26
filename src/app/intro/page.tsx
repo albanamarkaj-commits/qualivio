@@ -56,16 +56,20 @@ function getAudioCtx(ref: React.MutableRefObject<AudioContext | null>) {
 
 const TYPING_MP3_URL = "/audio/keyboard-typing.mp3";
 
-interface TypingSample {
-  buffer: AudioBuffer;
+interface ClickWindow {
   offset: number;
   duration: number;
 }
 
+interface TypingSample {
+  buffer: AudioBuffer;
+  clicks: ClickWindow[];
+}
+
 /**
- * Load the typing SFX, decode it, and locate a single keystroke window
- * inside it. We do this once and reuse the same slice per visible letter
- * so the audio lines up with the visual reveal frame for frame.
+ * Load the typing SFX, decode it, and detect every distinct keystroke
+ * within it. Different per-letter selections from this list make each
+ * typed character sound subtly different, like a real keyboard.
  */
 async function loadTypingSample(ctx: AudioContext): Promise<TypingSample | null> {
   try {
@@ -80,48 +84,78 @@ async function loadTypingSample(ctx: AudioContext): Promise<TypingSample | null>
       );
     });
     if (!buffer) return null;
-    const { offset, duration } = findFirstClickWindow(buffer);
-    return { buffer, offset, duration };
+    const clicks = findClickWindows(buffer);
+    if (clicks.length === 0) return null;
+    return { buffer, clicks };
   } catch {
     return null;
   }
 }
 
 /**
- * Scan the buffer for the first sample that crosses ~25% of peak amplitude.
- * That marks the onset of the first keystroke. We return a 130 ms window
- * starting a few ms before the onset so the click's attack isn't clipped.
+ * Walk the buffer and pick out each onset (sample crossing ~25% of peak
+ * amplitude). Each onset becomes a 130 ms window with a few ms of
+ * head-room before it. We require a minimum gap between onsets so a
+ * single decaying click is not split into several "clicks".
  */
-function findFirstClickWindow(buffer: AudioBuffer): { offset: number; duration: number } {
+function findClickWindows(buffer: AudioBuffer, maxClicks = 12): ClickWindow[] {
   const data = buffer.getChannelData(0);
+  const sr = buffer.sampleRate;
+
   let maxAmp = 0;
   for (let i = 0; i < data.length; i++) {
     const a = Math.abs(data[i]);
     if (a > maxAmp) maxAmp = a;
   }
   const threshold = Math.max(0.05, maxAmp * 0.25);
-  let onsetSample = 0;
-  for (let i = 0; i < data.length; i++) {
-    if (Math.abs(data[i]) > threshold) {
-      onsetSample = i;
-      break;
+
+  const minGapSamples = Math.floor(sr * 0.06); // 60 ms minimum gap between clicks
+  const windowDuration = 0.13;
+  const leadInSec = 0.005;
+
+  const clicks: ClickWindow[] = [];
+  let i = 0;
+  while (i < data.length && clicks.length < maxClicks) {
+    // Find next sample above threshold.
+    while (i < data.length && Math.abs(data[i]) <= threshold) i++;
+    if (i >= data.length) break;
+
+    const onset = i;
+    const offset = Math.max(0, onset / sr - leadInSec);
+    if (offset + windowDuration <= buffer.duration) {
+      clicks.push({ offset, duration: windowDuration });
+    }
+
+    // Skip ahead until we see a continuous "silent" stretch of at least
+    // minGapSamples, so we land on the next genuine click.
+    let silenceRun = 0;
+    while (i < data.length && silenceRun < minGapSamples) {
+      if (Math.abs(data[i]) > threshold) silenceRun = 0;
+      else silenceRun++;
+      i++;
     }
   }
-  const sr = buffer.sampleRate;
-  const leadInSec = 0.005; // small head-room so the attack isn't clipped
-  const offset = Math.max(0, onsetSample / sr - leadInSec);
-  const duration = 0.13; // 130 ms — long enough for one full click + tail
-  return { offset, duration };
+  return clicks;
 }
 
 /**
- * Play the extracted keystroke window once at the given context time. The
- * sample stops itself at the end of the window so consecutive keystrokes
- * never overlap regardless of the spacing between letters.
+ * Pick a click index that is different from `prevIdx` when possible,
+ * so two consecutive letters do not play the identical sample.
+ */
+function pickClickIndex(prevIdx: number, total: number): number {
+  if (total <= 1) return 0;
+  let idx = Math.floor(Math.random() * total);
+  if (idx === prevIdx) idx = (idx + 1) % total;
+  return idx;
+}
+
+/**
+ * Play one click window from the sample at the given context time.
  */
 function scheduleKeystroke(
   ctx: AudioContext,
   sample: TypingSample,
+  click: ClickWindow,
   when: number,
   gainValue = 0.6,
 ) {
@@ -130,8 +164,8 @@ function scheduleKeystroke(
   const gain = ctx.createGain();
   gain.gain.value = gainValue;
   src.connect(gain).connect(ctx.destination);
-  src.start(when, sample.offset, sample.duration);
-  src.stop(when + sample.duration + 0.02);
+  src.start(when, click.offset, click.duration);
+  src.stop(when + click.duration + 0.02);
   return src;
 }
 
@@ -194,15 +228,19 @@ function scheduleSoundtrack(
 ): { sources: AudioBufferSourceNode[] } {
   const now = ctx.currentTime + 0.05;
   const sources: AudioBufferSourceNode[] = [];
-  if (typingSample) {
-    // One keystroke per letter, at exactly the same moment that letter
-    // animates in. The visible letter delay and the audio start time use
-    // the same T_TYPE_START + i * T_TYPE_STEP formula, so audio and
-    // visuals stay locked together for any pace we choose.
+  if (typingSample && typingSample.clicks.length > 0) {
+    // One keystroke per letter, locked to the visible reveal moment, but
+    // with a different click window picked from the sample each time so
+    // no two adjacent letters sound identical.
+    let prevIdx = -1;
     for (let i = 0; i < WORD.length; i++) {
+      const idx = pickClickIndex(prevIdx, typingSample.clicks.length);
+      const click = typingSample.clicks[idx];
+      prevIdx = idx;
       const src = scheduleKeystroke(
         ctx,
         typingSample,
+        click,
         now + T_TYPE_START + i * T_TYPE_STEP,
       );
       sources.push(src);
