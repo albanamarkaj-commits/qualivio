@@ -51,58 +51,100 @@ function getAudioCtx(ref: React.MutableRefObject<AudioContext | null>) {
 }
 
 function scheduleKeystroke(ctx: AudioContext, when: number) {
-  const duration = 0.06;
-  const sampleRate = ctx.sampleRate;
-  const buffer = ctx.createBuffer(1, Math.floor(sampleRate * duration), sampleRate);
-  const data = buffer.getChannelData(0);
-  for (let i = 0; i < data.length; i++) {
-    const envelope = 1 - i / data.length;
-    data[i] = (Math.random() * 2 - 1) * envelope;
+  // Layered keypress: a brief high-frequency "click" transient on top of a
+  // short low-frequency damped "thock" body. Small per-key randomisation so
+  // consecutive presses do not feel synthetic.
+
+  // Body — low damped sine that gives the press its weight.
+  const body = ctx.createOscillator();
+  body.type = "sine";
+  const bodyFreq = 170 + Math.random() * 60;
+  body.frequency.setValueAtTime(bodyFreq, when);
+  body.frequency.exponentialRampToValueAtTime(bodyFreq * 0.5, when + 0.06);
+
+  const bodyGain = ctx.createGain();
+  bodyGain.gain.setValueAtTime(0, when);
+  bodyGain.gain.linearRampToValueAtTime(0.22, when + 0.003);
+  bodyGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.09);
+
+  body.connect(bodyGain).connect(ctx.destination);
+  body.start(when);
+  body.stop(when + 0.11);
+
+  // Click transient — very brief highpassed noise for the contact sound.
+  const noiseLen = Math.floor(ctx.sampleRate * 0.012);
+  const buf = ctx.createBuffer(1, noiseLen, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < noiseLen; i++) {
+    d[i] = (Math.random() * 2 - 1) * (1 - i / noiseLen);
   }
+  const noise = ctx.createBufferSource();
+  noise.buffer = buf;
 
-  const src = ctx.createBufferSource();
-  src.buffer = buffer;
+  const noiseFilter = ctx.createBiquadFilter();
+  noiseFilter.type = "highpass";
+  noiseFilter.frequency.value = 2800 + Math.random() * 600;
 
-  const filter = ctx.createBiquadFilter();
-  filter.type = "bandpass";
-  filter.frequency.value = 2200 + Math.random() * 1400;
-  filter.Q.value = 1.4;
+  const noiseGain = ctx.createGain();
+  noiseGain.gain.setValueAtTime(0.08, when);
+  noiseGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.018);
 
-  const gain = ctx.createGain();
-  gain.gain.setValueAtTime(0, when);
-  gain.gain.linearRampToValueAtTime(0.09, when + 0.005);
-  gain.gain.exponentialRampToValueAtTime(0.0001, when + duration);
-
-  src.connect(filter).connect(gain).connect(ctx.destination);
-  src.start(when);
-  src.stop(when + duration + 0.02);
+  noise.connect(noiseFilter).connect(noiseGain).connect(ctx.destination);
+  noise.start(when);
+  noise.stop(when + 0.03);
 }
 
-function scheduleChime(ctx: AudioContext, when: number) {
-  const notes = [
-    { freq: 392.0, gain: 0.05, delay: 0.0 },
-    { freq: 783.99, gain: 0.18, delay: 0.0 },
-    { freq: 987.77, gain: 0.14, delay: 0.06 },
-    { freq: 1174.66, gain: 0.12, delay: 0.12 },
-  ];
-  const master = ctx.createGain();
-  master.gain.value = 0.9;
-  master.connect(ctx.destination);
+function scheduleLogoClick(ctx: AudioContext, when: number) {
+  // An elegant "click + bell" for the moment the Q mark completes. A very
+  // short highpassed noise gives the click character; a clear bell-like
+  // tone at A6 with a perfect-fifth overtone provides the elegance and
+  // decays smoothly over ~700ms.
 
-  for (const n of notes) {
-    const osc = ctx.createOscillator();
-    const g = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.value = n.freq;
-    const start = when + n.delay;
-    g.gain.setValueAtTime(0, start);
-    g.gain.linearRampToValueAtTime(n.gain, start + 0.03);
-    g.gain.exponentialRampToValueAtTime(0.0001, start + 1.8);
-    osc.connect(g);
-    g.connect(master);
-    osc.start(start);
-    osc.stop(start + 2);
+  // Click transient — short highpassed noise burst.
+  const noiseLen = Math.floor(ctx.sampleRate * 0.008);
+  const buf = ctx.createBuffer(1, noiseLen, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < noiseLen; i++) {
+    d[i] = (Math.random() * 2 - 1) * (1 - i / noiseLen);
   }
+  const noise = ctx.createBufferSource();
+  noise.buffer = buf;
+
+  const noiseFilter = ctx.createBiquadFilter();
+  noiseFilter.type = "highpass";
+  noiseFilter.frequency.value = 4500;
+
+  const noiseGain = ctx.createGain();
+  noiseGain.gain.setValueAtTime(0.09, when);
+  noiseGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.012);
+
+  noise.connect(noiseFilter).connect(noiseGain).connect(ctx.destination);
+  noise.start(when);
+  noise.stop(when + 0.02);
+
+  // Bell fundamental — A6 (1760 Hz).
+  const bell = ctx.createOscillator();
+  bell.type = "sine";
+  bell.frequency.value = 1760;
+  const bellGain = ctx.createGain();
+  bellGain.gain.setValueAtTime(0, when);
+  bellGain.gain.linearRampToValueAtTime(0.2, when + 0.004);
+  bellGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.8);
+  bell.connect(bellGain).connect(ctx.destination);
+  bell.start(when);
+  bell.stop(when + 0.9);
+
+  // Bell fifth — E7 (2637 Hz) for sparkle, lower amplitude, faster decay.
+  const fifth = ctx.createOscillator();
+  fifth.type = "sine";
+  fifth.frequency.value = 2637;
+  const fifthGain = ctx.createGain();
+  fifthGain.gain.setValueAtTime(0, when);
+  fifthGain.gain.linearRampToValueAtTime(0.07, when + 0.004);
+  fifthGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.55);
+  fifth.connect(fifthGain).connect(ctx.destination);
+  fifth.start(when);
+  fifth.stop(when + 0.65);
 }
 
 function scheduleSoundtrack(ctx: AudioContext) {
@@ -110,7 +152,7 @@ function scheduleSoundtrack(ctx: AudioContext) {
   for (let i = 0; i < WORD.length; i++) {
     scheduleKeystroke(ctx, now + T_TYPE_START + i * T_TYPE_STEP);
   }
-  scheduleChime(ctx, now + T_CHIME);
+  scheduleLogoClick(ctx, now + T_CHIME);
 }
 
 export default function IntroPage() {
@@ -137,13 +179,7 @@ export default function IntroPage() {
   }, [runKey, hasStarted]);
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#0D0D0F]">
-      {/* Ambient gradient haze */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7C6AF7]/15 blur-[80px]" />
-        <div className="absolute left-[18%] top-[18%] h-[200px] w-[200px] rounded-full bg-[#F7B731]/10 blur-[60px]" />
-        <div className="absolute right-[15%] bottom-[20%] h-[200px] w-[200px] rounded-full bg-[#4ECDC4]/10 blur-[60px]" />
-      </div>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black">
 
       {/* The animation stage. Hidden until the user clicks Play so the
           curtain doesn't reveal letters that haven't been typed yet.
@@ -249,7 +285,7 @@ export default function IntroPage() {
           animation: q-draw-tail ${T_TAIL_DUR}s ${T_TAIL_START}s cubic-bezier(0.65, 0, 0.35, 1) forwards;
         }
         .intro-q {
-          filter: drop-shadow(0 0 0 rgba(124,106,247,0));
+          filter: drop-shadow(0 0 0 rgba(255,255,255,0));
           animation: q-glow 1.4s ${T_CHIME - 0.05}s ease-out forwards;
           transform-origin: 50% 50%;
         }
@@ -273,9 +309,9 @@ export default function IntroPage() {
         @keyframes q-draw-ring { to { stroke-dashoffset: 0; } }
         @keyframes q-draw-tail { to { stroke-dashoffset: 0; } }
         @keyframes q-glow {
-          0%   { filter: drop-shadow(0 0 0 rgba(124,106,247,0));   transform: scale(1); }
-          25%  { filter: drop-shadow(0 0 36px rgba(124,106,247,0.75)); transform: scale(1.05); }
-          100% { filter: drop-shadow(0 0 20px rgba(124,106,247,0.4));  transform: scale(1); }
+          0%   { filter: drop-shadow(0 0 0 rgba(255,255,255,0));   transform: scale(1); }
+          25%  { filter: drop-shadow(0 0 24px rgba(255,255,255,0.55)); transform: scale(1.04); }
+          100% { filter: drop-shadow(0 0 12px rgba(255,255,255,0.2));  transform: scale(1); }
         }
         @keyframes letter-pop {
           to { opacity: 1; transform: translateY(0); }
