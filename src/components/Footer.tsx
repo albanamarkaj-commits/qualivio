@@ -70,8 +70,13 @@ export function Footer() {
               {site.email}
             </a>
           </div>
-          <p className="mt-6 text-xs leading-6 text-[#9896B6]">
-            Pharmacovigilance · Life Sciences
+          <p className="mt-6 flex flex-wrap gap-x-[0.85em] text-xs leading-6 text-[#9896B6]">
+            <span className="whitespace-nowrap">
+              Pharmacovigilance<span className="mx-[0.5em]">·</span>Quality Assurance
+            </span>
+            <span className="whitespace-nowrap">
+              <span className="mr-[0.85em] opacity-75">|</span>Life Sciences
+            </span>
           </p>
         </div>
       </div>

@@ -26,8 +26,13 @@ export default function Home() {
           </div>
 
           {/* Eyebrow — gold */}
-          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#F7B731]">
-            Pharmacovigilance · Life Sciences
+          <p className="mb-6 flex flex-wrap justify-center gap-x-[0.85em] text-xs font-semibold uppercase tracking-[0.1em] text-[#F7B731] sm:tracking-[0.3em]">
+            <span className="whitespace-nowrap">
+              Pharmacovigilance<span className="mx-[0.5em]">·</span>Quality Assurance
+            </span>
+            <span className="whitespace-nowrap">
+              <span className="mr-[0.85em] opacity-75">|</span>Life Sciences
+            </span>
           </p>
 
           {/* Headline — reduced from 7xl to 6xl max */}
