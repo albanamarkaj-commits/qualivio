@@ -51,47 +51,34 @@ function getAudioCtx(ref: React.MutableRefObject<AudioContext | null>) {
 }
 
 function scheduleKeystroke(ctx: AudioContext, when: number) {
-  // Layered keypress: a brief high-frequency "click" transient on top of a
-  // short low-frequency damped "thock" body. Small per-key randomisation so
-  // consecutive presses do not feel synthetic.
+  // Soft smartphone-style "tap": a brief bandpassed noise burst centred in
+  // the upper-mid range with no low-frequency body, so it reads as a light
+  // touch rather than a mechanical key. Per-press frequency jitter keeps
+  // consecutive taps from sounding identical.
 
-  // Body — low damped sine that gives the press its weight.
-  const body = ctx.createOscillator();
-  body.type = "sine";
-  const bodyFreq = 170 + Math.random() * 60;
-  body.frequency.setValueAtTime(bodyFreq, when);
-  body.frequency.exponentialRampToValueAtTime(bodyFreq * 0.5, when + 0.06);
-
-  const bodyGain = ctx.createGain();
-  bodyGain.gain.setValueAtTime(0, when);
-  bodyGain.gain.linearRampToValueAtTime(0.22, when + 0.003);
-  bodyGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.09);
-
-  body.connect(bodyGain).connect(ctx.destination);
-  body.start(when);
-  body.stop(when + 0.11);
-
-  // Click transient — very brief highpassed noise for the contact sound.
-  const noiseLen = Math.floor(ctx.sampleRate * 0.012);
-  const buf = ctx.createBuffer(1, noiseLen, ctx.sampleRate);
+  const duration = 0.045;
+  const len = Math.floor(ctx.sampleRate * duration);
+  const buf = ctx.createBuffer(1, len, ctx.sampleRate);
   const d = buf.getChannelData(0);
-  for (let i = 0; i < noiseLen; i++) {
-    d[i] = (Math.random() * 2 - 1) * (1 - i / noiseLen);
+  for (let i = 0; i < len; i++) {
+    d[i] = (Math.random() * 2 - 1) * (1 - i / len);
   }
   const noise = ctx.createBufferSource();
   noise.buffer = buf;
 
-  const noiseFilter = ctx.createBiquadFilter();
-  noiseFilter.type = "highpass";
-  noiseFilter.frequency.value = 2800 + Math.random() * 600;
+  const filter = ctx.createBiquadFilter();
+  filter.type = "bandpass";
+  filter.frequency.value = 1000 + Math.random() * 500; // 1.0–1.5 kHz
+  filter.Q.value = 1.8;
 
-  const noiseGain = ctx.createGain();
-  noiseGain.gain.setValueAtTime(0.08, when);
-  noiseGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.018);
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(0, when);
+  gain.gain.linearRampToValueAtTime(0.08, when + 0.003);
+  gain.gain.exponentialRampToValueAtTime(0.0001, when + duration);
 
-  noise.connect(noiseFilter).connect(noiseGain).connect(ctx.destination);
+  noise.connect(filter).connect(gain).connect(ctx.destination);
   noise.start(when);
-  noise.stop(when + 0.03);
+  noise.stop(when + duration + 0.01);
 }
 
 function scheduleLogoClick(ctx: AudioContext, when: number) {
