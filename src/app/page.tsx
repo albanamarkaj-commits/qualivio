@@ -68,7 +68,7 @@ export default function Home() {
       {/* ── Dark bar ── */}
       <div className="border-y border-[#2E2E36] bg-[#0D0D0F] px-6 py-6">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-8 text-xs font-medium uppercase tracking-widest text-[#9896B6]">
-          {["Pharmacovigilance", "Life Sciences", "Education", "Consulting"].map(
+          {["Pharmacovigilance", "Quality Assurance", "Education", "Consulting"].map(
             (item) => (
               <span key={item} className="flex items-center gap-2">
                 <span className="h-1 w-1 rounded-full bg-[#F7B731]" />
