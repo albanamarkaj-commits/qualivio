@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const steps = [
   { number: "01", label: "Discover", body: "A focused conversation to understand your context, priorities, and the regulatory challenge you are navigating." },
   { number: "02", label: "Assess", body: "A structured review of your current systems, documentation, and processes against regulatory requirements." },
-  { number: "03", label: "Design", body: "Clear, practical recommendations, with no buzzwords and no over-engineering. Solutions shaped around your real needs." },
+  { number: "03", label: "Design", body: "Clear, practical recommendations, with no abstractions and no over-engineering. Solutions shaped around your real needs." },
   { number: "04", label: "Implement", body: "Expert support through delivery, with knowledge transfer so your team is confident after engagement ends." },
 ];
 
