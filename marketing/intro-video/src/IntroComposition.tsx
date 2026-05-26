@@ -102,6 +102,10 @@ export const IntroComposition: React.FC = () => {
 
   // Tagline fade.
   const taglineOpacity = clamp01((t - T_TAGLINE) / T_TAGLINE_DUR);
+  // URL fades in just after the chime so it cascades in after the tagline.
+  const T_URL_START = T_CHIME + 0.15;
+  const T_URL_DUR = 0.5;
+  const urlOpacity = clamp01((t - T_URL_START) / T_URL_DUR);
 
   return (
     <AbsoluteFill
@@ -209,6 +213,21 @@ export const IntroComposition: React.FC = () => {
           }}
         >
           Pharmacovigilance · Quality Assurance | Life Sciences
+        </div>
+
+        {/* URL — fades in just after the bell click */}
+        <div
+          style={{
+            marginTop: wordGap * 0.5,
+            opacity: urlOpacity,
+            color: "#4ECDC4",
+            fontSize: taglineFontSize * 0.9,
+            fontWeight: 500,
+            letterSpacing: "0.04em",
+            textAlign: "center",
+          }}
+        >
+          www.qualiviopharma.com
         </div>
       </div>
 
