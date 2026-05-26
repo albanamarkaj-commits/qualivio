@@ -7,12 +7,14 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { loadFont } from "@remotion/google-fonts/Inter";
+import { loadFont } from "@remotion/google-fonts/Arimo";
 
-// The brand guidelines PDF is typeset in Helvetica-Bold (verified by
-// inspecting embedded fonts). Helvetica isn't on Google Fonts, so we
-// use Inter Bold as the closest free, web-deliverable equivalent — it's
-// the de facto Helvetica clone on the modern web.
+// The brand guidelines PDF references the standard "Helvetica-Bold"
+// PostScript font (no font file embedded), so PDF viewers substitute
+// it with whatever they have — on Windows that's Arial Bold. Inter
+// reads as too humanist next to that. Arimo is a metric-compatible
+// open clone of Arial, so glyph shapes and widths match what the user
+// actually sees when opening the guidelines PDF.
 const { fontFamily: WORDMARK_FONT } = loadFont("normal", {
   weights: ["700"],
 });
