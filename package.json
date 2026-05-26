@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "intro:studio": "remotion studio --config=marketing/intro-video/remotion.config.ts",
+    "intro:render:square": "remotion render intro-square marketing/intro-video/out/intro-1080x1080.mp4 --config=marketing/intro-video/remotion.config.ts",
+    "intro:render:landscape": "remotion render intro-landscape marketing/intro-video/out/intro-1920x1080.mp4 --config=marketing/intro-video/remotion.config.ts",
+    "intro:render:vertical": "remotion render intro-vertical marketing/intro-video/out/intro-1080x1920.mp4 --config=marketing/intro-video/remotion.config.ts",
+    "intro:gen-bell": "node scripts/generate-bell-click.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -18,12 +23,16 @@
     "stripe": "^22.1.1"
   },
   "devDependencies": {
+    "@remotion/bundler": "^4.0.467",
+    "@remotion/cli": "^4.0.467",
+    "@remotion/renderer": "^4.0.467",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "remotion": "^4.0.467",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
