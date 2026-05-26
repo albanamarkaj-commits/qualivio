@@ -27,7 +27,7 @@ const TAIL_LENGTH_VISUAL = 49.24; // per brand spec, includes round-linecap caps
 
 // Animation timeline (seconds). All downstream timings derive from these.
 const T_TYPE_START = 0.35;
-const T_TYPE_STEP = 0.12;
+const T_TYPE_STEP = 0.18; // gap between letters; one keystroke fires per letter
 const T_TYPE_DONE = T_TYPE_START + WORD.length * T_TYPE_STEP;
 const T_CARET_FADE = T_TYPE_DONE + 0.4;
 const T_CARET_FADE_DUR = 0.4;
@@ -56,50 +56,82 @@ function getAudioCtx(ref: React.MutableRefObject<AudioContext | null>) {
 
 const TYPING_MP3_URL = "/audio/keyboard-typing.mp3";
 
+interface TypingSample {
+  buffer: AudioBuffer;
+  offset: number;
+  duration: number;
+}
+
 /**
- * Load and decode the typing sound effect once, then cache the buffer.
- * Returns null on any failure so callers can fall back gracefully.
+ * Load the typing SFX, decode it, and locate a single keystroke window
+ * inside it. We do this once and reuse the same slice per visible letter
+ * so the audio lines up with the visual reveal frame for frame.
  */
-async function loadTypingBuffer(ctx: AudioContext): Promise<AudioBuffer | null> {
+async function loadTypingSample(ctx: AudioContext): Promise<TypingSample | null> {
   try {
     const res = await fetch(TYPING_MP3_URL);
     if (!res.ok) return null;
     const arr = await res.arrayBuffer();
-    return await new Promise<AudioBuffer | null>((resolve) => {
+    const buffer = await new Promise<AudioBuffer | null>((resolve) => {
       ctx.decodeAudioData(
         arr,
         (b) => resolve(b),
         () => resolve(null),
       );
     });
+    if (!buffer) return null;
+    const { offset, duration } = findFirstClickWindow(buffer);
+    return { buffer, offset, duration };
   } catch {
     return null;
   }
 }
 
 /**
- * Schedule one play of the typing SFX starting at `when`. The clip can be
- * much longer than the visible typing window, so we fade it out and stop
- * it before the Q mark begins drawing to avoid audio bleeding into the
- * logo reveal moment.
+ * Scan the buffer for the first sample that crosses ~25% of peak amplitude.
+ * That marks the onset of the first keystroke. We return a 130 ms window
+ * starting a few ms before the onset so the click's attack isn't clipped.
  */
-function scheduleTypingClip(
+function findFirstClickWindow(buffer: AudioBuffer): { offset: number; duration: number } {
+  const data = buffer.getChannelData(0);
+  let maxAmp = 0;
+  for (let i = 0; i < data.length; i++) {
+    const a = Math.abs(data[i]);
+    if (a > maxAmp) maxAmp = a;
+  }
+  const threshold = Math.max(0.05, maxAmp * 0.25);
+  let onsetSample = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (Math.abs(data[i]) > threshold) {
+      onsetSample = i;
+      break;
+    }
+  }
+  const sr = buffer.sampleRate;
+  const leadInSec = 0.005; // small head-room so the attack isn't clipped
+  const offset = Math.max(0, onsetSample / sr - leadInSec);
+  const duration = 0.13; // 130 ms — long enough for one full click + tail
+  return { offset, duration };
+}
+
+/**
+ * Play the extracted keystroke window once at the given context time. The
+ * sample stops itself at the end of the window so consecutive keystrokes
+ * never overlap regardless of the spacing between letters.
+ */
+function scheduleKeystroke(
   ctx: AudioContext,
-  buffer: AudioBuffer,
+  sample: TypingSample,
   when: number,
-  fadeOutStart: number,
-  fadeOutEnd: number,
-  gainValue = 0.55,
+  gainValue = 0.6,
 ) {
   const src = ctx.createBufferSource();
-  src.buffer = buffer;
+  src.buffer = sample.buffer;
   const gain = ctx.createGain();
-  gain.gain.setValueAtTime(gainValue, when);
-  gain.gain.setValueAtTime(gainValue, fadeOutStart);
-  gain.gain.linearRampToValueAtTime(0.0001, fadeOutEnd);
+  gain.gain.value = gainValue;
   src.connect(gain).connect(ctx.destination);
-  src.start(when);
-  src.stop(fadeOutEnd + 0.02);
+  src.start(when, sample.offset, sample.duration);
+  src.stop(when + sample.duration + 0.02);
   return src;
 }
 
@@ -158,30 +190,32 @@ function scheduleLogoClick(ctx: AudioContext, when: number) {
 
 function scheduleSoundtrack(
   ctx: AudioContext,
-  typingBuffer: AudioBuffer | null,
-): { typingSource: AudioBufferSourceNode | null } {
+  typingSample: TypingSample | null,
+): { sources: AudioBufferSourceNode[] } {
   const now = ctx.currentTime + 0.05;
-  let typingSource: AudioBufferSourceNode | null = null;
-  if (typingBuffer) {
-    // Start at T_TYPE_START. Hold full volume through the visible typing
-    // window, then fade out before the Q mark begins drawing so the
-    // recorded clip never bleeds into the logo reveal.
-    typingSource = scheduleTypingClip(
-      ctx,
-      typingBuffer,
-      now + T_TYPE_START,
-      now + T_TYPE_DONE,
-      now + T_RING_START - 0.05,
-    );
+  const sources: AudioBufferSourceNode[] = [];
+  if (typingSample) {
+    // One keystroke per letter, at exactly the same moment that letter
+    // animates in. The visible letter delay and the audio start time use
+    // the same T_TYPE_START + i * T_TYPE_STEP formula, so audio and
+    // visuals stay locked together for any pace we choose.
+    for (let i = 0; i < WORD.length; i++) {
+      const src = scheduleKeystroke(
+        ctx,
+        typingSample,
+        now + T_TYPE_START + i * T_TYPE_STEP,
+      );
+      sources.push(src);
+    }
   }
   scheduleLogoClick(ctx, now + T_CHIME);
-  return { typingSource };
+  return { sources };
 }
 
 export default function IntroPage() {
   const audioCtxRef = useRef<AudioContext | null>(null);
-  const typingBufferRef = useRef<AudioBuffer | null>(null);
-  const activeTypingRef = useRef<AudioBufferSourceNode | null>(null);
+  const typingSampleRef = useRef<TypingSample | null>(null);
+  const activeSourcesRef = useRef<AudioBufferSourceNode[]>([]);
   const [runKey, setRunKey] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const [showReplay, setShowReplay] = useState(false);
@@ -201,23 +235,24 @@ export default function IntroPage() {
       }
     }
 
-    // Stop any in-flight clip from the previous run so replays do not overlap.
-    if (activeTypingRef.current) {
+    // Stop any in-flight clips from the previous run so replays do not overlap.
+    for (const s of activeSourcesRef.current) {
       try {
-        activeTypingRef.current.stop();
+        s.stop();
       } catch {
         // already stopped — ignore
       }
-      activeTypingRef.current = null;
+    }
+    activeSourcesRef.current = [];
+
+    // Lazy-load and analyse the typing MP3 on the first play (user gesture
+    // unlocked the audio context).
+    if (!typingSampleRef.current) {
+      typingSampleRef.current = await loadTypingSample(ctx);
     }
 
-    // Lazy-load the typing MP3 on the first play (user gesture unlocked it).
-    if (!typingBufferRef.current) {
-      typingBufferRef.current = await loadTypingBuffer(ctx);
-    }
-
-    const { typingSource } = scheduleSoundtrack(ctx, typingBufferRef.current);
-    activeTypingRef.current = typingSource;
+    const { sources } = scheduleSoundtrack(ctx, typingSampleRef.current);
+    activeSourcesRef.current = sources;
   };
 
   useEffect(() => {
