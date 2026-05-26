@@ -46,9 +46,9 @@ export default function Home() {
 
           {/* Tagline */}
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#6B6A8F]">
-            Trusted insights, education and consulting for pharmacovigilance
-            and life sciences professionals who need regulatory clarity without
-            the jargon.
+            Trusted insights, education and consulting in pharmacovigilance
+            and quality assurance for life sciences professionals and companies
+            who need regulatory clarity without the complexity.
           </p>
 
           {/* CTAs — Education first */}
