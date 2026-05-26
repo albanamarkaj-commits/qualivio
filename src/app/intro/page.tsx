@@ -36,8 +36,12 @@ const T_RING_DUR = 0.85;
 const T_TAIL_START = T_RING_START + T_RING_DUR - 0.05;
 const T_TAIL_DUR = 0.35;
 const T_CHIME = T_TAIL_START + T_TAIL_DUR + 0.05;
-const T_TAGLINE = T_CHIME + 0.35;
-const T_END = T_TAGLINE + 0.8;
+// Tagline reveals together with the Q mark: it starts fading in the
+// moment the ring begins drawing, and finishes at the chime, so both
+// the lupe and the gold line land at the same beat.
+const T_TAGLINE = T_RING_START;
+const T_TAGLINE_DUR = T_CHIME - T_RING_START;
+const T_END = T_CHIME + 1.1;
 
 function getAudioCtx(ref: React.MutableRefObject<AudioContext | null>) {
   if (typeof window === "undefined") return null;
@@ -51,27 +55,53 @@ function getAudioCtx(ref: React.MutableRefObject<AudioContext | null>) {
 }
 
 function scheduleKeystroke(ctx: AudioContext, when: number) {
-  // iOS-style soft keyboard tap. The real iOS click is a very brief,
-  // warm tonal pulse around 600–700 Hz with no audible noise component.
-  // We drop the noise layer and lower the fundamental to land closer to
-  // that character, plus reduce the volume so the sequence of eight taps
-  // sits quietly under the visual.
+  // iOS-style soft keyboard tap with a touch more brightness than the
+  // pure sine version (which read as too muffled). Two thin layers:
+  //   1. A triangle pulse at ~850–1050 Hz with a small downward pitch
+  //      sweep. Triangle gives a clearer "tk" character than sine while
+  //      staying warm.
+  //   2. A 5 ms lowpassed noise transient on top for crispness.
+  // Per-press frequency jitter keeps consecutive taps from feeling
+  // mechanical when fired eight times in a row.
 
-  const toneFreq = 620 + Math.random() * 80; // 620–700 Hz, warmer than before
+  const toneFreq = 850 + Math.random() * 200; // 850–1050 Hz
 
   const tone = ctx.createOscillator();
-  tone.type = "sine";
+  tone.type = "triangle";
   tone.frequency.setValueAtTime(toneFreq, when);
-  tone.frequency.exponentialRampToValueAtTime(toneFreq * 0.75, when + 0.02);
+  tone.frequency.exponentialRampToValueAtTime(toneFreq * 0.72, when + 0.022);
 
   const toneGain = ctx.createGain();
   toneGain.gain.setValueAtTime(0, when);
-  toneGain.gain.linearRampToValueAtTime(0.09, when + 0.002);
-  toneGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.03);
+  toneGain.gain.linearRampToValueAtTime(0.12, when + 0.002);
+  toneGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.035);
 
   tone.connect(toneGain).connect(ctx.destination);
   tone.start(when);
-  tone.stop(when + 0.04);
+  tone.stop(when + 0.05);
+
+  // Subtle noise transient for click crispness — short and lowpassed
+  // so it stays soft.
+  const noiseLen = Math.floor(ctx.sampleRate * 0.005);
+  const buf = ctx.createBuffer(1, noiseLen, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < noiseLen; i++) {
+    d[i] = (Math.random() * 2 - 1) * (1 - i / noiseLen);
+  }
+  const noise = ctx.createBufferSource();
+  noise.buffer = buf;
+
+  const filter = ctx.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.value = 2500;
+
+  const noiseGain = ctx.createGain();
+  noiseGain.gain.setValueAtTime(0.03, when);
+  noiseGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.008);
+
+  noise.connect(filter).connect(noiseGain).connect(ctx.destination);
+  noise.start(when);
+  noise.stop(when + 0.015);
 }
 
 function scheduleLogoClick(ctx: AudioContext, when: number) {
@@ -283,7 +313,7 @@ export default function IntroPage() {
         }
         .intro-tagline {
           opacity: 0;
-          animation: tagline-in 0.7s ${T_TAGLINE}s ease-out forwards;
+          animation: tagline-in ${T_TAGLINE_DUR}s ${T_TAGLINE}s ease-out forwards;
         }
 
         @keyframes q-draw-ring { to { stroke-dashoffset: 0; } }
