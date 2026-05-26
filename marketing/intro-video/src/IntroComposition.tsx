@@ -7,6 +7,14 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { loadFont } from "@remotion/google-fonts/SpaceGrotesk";
+
+// Load Space Grotesk (700) so the rendered MP4 matches the website
+// headings and the brand-guideline wordmark, rather than falling back
+// to whatever system font is installed in the Remotion Chromium.
+const { fontFamily: SPACE_GROTESK } = loadFont("normal", {
+  weights: ["700"],
+});
 
 /**
  * MP4-ready version of the brand intro.
@@ -99,7 +107,7 @@ export const IntroComposition: React.FC = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
+        fontFamily: SPACE_GROTESK,
       }}
     >
       <div
