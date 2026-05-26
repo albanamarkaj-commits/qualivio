@@ -1,5 +1,10 @@
 import { Composition } from "remotion";
 import { IntroComposition, INTRO_FPS, INTRO_TOTAL_FRAMES } from "./IntroComposition";
+import {
+  LinkedInBanner,
+  LINKEDIN_BANNER_WIDTH,
+  LINKEDIN_BANNER_HEIGHT,
+} from "./LinkedInBanner";
 
 /**
  * Three flavours of the same intro at the resolutions LinkedIn (square),
@@ -36,6 +41,14 @@ export const RemotionRoot: React.FC = () => {
         fps={INTRO_FPS}
         width={1080}
         height={1920}
+      />
+      <Composition
+        id="linkedin-banner"
+        component={LinkedInBanner}
+        durationInFrames={1}
+        fps={30}
+        width={LINKEDIN_BANNER_WIDTH}
+        height={LINKEDIN_BANNER_HEIGHT}
       />
     </>
   );

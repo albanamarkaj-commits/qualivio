@@ -11,6 +11,7 @@
     "intro:render:square": "remotion render intro-square public/intro.mp4 --config=marketing/intro-video/remotion.config.ts",
     "intro:render:landscape": "remotion render intro-landscape marketing/intro-video/out/intro-1920x1080.mp4 --config=marketing/intro-video/remotion.config.ts",
     "intro:render:vertical": "remotion render intro-vertical marketing/intro-video/out/intro-1080x1920.mp4 --config=marketing/intro-video/remotion.config.ts",
+    "linkedin:render:banner": "remotion still linkedin-banner marketing/linkedin/qualivio_linkedin_banner_v3.png --config=marketing/intro-video/remotion.config.ts",
     "intro:gen-bell": "node scripts/generate-bell-click.mjs"
   },
   "dependencies": {
@@ -23,6 +24,8 @@
     "stripe": "^22.1.1"
   },
   "devDependencies": {
+    "@fontsource/sora": "^5.2.8",
+    "@pdf-lib/fontkit": "^1.1.1",
     "@remotion/bundler": "^4.0.467",
     "@remotion/cli": "^4.0.467",
     "@remotion/google-fonts": "^4.0.467",
@@ -35,6 +38,7 @@
     "eslint-config-next": "16.2.4",
     "remotion": "^4.0.467",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wawoff2": "^2.0.1"
   }
 }
