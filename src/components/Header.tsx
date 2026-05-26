@@ -19,7 +19,7 @@ export function Header() {
             <QMark size={32} />
           </span>
           <span
-            className="text-xl font-bold text-[#E8E6FF] tracking-tight"
+            className="text-xl font-medium text-[#E8E6FF] tracking-tight"
             style={{ fontFamily: "var(--font-space-grotesk)" }}
           >
             Qualivio

@@ -13,7 +13,7 @@ export function Footer() {
               <QMark size={28} />
             </span>
             <span
-              className="text-xl font-bold text-[#E8E6FF]"
+              className="text-xl font-medium text-[#E8E6FF]"
               style={{ fontFamily: "var(--font-space-grotesk)" }}
             >
               Qualivio

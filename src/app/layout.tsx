@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans } from "next/font/google";
+import { Sora, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-const spaceGrotesk = Space_Grotesk({
+// Brand display font: Sora, loaded at Medium (500) for the wordmark
+// and Bold (700) for headings. The CSS variable is kept generic so
+// references across the codebase don't need a rename if we ever swap
+// the underlying family again.
+const sora = Sora({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-space-grotesk",
@@ -51,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${dmSans.variable} h-full`}
+      className={`${sora.variable} ${dmSans.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-white text-[#0D0D0F] antialiased">
         <Header />
