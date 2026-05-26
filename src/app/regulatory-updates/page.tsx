@@ -37,8 +37,7 @@ export default function RegulatoryUpdatesPage() {
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
             Timely summaries of EMA GVP guideline revisions, procedural updates,
-            and regulatory intelligence relevant to pharmacovigilance and life
-            sciences professionals.
+            and regulatory intelligence relevant to life sciences professionals.
           </p>
         </div>
 
