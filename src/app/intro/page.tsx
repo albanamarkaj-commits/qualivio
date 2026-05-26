@@ -51,34 +51,55 @@ function getAudioCtx(ref: React.MutableRefObject<AudioContext | null>) {
 }
 
 function scheduleKeystroke(ctx: AudioContext, when: number) {
-  // Soft smartphone-style "tap": a brief bandpassed noise burst centred in
-  // the upper-mid range with no low-frequency body, so it reads as a light
-  // touch rather than a mechanical key. Per-press frequency jitter keeps
-  // consecutive taps from sounding identical.
+  // Phone-keyboard style click — short and discrete, like the iOS soft
+  // keyboard tap. Two layers, both very brief:
+  //   1. A pitched "tk" pulse: a sine at ~1.1 kHz with a tiny downward
+  //      pitch sweep and an ultra-fast envelope (~35 ms total). This is
+  //      what gives the sound its click character.
+  //   2. A 15 ms bandpassed noise transient around 3 kHz on top of the
+  //      pulse for crispness.
+  // Small per-press frequency jitter keeps the eight taps from sounding
+  // mechanical when played back to back.
 
-  const duration = 0.045;
-  const len = Math.floor(ctx.sampleRate * duration);
-  const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+  const toneFreq = 1000 + Math.random() * 300; // 1.0–1.3 kHz
+
+  // Pitched click pulse
+  const tone = ctx.createOscillator();
+  tone.type = "sine";
+  tone.frequency.setValueAtTime(toneFreq, when);
+  tone.frequency.exponentialRampToValueAtTime(toneFreq * 0.7, when + 0.025);
+
+  const toneGain = ctx.createGain();
+  toneGain.gain.setValueAtTime(0, when);
+  toneGain.gain.linearRampToValueAtTime(0.18, when + 0.001);
+  toneGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.04);
+
+  tone.connect(toneGain).connect(ctx.destination);
+  tone.start(when);
+  tone.stop(when + 0.05);
+
+  // Noise transient — short, bandpassed, on top of the pulse
+  const noiseLen = Math.floor(ctx.sampleRate * 0.015);
+  const buf = ctx.createBuffer(1, noiseLen, ctx.sampleRate);
   const d = buf.getChannelData(0);
-  for (let i = 0; i < len; i++) {
-    d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+  for (let i = 0; i < noiseLen; i++) {
+    d[i] = (Math.random() * 2 - 1) * (1 - i / noiseLen);
   }
   const noise = ctx.createBufferSource();
   noise.buffer = buf;
 
   const filter = ctx.createBiquadFilter();
   filter.type = "bandpass";
-  filter.frequency.value = 1000 + Math.random() * 500; // 1.0–1.5 kHz
-  filter.Q.value = 1.8;
+  filter.frequency.value = 2800 + Math.random() * 400;
+  filter.Q.value = 1.2;
 
-  const gain = ctx.createGain();
-  gain.gain.setValueAtTime(0, when);
-  gain.gain.linearRampToValueAtTime(0.08, when + 0.003);
-  gain.gain.exponentialRampToValueAtTime(0.0001, when + duration);
+  const noiseGain = ctx.createGain();
+  noiseGain.gain.setValueAtTime(0.06, when);
+  noiseGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.02);
 
-  noise.connect(filter).connect(gain).connect(ctx.destination);
+  noise.connect(filter).connect(noiseGain).connect(ctx.destination);
   noise.start(when);
-  noise.stop(when + duration + 0.01);
+  noise.stop(when + 0.03);
 }
 
 function scheduleLogoClick(ctx: AudioContext, when: number) {
