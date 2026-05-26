@@ -1,374 +1,53 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 /**
- * Brand intro animation.
+ * Brand intro page.
  *
- * Sequence:
- *   1. The word "Qualivio" types itself out letter by letter, with a soft
- *      mechanical keystroke synthesised per character.
- *   2. The blinking caret fades after typing completes.
- *   3. The Q mark draws itself above the wordmark (ring then tail), using
- *      the v1.1 brand geometry (ring at 140,135 r=65; tail 190,180 to
- *      210,204; stroke 18, round linecap on a 300x300 canvas).
- *   4. A G-major triad chime lands on the moment the mark is complete,
- *      together with a subtle glow pulse.
- *   5. The gold tagline fades in.
- *
- * Audio is synthesised on the fly with the Web Audio API (no external
- * asset). Browsers block audio without a user gesture, so the first play
- * is gated behind a centred Play button.
+ * The visual + audio is the same MP4 that the marketing team uploads to
+ * LinkedIn (rendered from marketing/intro-video/ via Remotion), so the
+ * website and social channels show identical content. A Play button is
+ * shown on first load because browsers block autoplay with sound until
+ * the user gestures.
  */
 
-const WORD = "Qualivio";
-const RING_CIRCUMFERENCE = 2 * Math.PI * 65; // ~408.4
-const TAIL_LENGTH_VISUAL = 49.24; // per brand spec, includes round-linecap caps
-
-// Animation timeline (seconds). All downstream timings derive from these.
-const T_TYPE_START = 0.35;
-const T_TYPE_STEP = 0.18; // gap between letters; one keystroke fires per letter
-const T_TYPE_DONE = T_TYPE_START + WORD.length * T_TYPE_STEP;
-const T_CARET_FADE = T_TYPE_DONE + 0.4;
-const T_CARET_FADE_DUR = 0.4;
-const T_RING_START = T_CARET_FADE + 0.15;
-const T_RING_DUR = 0.85;
-const T_TAIL_START = T_RING_START + T_RING_DUR - 0.05;
-const T_TAIL_DUR = 0.35;
-const T_CHIME = T_TAIL_START + T_TAIL_DUR + 0.05;
-// Tagline reveals together with the Q mark: it starts fading in the
-// moment the ring begins drawing, and finishes at the chime, so both
-// the lupe and the gold line land at the same beat.
-const T_TAGLINE = T_RING_START;
-const T_TAGLINE_DUR = T_CHIME - T_RING_START;
-const T_END = T_CHIME + 1.1;
-
-function getAudioCtx(ref: React.MutableRefObject<AudioContext | null>) {
-  if (typeof window === "undefined") return null;
-  const Ctx =
-    window.AudioContext ||
-    (window as unknown as { webkitAudioContext: typeof AudioContext })
-      .webkitAudioContext;
-  if (!Ctx) return null;
-  if (!ref.current) ref.current = new Ctx();
-  return ref.current;
-}
-
-const TYPING_MP3_URL = "/audio/keyboard-typing.mp3";
-
-interface ClickWindow {
-  offset: number;
-  duration: number;
-}
-
-interface TypingSample {
-  buffer: AudioBuffer;
-  clicks: ClickWindow[];
-}
-
-/**
- * Load the typing SFX, decode it, and detect every distinct keystroke
- * within it. Different per-letter selections from this list make each
- * typed character sound subtly different, like a real keyboard.
- */
-async function loadTypingSample(ctx: AudioContext): Promise<TypingSample | null> {
-  try {
-    const res = await fetch(TYPING_MP3_URL);
-    if (!res.ok) return null;
-    const arr = await res.arrayBuffer();
-    const buffer = await new Promise<AudioBuffer | null>((resolve) => {
-      ctx.decodeAudioData(
-        arr,
-        (b) => resolve(b),
-        () => resolve(null),
-      );
-    });
-    if (!buffer) return null;
-    const clicks = findClickWindows(buffer);
-    if (clicks.length === 0) return null;
-    return { buffer, clicks };
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Walk the buffer and pick out each onset (sample crossing ~25% of peak
- * amplitude). Each onset becomes a 130 ms window with a few ms of
- * head-room before it. We require a minimum gap between onsets so a
- * single decaying click is not split into several "clicks".
- */
-function findClickWindows(buffer: AudioBuffer, maxClicks = 12): ClickWindow[] {
-  const data = buffer.getChannelData(0);
-  const sr = buffer.sampleRate;
-
-  let maxAmp = 0;
-  for (let i = 0; i < data.length; i++) {
-    const a = Math.abs(data[i]);
-    if (a > maxAmp) maxAmp = a;
-  }
-  const threshold = Math.max(0.05, maxAmp * 0.25);
-
-  const minGapSamples = Math.floor(sr * 0.06); // 60 ms minimum gap between clicks
-  const windowDuration = 0.13;
-  const leadInSec = 0.005;
-
-  const clicks: ClickWindow[] = [];
-  let i = 0;
-  while (i < data.length && clicks.length < maxClicks) {
-    // Find next sample above threshold.
-    while (i < data.length && Math.abs(data[i]) <= threshold) i++;
-    if (i >= data.length) break;
-
-    const onset = i;
-    const offset = Math.max(0, onset / sr - leadInSec);
-    if (offset + windowDuration <= buffer.duration) {
-      clicks.push({ offset, duration: windowDuration });
-    }
-
-    // Skip ahead until we see a continuous "silent" stretch of at least
-    // minGapSamples, so we land on the next genuine click.
-    let silenceRun = 0;
-    while (i < data.length && silenceRun < minGapSamples) {
-      if (Math.abs(data[i]) > threshold) silenceRun = 0;
-      else silenceRun++;
-      i++;
-    }
-  }
-  return clicks;
-}
-
-/**
- * Pick a click index that is different from `prevIdx` when possible,
- * so two consecutive letters do not play the identical sample.
- */
-function pickClickIndex(prevIdx: number, total: number): number {
-  if (total <= 1) return 0;
-  let idx = Math.floor(Math.random() * total);
-  if (idx === prevIdx) idx = (idx + 1) % total;
-  return idx;
-}
-
-/**
- * Play one click window from the sample at the given context time.
- */
-function scheduleKeystroke(
-  ctx: AudioContext,
-  sample: TypingSample,
-  click: ClickWindow,
-  when: number,
-  gainValue = 0.6,
-) {
-  const src = ctx.createBufferSource();
-  src.buffer = sample.buffer;
-  const gain = ctx.createGain();
-  gain.gain.value = gainValue;
-  src.connect(gain).connect(ctx.destination);
-  src.start(when, click.offset, click.duration);
-  src.stop(when + click.duration + 0.02);
-  return src;
-}
-
-function scheduleLogoClick(ctx: AudioContext, when: number) {
-  // An elegant "click + bell" for the moment the Q mark completes. A very
-  // short highpassed noise gives the click character; a clear bell-like
-  // tone at A6 with a perfect-fifth overtone provides the elegance and
-  // decays smoothly over ~700ms.
-
-  // Click transient — short highpassed noise burst.
-  const noiseLen = Math.floor(ctx.sampleRate * 0.008);
-  const buf = ctx.createBuffer(1, noiseLen, ctx.sampleRate);
-  const d = buf.getChannelData(0);
-  for (let i = 0; i < noiseLen; i++) {
-    d[i] = (Math.random() * 2 - 1) * (1 - i / noiseLen);
-  }
-  const noise = ctx.createBufferSource();
-  noise.buffer = buf;
-
-  const noiseFilter = ctx.createBiquadFilter();
-  noiseFilter.type = "highpass";
-  noiseFilter.frequency.value = 4500;
-
-  const noiseGain = ctx.createGain();
-  noiseGain.gain.setValueAtTime(0.09, when);
-  noiseGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.012);
-
-  noise.connect(noiseFilter).connect(noiseGain).connect(ctx.destination);
-  noise.start(when);
-  noise.stop(when + 0.02);
-
-  // Bell fundamental — A6 (1760 Hz).
-  const bell = ctx.createOscillator();
-  bell.type = "sine";
-  bell.frequency.value = 1760;
-  const bellGain = ctx.createGain();
-  bellGain.gain.setValueAtTime(0, when);
-  bellGain.gain.linearRampToValueAtTime(0.2, when + 0.004);
-  bellGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.8);
-  bell.connect(bellGain).connect(ctx.destination);
-  bell.start(when);
-  bell.stop(when + 0.9);
-
-  // Bell fifth — E7 (2637 Hz) for sparkle, lower amplitude, faster decay.
-  const fifth = ctx.createOscillator();
-  fifth.type = "sine";
-  fifth.frequency.value = 2637;
-  const fifthGain = ctx.createGain();
-  fifthGain.gain.setValueAtTime(0, when);
-  fifthGain.gain.linearRampToValueAtTime(0.07, when + 0.004);
-  fifthGain.gain.exponentialRampToValueAtTime(0.0001, when + 0.55);
-  fifth.connect(fifthGain).connect(ctx.destination);
-  fifth.start(when);
-  fifth.stop(when + 0.65);
-}
-
-function scheduleSoundtrack(
-  ctx: AudioContext,
-  typingSample: TypingSample | null,
-): { sources: AudioBufferSourceNode[] } {
-  const now = ctx.currentTime + 0.05;
-  const sources: AudioBufferSourceNode[] = [];
-  if (typingSample && typingSample.clicks.length > 0) {
-    // One keystroke per letter, locked to the visible reveal moment, but
-    // with a different click window picked from the sample each time so
-    // no two adjacent letters sound identical.
-    let prevIdx = -1;
-    for (let i = 0; i < WORD.length; i++) {
-      const idx = pickClickIndex(prevIdx, typingSample.clicks.length);
-      const click = typingSample.clicks[idx];
-      prevIdx = idx;
-      const src = scheduleKeystroke(
-        ctx,
-        typingSample,
-        click,
-        now + T_TYPE_START + i * T_TYPE_STEP,
-      );
-      sources.push(src);
-    }
-  }
-  scheduleLogoClick(ctx, now + T_CHIME);
-  return { sources };
-}
+const VIDEO_URL = "/intro.mp4";
 
 export default function IntroPage() {
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const typingSampleRef = useRef<TypingSample | null>(null);
-  const activeSourcesRef = useRef<AudioBufferSourceNode[]>([]);
-  const [runKey, setRunKey] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [showReplay, setShowReplay] = useState(false);
 
-  const start = async () => {
+  const start = () => {
     setHasStarted(true);
     setShowReplay(false);
-    setRunKey((k) => k + 1);
-
-    const ctx = getAudioCtx(audioCtxRef);
-    if (!ctx) return;
-    if (ctx.state === "suspended") {
-      try {
-        await ctx.resume();
-      } catch {
-        // ignore — audio just stays silent
-      }
-    }
-
-    // Stop any in-flight clips from the previous run so replays do not overlap.
-    for (const s of activeSourcesRef.current) {
-      try {
-        s.stop();
-      } catch {
-        // already stopped — ignore
-      }
-    }
-    activeSourcesRef.current = [];
-
-    // Lazy-load and analyse the typing MP3 on the first play (user gesture
-    // unlocked the audio context).
-    if (!typingSampleRef.current) {
-      typingSampleRef.current = await loadTypingSample(ctx);
-    }
-
-    const { sources } = scheduleSoundtrack(ctx, typingSampleRef.current);
-    activeSourcesRef.current = sources;
+    const v = videoRef.current;
+    if (!v) return;
+    v.currentTime = 0;
+    v.muted = false;
+    v.play().catch(() => {
+      // Some browsers still block unmuted autoplay even after a gesture.
+      // Fall back to muted playback so visuals still run.
+      v.muted = true;
+      v.play().catch(() => {});
+    });
   };
-
-  useEffect(() => {
-    if (!hasStarted) return;
-    const t = setTimeout(() => setShowReplay(true), T_END * 1000);
-    return () => clearTimeout(t);
-  }, [runKey, hasStarted]);
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black">
-
-      {/* The animation stage. Hidden until the user clicks Play so the
-          curtain doesn't reveal letters that haven't been typed yet.
-          runKey remounts the wrapper to restart every CSS animation. */}
-      <div
-        key={runKey}
-        className={`intro-stage relative z-10 flex flex-col items-center transition-opacity duration-500 ${
+      <video
+        ref={videoRef}
+        src={VIDEO_URL}
+        playsInline
+        preload="auto"
+        onEnded={() => setShowReplay(true)}
+        className={`h-full w-full object-contain transition-opacity duration-500 ${
           hasStarted ? "opacity-100" : "opacity-0"
         }`}
-        aria-hidden={!hasStarted}
-      >
-        {/* Q mark */}
-        <svg
-          width="200"
-          height="200"
-          viewBox="0 0 300 300"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="intro-q"
-          aria-label="Qualivio Q mark"
-        >
-          <circle
-            className="intro-ring"
-            cx="140"
-            cy="135"
-            r="65"
-            fill="none"
-            stroke="#FFFFFF"
-            strokeWidth="18"
-            strokeLinecap="round"
-          />
-          <line
-            className="intro-tail"
-            x1="190"
-            y1="180"
-            x2="210"
-            y2="204"
-            stroke="#FFFFFF"
-            strokeWidth="18"
-            strokeLinecap="round"
-          />
-        </svg>
+        aria-label="Qualivio brand intro"
+      />
 
-        {/* Wordmark — types out letter by letter, caret follows */}
-        <div
-          className="intro-word mt-8 flex items-baseline text-4xl font-bold tracking-tight text-[#E8E6FF] sm:text-5xl"
-          style={{ fontFamily: "var(--font-space-grotesk)" }}
-          aria-label="Qualivio"
-        >
-          {WORD.split("").map((ch, i) => (
-            <span
-              key={`${ch}-${i}`}
-              className="intro-letter inline-block"
-              style={{ animationDelay: `${T_TYPE_START + i * T_TYPE_STEP}s` }}
-            >
-              {ch}
-            </span>
-          ))}
-          <span className="intro-caret ml-[2px] inline-block h-[1em] w-[3px] translate-y-[0.1em] bg-[#E8E6FF]" />
-        </div>
-
-        {/* Tagline */}
-        <div className="intro-tagline mt-8 max-w-[90vw] text-center text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[#F7B731] sm:text-xs sm:tracking-[0.3em]">
-          Pharmacovigilance · Quality Assurance | Life Sciences
-        </div>
-      </div>
-
-      {/* First-load Play button — required by browser audio autoplay rules */}
       {!hasStarted && (
         <button
           type="button"
@@ -391,77 +70,6 @@ export default function IntroPage() {
           ▶ Replay
         </button>
       )}
-
-      <style>{`
-        /* CSS animation timings mirror the JS constants above so audio and
-           visuals stay in sync. */
-        .intro-ring {
-          stroke-dasharray: ${RING_CIRCUMFERENCE};
-          stroke-dashoffset: ${RING_CIRCUMFERENCE};
-          animation: q-draw-ring ${T_RING_DUR}s ${T_RING_START}s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-        }
-        .intro-tail {
-          stroke-dasharray: ${TAIL_LENGTH_VISUAL};
-          stroke-dashoffset: ${TAIL_LENGTH_VISUAL};
-          animation: q-draw-tail ${T_TAIL_DUR}s ${T_TAIL_START}s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-        }
-        .intro-q {
-          filter: drop-shadow(0 0 0 rgba(255,255,255,0));
-          animation: q-glow 1.4s ${T_CHIME - 0.05}s ease-out forwards;
-          transform-origin: 50% 50%;
-        }
-        .intro-letter {
-          opacity: 0;
-          transform: translateY(2px);
-          animation: letter-pop 0.08s ease-out forwards;
-        }
-        .intro-caret {
-          /* One combined animation: blink steadily until T_CARET_FADE, then
-             fade out cleanly. Avoids fighting between two animations on the
-             same property. */
-          opacity: 0;
-          animation: caret-life ${T_CARET_FADE + T_CARET_FADE_DUR}s linear forwards;
-        }
-        .intro-tagline {
-          opacity: 0;
-          animation: tagline-in ${T_TAGLINE_DUR}s ${T_TAGLINE}s ease-out forwards;
-        }
-
-        @keyframes q-draw-ring { to { stroke-dashoffset: 0; } }
-        @keyframes q-draw-tail { to { stroke-dashoffset: 0; } }
-        @keyframes q-glow {
-          0%   { filter: drop-shadow(0 0 0 rgba(255,255,255,0));   transform: scale(1); }
-          25%  { filter: drop-shadow(0 0 24px rgba(255,255,255,0.55)); transform: scale(1.04); }
-          100% { filter: drop-shadow(0 0 12px rgba(255,255,255,0.2));  transform: scale(1); }
-        }
-        @keyframes letter-pop {
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes caret-life {
-          /* The caret needs to appear right at T_TYPE_START, blink during
-             typing, then fade. Computed positions assume a 0.55s blink. */
-          0%, 16%   { opacity: 0; }       /* before typing starts (T_TYPE_START / total) */
-          17%       { opacity: 1; }
-          25%, 33%  { opacity: 0; }
-          34%, 42%  { opacity: 1; }
-          43%, 51%  { opacity: 0; }
-          52%, 60%  { opacity: 1; }
-          61%, 69%  { opacity: 0; }
-          70%, 78%  { opacity: 1; }       /* typing done — hold for a beat */
-          85%       { opacity: 1; }
-          100%      { opacity: 0; transform: scaleY(0.5); }
-        }
-        @keyframes tagline-in { to { opacity: 1; } }
-
-        @media (prefers-reduced-motion: reduce) {
-          .intro-ring, .intro-tail, .intro-q, .intro-letter, .intro-caret, .intro-tagline {
-            animation: none;
-          }
-          .intro-ring, .intro-tail { stroke-dashoffset: 0; }
-          .intro-letter, .intro-tagline { opacity: 1; transform: none; }
-          .intro-caret { opacity: 0; }
-        }
-      `}</style>
     </div>
   );
 }

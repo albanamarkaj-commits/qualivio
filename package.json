@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "intro:studio": "remotion studio --config=marketing/intro-video/remotion.config.ts",
-    "intro:render:square": "remotion render intro-square marketing/intro-video/out/intro-1080x1080.mp4 --config=marketing/intro-video/remotion.config.ts",
+    "intro:render:square": "remotion render intro-square public/intro.mp4 --config=marketing/intro-video/remotion.config.ts",
     "intro:render:landscape": "remotion render intro-landscape marketing/intro-video/out/intro-1920x1080.mp4 --config=marketing/intro-video/remotion.config.ts",
     "intro:render:vertical": "remotion render intro-vertical marketing/intro-video/out/intro-1080x1920.mp4 --config=marketing/intro-video/remotion.config.ts",
     "intro:gen-bell": "node scripts/generate-bell-click.mjs"
