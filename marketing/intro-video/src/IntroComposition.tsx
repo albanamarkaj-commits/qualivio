@@ -7,17 +7,17 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { loadFont } from "@remotion/google-fonts/Arimo";
+import { loadFont } from "@remotion/google-fonts/Sora";
 
-// The brand guidelines PDF references the standard "Helvetica-Bold"
-// PostScript font (no font file embedded), so PDF viewers substitute
-// it with whatever they have — on Windows that's Arial Bold. Inter
-// reads as too humanist next to that. Arimo is a metric-compatible
-// open clone of Arial, so glyph shapes and widths match what the user
-// actually sees when opening the guidelines PDF.
+// Sora at weight 500 (Medium) — selected after side-by-side comparison
+// against Sora 400/600/700 and other geometric sans candidates. Medium
+// gives the wordmark a refined, professional presence that pairs well
+// with the Q mark's geometric ring without reading as heavy or
+// decorative.
 const { fontFamily: WORDMARK_FONT } = loadFont("normal", {
-  weights: ["700"],
+  weights: ["500"],
 });
+const WORDMARK_WEIGHT = 500;
 
 /**
  * MP4-ready version of the brand intro.
@@ -165,7 +165,7 @@ export const IntroComposition: React.FC = () => {
             alignItems: "baseline",
             color: "#E8E6FF",
             fontSize: wordFontSize,
-            fontWeight: 700,
+            fontWeight: WORDMARK_WEIGHT,
             letterSpacing: "-0.01em",
           }}
         >
