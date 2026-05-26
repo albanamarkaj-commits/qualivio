@@ -7,12 +7,13 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { loadFont } from "@remotion/google-fonts/SpaceGrotesk";
+import { loadFont } from "@remotion/google-fonts/Inter";
 
-// Load Space Grotesk (700) so the rendered MP4 matches the website
-// headings and the brand-guideline wordmark, rather than falling back
-// to whatever system font is installed in the Remotion Chromium.
-const { fontFamily: SPACE_GROTESK } = loadFont("normal", {
+// The brand guidelines PDF is typeset in Helvetica-Bold (verified by
+// inspecting embedded fonts). Helvetica isn't on Google Fonts, so we
+// use Inter Bold as the closest free, web-deliverable equivalent — it's
+// the de facto Helvetica clone on the modern web.
+const { fontFamily: WORDMARK_FONT } = loadFont("normal", {
   weights: ["700"],
 });
 
@@ -107,7 +108,7 @@ export const IntroComposition: React.FC = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: SPACE_GROTESK,
+        fontFamily: WORDMARK_FONT,
       }}
     >
       <div
