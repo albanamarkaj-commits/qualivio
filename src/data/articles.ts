@@ -27,7 +27,7 @@ export const articles = [
     title: "Understanding the ICSR Lifecycle",
     category: "Pharmacovigilance",
     excerpt:
-      "From receipt to submission — a clear walkthrough of the individual case safety report workflow and key compliance points.",
+      "From receipt to submission: a clear walkthrough of the individual case safety report workflow and key compliance points.",
     readTime: "8 min read",
     slug: "icsr-lifecycle",
   },

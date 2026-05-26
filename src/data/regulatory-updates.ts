@@ -280,7 +280,7 @@ export const regulatoryUpdates: RegulatoryUpdate[] = [
       },
       {
         type: "paragraph",
-        text: "From January 2025, marketing authorisation holders are required to use the IRIS platform — EMA's regulatory submission and workflow management platform — for managing post-authorisation safety studies after original submission. This applies to amendments to PASS protocols, submission of interim and progress reports, and final study report submissions.",
+        text: "From January 2025, marketing authorisation holders are required to use the IRIS platform (EMA's regulatory submission and workflow management platform) for managing post-authorisation safety studies after original submission. This applies to amendments to PASS protocols, submission of interim and progress reports, and final study report submissions.",
       },
       {
         type: "callout",
@@ -324,7 +324,7 @@ export const regulatoryUpdates: RegulatoryUpdate[] = [
       },
       {
         type: "paragraph",
-        text: "The EMA Catalogue of real-world data studies serves as the mandatory registration platform for non-interventional studies including PASS. Updated 2025 guidance clarifies registration requirements, including the obligation to register observational studies — whether or not requested by competent authorities — where results will be used to support regulatory decisions or submissions.",
+        text: "The EMA Catalogue of real-world data studies serves as the mandatory registration platform for non-interventional studies including PASS. Updated 2025 guidance clarifies registration requirements, including the obligation to register observational studies, whether or not requested by competent authorities, where results will be used to support regulatory decisions or submissions.",
       },
       {
         type: "heading",

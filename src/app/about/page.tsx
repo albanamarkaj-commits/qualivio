@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const values = [
-  { label: "Integrity", body: "We are accurate, transparent, and honest — even when the answer is complex." },
+  { label: "Integrity", body: "We are accurate, transparent, and honest, even when the answer is complex." },
   { label: "Clarity", body: "We simplify without dumbing down. Clarity is a professional obligation, not a style choice." },
   { label: "Scientific discipline", body: "Everything we produce is grounded in evidence, regulation, and professional expertise." },
   { label: "Practical excellence", body: "We focus on what works in real-world regulated environments, not just theory." },
@@ -55,7 +55,7 @@ export default function AboutPage() {
             </h3>
             <p className="mt-4 leading-8 text-[#6B6A8F]">
               To advance excellence in pharmacovigilance through trusted
-              education, consulting, and practical resources — making complex
+              education, consulting, and practical resources, making complex
               regulations accessible to every professional who needs them.
             </p>
           </Card>
@@ -69,7 +69,7 @@ export default function AboutPage() {
             </h3>
             <p className="mt-4 leading-8 text-[#6B6A8F]">
               A life sciences ecosystem where compliance is clear, human-centred,
-              and continuously improving — powered by professionals who are
+              and continuously improving, powered by professionals who are
               confident in their regulatory knowledge.
             </p>
           </Card>
@@ -98,7 +98,7 @@ export default function AboutPage() {
       <Section eyebrow="Brand Voice" title="The way we communicate.">
         <div className="mx-auto max-w-3xl rounded-2xl border border-[#E5E4F0] bg-white p-8 shadow-[0_4px_24px_rgba(124,106,247,0.08)]">
           {[
-            { label: "We write in", value: "plain, confident English — no unnecessary jargon." },
+            { label: "We write in", value: "plain, confident English, with no unnecessary technical language." },
             { label: "We are", value: "authoritative but never arrogant." },
             { label: "We educate", value: "without condescending to our audience." },
             { label: "We avoid", value: "buzzwords, vague claims, and over-promising." },
@@ -125,7 +125,7 @@ export default function AboutPage() {
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-base text-[#9896B6]">
           Whether you need consulting support, educational resources, or a
-          focused conversation — we are here.
+          focused conversation, we are here.
         </p>
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Button href="/resources">Explore Education →</Button>

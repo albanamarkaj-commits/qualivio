@@ -57,7 +57,7 @@ export default function ContactPage() {
             </div>
             <div className="mt-8 rounded-xl border border-[#E5E4F0] bg-white p-4">
               <p className="text-xs leading-6 text-[#6B6A8F]">
-                For consulting, training, content partnerships, or life sciences education enquiries — we respond within 1–2 business days.
+                For consulting, training, content partnerships, or life sciences education enquiries, we respond within 1–2 business days.
               </p>
             </div>
           </div>
