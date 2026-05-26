@@ -32,8 +32,8 @@ export default function InsightsPage() {
             <div className="h-px w-6 bg-[#F7B731]" />
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
-            Practical articles written for pharmacovigilance and life sciences
-            professionals navigating regulatory complexity.
+            Practical articles written for pharmacovigilance professionals
+            navigating regulatory complexity.
           </p>
         </div>
       </section>

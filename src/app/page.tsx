@@ -117,7 +117,7 @@ export default function Home() {
       <Section
         eyebrow="Articles"
         title="Clear thinking for complex regulations."
-        description="Practical articles written for pharmacovigilance and life sciences professionals navigating regulatory requirements."
+        description="Practical articles written for pharmacovigilance professionals navigating regulatory requirements."
         dark={true}
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
