@@ -55,7 +55,7 @@ export default function ResourcesPage() {
       <Section
         eyebrow="Pricing"
         title="Simple, scalable tiers."
-        description="From free introductory resources to bespoke team training — clear pricing, no surprises."
+        description="From free introductory resources to bespoke team training. Clear pricing, no surprises."
         dark={true}
       >
         <div className="grid gap-6 sm:grid-cols-3">
