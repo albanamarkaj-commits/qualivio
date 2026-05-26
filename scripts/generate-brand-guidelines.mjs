@@ -790,7 +790,7 @@ pdf.setModificationDate(new Date());
 
   drawText(
     p,
-    "Qualivio uses a single typeface across every brand surface — wordmark, headings, body, video, and print. The chosen family is Sora, a modern geometric sans designed by Indestructible Type Co. and licensed under the SIL Open Font License.",
+    "Qualivio uses three typefaces. Sora is reserved exclusively for the Qualivio wordmark; Space Grotesk handles every other display surface (headings, eyebrows, card titles); DM Sans carries the body copy and form labels. Strict separation keeps the wordmark distinctive across channels.",
     {
       x: MARGIN_X,
       y,
@@ -801,51 +801,10 @@ pdf.setModificationDate(new Date());
       lineHeight: 1.6,
     },
   );
-  y -= 70;
+  y -= 80;
 
-  // Weights demo
-  p.drawText("WEIGHTS IN USE", {
-    x: MARGIN_X,
-    y,
-    size: 9,
-    font: F.bold,
-    color: C.violet,
-  });
-  y -= 22;
-
-  const weights = [
-    { name: "Sora Regular · 400", font: F.regular, weight: "400", usage: "Body copy, long-form text" },
-    { name: "Sora Medium · 500", font: F.medium, weight: "500", usage: "Wordmark, eyebrows, callouts" },
-    { name: "Sora Bold · 700", font: F.bold, weight: "700", usage: "Headings, emphasis" },
-  ];
-
-  for (const w of weights) {
-    p.drawText("Qualivio", {
-      x: MARGIN_X,
-      y,
-      size: 34,
-      font: w.font,
-      color: C.dark,
-    });
-    p.drawText(w.name, {
-      x: MARGIN_X + 180,
-      y: y + 16,
-      size: 9,
-      font: F.bold,
-      color: C.violet,
-    });
-    p.drawText(w.usage, {
-      x: MARGIN_X + 180,
-      y: y + 2,
-      size: 9,
-      font: F.regular,
-      color: C.muted,
-    });
-    y -= 44;
-  }
-
-  y -= 10;
-  p.drawText("WEBSITE STACK", {
+  // Wordmark sample
+  p.drawText("WORDMARK · SORA MEDIUM 500", {
     x: MARGIN_X,
     y,
     size: 9,
@@ -853,24 +812,73 @@ pdf.setModificationDate(new Date());
     color: C.violet,
   });
   y -= 18;
-  const webStack = [
-    "Display + Headings: Sora (400 / 500 / 700)",
-    "Body + Forms: DM Sans (400 / 500)",
-    "Code samples: monospaced system stack",
+  p.drawText("Qualivio", {
+    x: MARGIN_X,
+    y: y - 30,
+    size: 44,
+    font: F.medium,
+    color: C.dark,
+  });
+  p.drawText("Used only for the brand wordmark in the website Header, Footer,", {
+    x: MARGIN_X + 240,
+    y: y - 14,
+    size: 9,
+    font: F.regular,
+    color: C.muted,
+  });
+  p.drawText("the /intro MP4, the LinkedIn banner, and printed materials.", {
+    x: MARGIN_X + 240,
+    y: y - 28,
+    size: 9,
+    font: F.regular,
+    color: C.muted,
+  });
+  y -= 60;
+
+  // Display + body rows
+  const stack = [
+    {
+      role: "DISPLAY · SPACE GROTESK",
+      sample: "Clear thinking for complex regulations.",
+      sampleFont: F.bold,
+      sampleSize: 18,
+      usage: "Headings (H1–H6), eyebrows, card titles, section labels.",
+    },
+    {
+      role: "BODY · DM SANS",
+      sample: "Trusted insights, education and consulting for life sciences.",
+      sampleFont: F.regular,
+      sampleSize: 12,
+      usage: "Paragraphs, form fields, button labels, captions.",
+    },
   ];
-  for (const w of webStack) {
-    p.drawCircle({ x: MARGIN_X + 4, y: y + 3, size: 1.5, color: C.gold });
-    p.drawText(w, {
-      x: MARGIN_X + 14,
+
+  for (const s of stack) {
+    p.drawText(s.role, {
+      x: MARGIN_X,
       y,
       size: 9,
-      font: F.regular,
+      font: F.bold,
+      color: C.violet,
+    });
+    p.drawText(s.sample, {
+      x: MARGIN_X,
+      y: y - 22,
+      size: s.sampleSize,
+      font: s.sampleFont,
       color: C.dark,
     });
-    y -= 14;
+    p.drawText(s.usage, {
+      x: MARGIN_X,
+      y: y - 44,
+      size: 9,
+      font: F.regular,
+      color: C.muted,
+    });
+    y -= 70;
   }
 
-  y -= 12;
+  y -= 10;
   p.drawText("CROSS-CHANNEL CONSISTENCY", {
     x: MARGIN_X,
     y,
@@ -881,7 +889,7 @@ pdf.setModificationDate(new Date());
   y -= 18;
   drawText(
     p,
-    "Sora must be used for the Qualivio wordmark in every channel: website, /intro MP4, LinkedIn banner, social posts, presentations, and print. Fallbacks (Inter, Arial) are permitted only when Sora cannot be loaded; never substitute by choice.",
+    "Sora is the wordmark font and only that. Never set headings or body copy in Sora. Conversely, never set the Qualivio wordmark in Space Grotesk or DM Sans. Fallbacks (Inter, Arial) are permitted only when Sora cannot be loaded; never substitute by choice.",
     {
       x: MARGIN_X,
       y,
@@ -1053,8 +1061,8 @@ pdf.setModificationDate(new Date());
     {
       version: "v1.2 — 2026",
       bullets: [
-        "Switched the brand display typeface to Sora (Medium 500 for wordmark, Bold 700 for headings).",
-        "Added a Typography section documenting weights and cross-channel consistency.",
+        "Introduced Sora Medium 500 as a dedicated wordmark font; Space Grotesk remains the display typeface for all other headings.",
+        "Added a Typography section documenting the three-font stack (Sora for wordmark, Space Grotesk for display, DM Sans for body).",
         "Added Digital & Social Specs section: website, /intro MP4, LinkedIn banner.",
         "Updated primary tagline to Pharmacovigilance · Quality Assurance | Life Sciences.",
         "Replaced mid-sentence em-dashes and the word \"jargon\" across web copy.",

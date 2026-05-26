@@ -701,78 +701,98 @@ async function buildChildren() {
   // ====================================================
   children.push(
     eyebrow("08 · Typography"),
-    heading("Sora · the single brand typeface."),
+    heading("Three typefaces, three roles."),
     body(
-      "Qualivio uses a single typeface across every brand surface — wordmark, headings, body, video, and print. The chosen family is Sora, a modern geometric sans designed by Indestructible Type Co. and licensed under the SIL Open Font License.",
+      "Qualivio uses three typefaces with strict separation. Sora is reserved exclusively for the Qualivio wordmark; Space Grotesk handles every other display surface (headings, eyebrows, card titles); DM Sans carries the body copy and form labels. This keeps the wordmark distinctive across channels.",
     ),
     new Paragraph({ spacing: { after: 200 }, children: [] }),
-    eyebrow("Weights in use"),
+    eyebrow("Wordmark · Sora Medium 500"),
   );
 
-  const weightDemo = [
-    { name: "Sora Regular · 400", usage: "Body copy, long-form text", weight: 400 },
-    { name: "Sora Medium · 500", usage: "Wordmark, eyebrows, callouts", weight: 500 },
-    { name: "Sora Bold · 700", usage: "Headings, emphasis", weight: 700 },
-  ];
-
-  for (const w of weightDemo) {
-    children.push(
-      new Table({
-        width: { size: 9360, type: WidthType.DXA },
-        columnWidths: [4680, 4680],
-        rows: [
-          new TableRow({
-            children: [
-              new TableCell({
-                borders: cellBorders,
-                width: { size: 4680, type: WidthType.DXA },
-                margins: { top: 120, bottom: 120, left: 200, right: 200 },
-                children: [
-                  new Paragraph({
-                    children: [
-                      new TextRun({
-                        text: "Qualivio",
-                        bold: w.weight >= 700,
-                        size: 56,
-                        color: COL.dark,
-                      }),
-                    ],
-                  }),
-                ],
-              }),
-              new TableCell({
-                borders: cellBorders,
-                width: { size: 4680, type: WidthType.DXA },
-                margins: { top: 120, bottom: 120, left: 200, right: 200 },
-                children: [
-                  new Paragraph({
-                    spacing: { after: 80 },
-                    children: [
-                      new TextRun({ text: w.name, bold: true, color: COL.violet, size: 20 }),
-                    ],
-                  }),
-                  new Paragraph({
-                    children: [new TextRun({ text: w.usage, size: 18 })],
-                  }),
-                ],
-              }),
-            ],
-          }),
-        ],
-      }),
-      new Paragraph({ spacing: { after: 100 }, children: [] }),
-    );
-  }
-
   children.push(
-    eyebrow("Website font stack"),
-    bullet("Display + Headings: Sora (400 / 500 / 700)"),
-    bullet("Body + Forms: DM Sans (400 / 500)"),
-    bullet("Code samples: monospaced system stack"),
+    new Table({
+      width: { size: 9360, type: WidthType.DXA },
+      columnWidths: [4680, 4680],
+      rows: [
+        new TableRow({
+          children: [
+            new TableCell({
+              borders: cellBorders,
+              width: { size: 4680, type: WidthType.DXA },
+              margins: { top: 200, bottom: 200, left: 200, right: 200 },
+              children: [
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "Qualivio",
+                      size: 80,
+                      color: COL.dark,
+                    }),
+                  ],
+                }),
+              ],
+            }),
+            new TableCell({
+              borders: cellBorders,
+              width: { size: 4680, type: WidthType.DXA },
+              margins: { top: 200, bottom: 200, left: 200, right: 200 },
+              children: [
+                new Paragraph({
+                  spacing: { after: 80 },
+                  children: [
+                    new TextRun({
+                      text: "Used only for the brand wordmark.",
+                      bold: true,
+                      color: COL.violet,
+                      size: 20,
+                    }),
+                  ],
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "Website Header & Footer, /intro MP4, LinkedIn banner, printed materials.",
+                      size: 18,
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
+    }),
+    new Paragraph({ spacing: { after: 240 }, children: [] }),
+    eyebrow("Display · Space Grotesk"),
+    new Paragraph({
+      spacing: { after: 100 },
+      children: [
+        new TextRun({
+          text: "Clear thinking for complex regulations.",
+          bold: true,
+          size: 32,
+          color: COL.dark,
+        }),
+      ],
+    }),
+    body("Used for H1–H6, section eyebrows, card titles, and any heading-level display element. Weights 400 / 500 / 700."),
+    new Paragraph({ spacing: { after: 240 }, children: [] }),
+    eyebrow("Body · DM Sans"),
+    new Paragraph({
+      spacing: { after: 100 },
+      children: [
+        new TextRun({
+          text: "Trusted insights, education and consulting for life sciences.",
+          size: 22,
+          color: COL.dark,
+        }),
+      ],
+    }),
+    body("Used for paragraphs, form fields, button labels, and captions. Weights 400 / 500."),
     new Paragraph({ spacing: { after: 240 }, children: [] }),
     eyebrow("Cross-channel consistency"),
     body(
-      "Sora must be used for the Qualivio wordmark in every channel: website, /intro MP4, LinkedIn banner, social posts, presentations, and print. Fallbacks (Inter, Arial) are permitted only when Sora cannot be loaded; never substitute by choice.",
+      "Sora is the wordmark font and only that. Never set headings or body copy in Sora. Conversely, never set the Qualivio wordmark in Space Grotesk or DM Sans. Fallbacks (Inter, Arial) are permitted only when Sora cannot be loaded; never substitute by choice.",
     ),
     pageBreak(),
   );
@@ -844,8 +864,8 @@ async function buildChildren() {
     {
       version: "v1.2 — 2026",
       bullets: [
-        "Switched the brand display typeface to Sora (Medium 500 for wordmark, Bold 700 for headings).",
-        "Added a Typography section documenting weights and cross-channel consistency.",
+        "Introduced Sora Medium 500 as a dedicated wordmark font; Space Grotesk remains the display typeface for all other headings.",
+        "Added a Typography section documenting the three-font stack (Sora for wordmark, Space Grotesk for display, DM Sans for body).",
         "Added Digital & Social Specs section: website, /intro MP4, LinkedIn banner.",
         "Updated primary tagline to Pharmacovigilance · Quality Assurance | Life Sciences.",
         "Replaced mid-sentence em-dashes and the word “jargon” across web copy.",
