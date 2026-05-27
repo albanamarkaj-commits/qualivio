@@ -4,9 +4,9 @@ export function QMark({
 }: {
   size?: number;
   /**
-   * When true, the icon gently sweeps left-right and bobs up-down,
-   * like a magnifying glass scanning the page. Used on the homepage
-   * hero only; keep static everywhere else.
+   * When true, the icon draws itself on stroke by stroke (first the
+   * circle, then the handle), holds for a beat, then fades and loops.
+   * Used on the homepage hero only; keep static everywhere else.
    */
   animated?: boolean;
 }) {
@@ -18,8 +18,6 @@ export function QMark({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      className={animated ? "animate-qmark-search" : undefined}
-      style={animated ? { transformOrigin: "center" } : undefined}
     >
       <circle
         cx="140"
@@ -29,6 +27,7 @@ export function QMark({
         stroke="currentColor"
         strokeWidth="18"
         strokeLinecap="round"
+        className={animated ? "qmark-stroke-circle" : undefined}
       />
       <line
         x1="190"
@@ -38,6 +37,7 @@ export function QMark({
         stroke="currentColor"
         strokeWidth="18"
         strokeLinecap="round"
+        className={animated ? "qmark-stroke-line" : undefined}
       />
     </svg>
   );

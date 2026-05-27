@@ -13,10 +13,21 @@
   --font-heading: var(--font-space-grotesk);
   --font-body: var(--font-dm-sans);
 
-  --animate-qmark-search: qmark-search 3.2s ease-in-out infinite;
-  @keyframes qmark-search {
-    0%, 100% { transform: rotate(-7deg) translateY(-2px); }
-    50%      { transform: rotate(7deg)  translateY(2px); }
+  /* Hero magnifying-glass draw-on: circle traces itself, then the handle,
+     hold visible, fade, restart. The two paths share one timeline (4.5s)
+     but the line has its own delayed window so the strokes don't draw
+     simultaneously. */
+  @keyframes qmark-draw-circle {
+    0%   { stroke-dashoffset: 408; opacity: 1; }
+    30%  { stroke-dashoffset: 0;   opacity: 1; }
+    85%  { stroke-dashoffset: 0;   opacity: 1; }
+    100% { stroke-dashoffset: 0;   opacity: 0; }
+  }
+  @keyframes qmark-draw-line {
+    0%, 30% { stroke-dashoffset: 32; opacity: 1; }
+    45%     { stroke-dashoffset: 0;  opacity: 1; }
+    85%     { stroke-dashoffset: 0;  opacity: 1; }
+    100%    { stroke-dashoffset: 0;  opacity: 0; }
   }
 }
 
@@ -54,6 +65,21 @@ h1, h2, h3, h4, h5, h6 {
   background: #7C6AF7;
 }
 
+.qmark-stroke-circle {
+  stroke-dasharray: 408;
+  stroke-dashoffset: 408;
+  animation: qmark-draw-circle 4.5s ease-in-out infinite;
+}
+.qmark-stroke-line {
+  stroke-dasharray: 32;
+  stroke-dashoffset: 32;
+  animation: qmark-draw-line 4.5s ease-in-out infinite;
+}
 @media (prefers-reduced-motion: reduce) {
-  .animate-qmark-search { animation: none !important; }
+  .qmark-stroke-circle,
+  .qmark-stroke-line {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+  }
 }
