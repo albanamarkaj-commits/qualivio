@@ -1,4 +1,15 @@
-export function QMark({ size = 40 }: { size?: number }) {
+export function QMark({
+  size = 40,
+  animated = false,
+}: {
+  size?: number;
+  /**
+   * When true, the icon gently sweeps left-right and bobs up-down,
+   * like a magnifying glass scanning the page. Used on the homepage
+   * hero only; keep static everywhere else.
+   */
+  animated?: boolean;
+}) {
   return (
     <svg
       width={size}
@@ -7,6 +18,8 @@ export function QMark({ size = 40 }: { size?: number }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
+      className={animated ? "animate-qmark-search" : undefined}
+      style={animated ? { transformOrigin: "center" } : undefined}
     >
       <circle
         cx="140"

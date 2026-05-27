@@ -21,7 +21,7 @@ export default function Home() {
           {/* Q mark */}
           <div className="mb-8 flex justify-center">
             <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-[#E5E4F0] bg-[#F5F4FF] text-[#7C6AF7] shadow-[0_4px_24px_rgba(124,106,247,0.15)]">
-              <QMark size={36} />
+              <QMark size={36} animated />
             </div>
           </div>
 

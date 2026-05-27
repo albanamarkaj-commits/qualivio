@@ -12,6 +12,12 @@
 
   --font-heading: var(--font-space-grotesk);
   --font-body: var(--font-dm-sans);
+
+  --animate-qmark-search: qmark-search 3.2s ease-in-out infinite;
+  @keyframes qmark-search {
+    0%, 100% { transform: rotate(-7deg) translateY(-2px); }
+    50%      { transform: rotate(7deg)  translateY(2px); }
+  }
 }
 
 html {
@@ -46,4 +52,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #7C6AF7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-qmark-search { animation: none !important; }
 }
