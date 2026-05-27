@@ -68,12 +68,12 @@ h1, h2, h3, h4, h5, h6 {
 .qmark-stroke-circle {
   stroke-dasharray: 408;
   stroke-dashoffset: 408;
-  animation: qmark-draw-circle 4.5s ease-in-out infinite;
+  animation: qmark-draw-circle 3.5s ease-in-out infinite;
 }
 .qmark-stroke-line {
   stroke-dasharray: 32;
   stroke-dashoffset: 32;
-  animation: qmark-draw-line 4.5s ease-in-out infinite;
+  animation: qmark-draw-line 3.5s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .qmark-stroke-circle,
