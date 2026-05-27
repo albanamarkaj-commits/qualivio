@@ -5,6 +5,7 @@ import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RegulatoryUpdateCard } from "@/components/RegulatoryUpdateCard";
+import { HeroVideoBanner } from "@/components/HeroVideoBanner";
 import { articles } from "@/data/articles";
 import { services } from "@/data/services";
 import { resources } from "@/data/resources";
@@ -13,6 +14,9 @@ import { regulatoryUpdates } from "@/data/regulatory-updates";
 export default function Home() {
   return (
     <>
+      {/* Thin intro video strip — autoplays muted, unmutes on hover */}
+      <HeroVideoBanner />
+
       {/* ── Hero ── white bg, reduced headline size */}
       <section className="relative overflow-hidden bg-white px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[800px] rounded-full bg-[#7C6AF7]/6 blur-[120px]" />
