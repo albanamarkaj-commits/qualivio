@@ -6,6 +6,7 @@ const sourceColors: Record<string, string> = {
   FDA: "bg-[#4ECDC4]/15 text-[#2AA7A5]",
   MHRA: "bg-[#F7B731]/15 text-[#B8860B]",
   ICH: "bg-[#9896B6]/15 text-[#6B6A8F]",
+  "Health Canada": "bg-[#D52B1E]/12 text-[#C0392B]",
 };
 
 const tagColors: Record<string, string> = {

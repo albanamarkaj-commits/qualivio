@@ -10,7 +10,7 @@ export type RegulatoryTag =
   | "Pregnancy & Breastfeeding"
   | "Paediatrics";
 
-export type RegulatorySource = "EMA" | "FDA" | "MHRA" | "ICH";
+export type RegulatorySource = "EMA" | "FDA" | "MHRA" | "ICH" | "Health Canada";
 
 export interface ContentSection {
   type: "paragraph" | "heading" | "list" | "callout";
@@ -34,6 +34,158 @@ export interface RegulatoryUpdate {
 }
 
 export const regulatoryUpdates: RegulatoryUpdate[] = [
+  {
+    slug: "health-canada-gvp-guidelines-gui-0102-2026",
+    title:
+      "Health Canada GVP Guidelines (GUI-0102): Building a Robust Pharmacovigilance System",
+    source: "Health Canada",
+    tags: ["GVP", "Risk Management"],
+    publishedDate: "2026-05-22",
+    summary:
+      "Health Canada's updated Good Pharmacovigilance Practices (GVP) guidance clarifies how market authorisation holders should build and maintain a robust pharmacovigilance system, covering written procedures, deviations, audits, computerised system validation, qualified personnel, and contractual agreements with third parties.",
+    impact:
+      "Market authorisation holders should review their quality system against the updated GVP expectations, including written procedures, deviation handling, audit programmes, validation of computerised systems, designated personnel and the qualified healthcare professional role, and contractual agreements for any delegated activities.",
+    sourceUrl:
+      "https://www.canada.ca/en/health-canada/services/drugs-health-products/reports-publications/medeffect-canada/good-pharmacovigilance-practices-guidelines.html",
+    readTime: "10 min read",
+    content: [
+      {
+        type: "paragraph",
+        text: "Health Canada updated its Good Pharmacovigilance Practices (GVP) guidance on 22 May 2026. The guidance clarifies the requirements set out in the Food and Drugs Act and its regulations, and describes how market authorisation holders (MAHs) are expected to operate a robust pharmacovigilance system. Meeting these requirements depends on the commitment of partners and personnel at all levels.",
+      },
+      {
+        type: "heading",
+        text: "Guiding Principles: A Robust Pharmacovigilance System",
+      },
+      {
+        type: "paragraph",
+        text: "A robust pharmacovigilance system is an integral part of GVP. With one in place, you can monitor the safety and effectiveness of your drugs, notify Health Canada within the required timelines, and take reliable, timely action based on the available evidence.",
+      },
+      {
+        type: "list",
+        items: [
+          "Set out a decision-making process with deliverables so that all activities are carried out consistently",
+          "Assign personnel who perform or oversee the deliverables, and make sure responsibilities are understood by internal and external parties",
+          "Ensure an adequate number of qualified, trained personnel are available",
+          "Identify and evaluate performance indicators, and address any deficiencies in a timely manner",
+          "Carry out and monitor corrective and risk mitigation measures as necessary",
+          "Document all activities to demonstrate that the deliverables were met",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Written Procedures",
+      },
+      {
+        type: "paragraph",
+        text: "You should prepare and document written procedures that set out your pharmacovigilance processes with step-by-step instructions for relevant personnel and departments. Each procedure should have a unique identifier. Periodic reviews keep procedures aligned with current regulations, expectations, and actual practice, and the revision history, reasons for revision, revision number, and effective dates should be documented. Designated personnel should date, approve, and sign any revisions, and affected staff should be trained before a revised procedure takes effect. When activities are contracted to a third party, roles, responsibilities, and step-by-step instructions must be clearly documented in the written procedures or contractual agreements.",
+      },
+      {
+        type: "heading",
+        text: "Deviations and Change Control",
+      },
+      {
+        type: "paragraph",
+        text: "A deviation is a change or departure from an approved written procedure, and it can be planned or unplanned. Planned deviations should be documented, evaluated, and approved before the change is implemented. Unplanned deviations are unexpected and may point to a systematic deficiency, which is a fundamental, widespread inadequacy in the processes or mechanisms of a pharmacovigilance system rather than an isolated event.",
+      },
+      {
+        type: "list",
+        items: [
+          "Document the deviation in a timely manner and carry out an investigation",
+          "Evaluate whether there is a systematic deficiency",
+          "Perform a root cause analysis, as necessary, to assess the cause and impact",
+          "Identify and carry out an effective corrective and preventative action plan (CAPA), if appropriate",
+          "Evaluate whether the actions taken addressed the root cause of the deviation",
+        ],
+      },
+      {
+        type: "callout",
+        label: "Maintaining a State of Control",
+        text: "Establish a change control system so that the department responsible for a change documents it, evaluates its impact, approves it, and sets an effective date. Any significant change affecting compliance may require re-validation or verification of systems or processes. Good quality control practices, such as data quality checks and trend analysis, help detect deviations and inform continual process improvement.",
+      },
+      {
+        type: "heading",
+        text: "Business Continuity and Database Migration",
+      },
+      {
+        type: "paragraph",
+        text: "You should establish a risk-based business continuity plan so that critical operations continue during scenarios such as absences, an IT breach, a network or system failure, a natural disaster, a public health emergency, a sudden influx of litigation, geopolitical conflict, or transition periods such as merging or migrating pharmacovigilance databases. When merging or migrating databases, consider record retention, data integrity, and an audit trail of the migration, validate computerised systems, conduct an impact assessment, and develop a risk mitigation strategy so that original data is not lost or altered.",
+      },
+      {
+        type: "heading",
+        text: "Audits",
+      },
+      {
+        type: "paragraph",
+        text: "Audits, previously known as self-inspection, help you monitor your organisation's compliance, including the compliance of third-party vendors. Your contractual agreements should set out your right and responsibility to conduct periodic, risk-based audits. The scope should cover all departments and third parties that take part in your pharmacovigilance activities, from receiving and processing adverse drug reactions (ADRs) and unusual failure in efficacy (UFIE) data, to environmental scanning, signal management, report preparation, monitoring foreign actions, and records retention.",
+      },
+      {
+        type: "list",
+        items: [
+          "Maintain a comprehensive written procedure that addresses all areas of the applicable regulations",
+          "Use responsible personnel who understand the applicable Canadian requirements and are qualified and trained to conduct the audit",
+          "Conduct internal audits of the MAH using personnel independent from the pharmacovigilance department; third-party vendor audits may be conducted by the pharmacovigilance department",
+          "Set audit frequency using a documented, risk-based strategy that prioritises key processes affecting compliance",
+          "Document and investigate the root cause and impact of any deviation",
+          "Have senior management review findings, set implementation timelines for each CAPA, and follow up to confirm completion",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Validation of Computerised Systems",
+      },
+      {
+        type: "paragraph",
+        text: "Assess whether adequate validation has been completed on any electronic system used to capture, process, manage, or archive pharmacovigilance activities, based on the criticality of the system and its intended use. Validation confirms that the system is reliable, credible, and performs as expected, and validation reports should document the results. Software upgrades, data migration, and other modifications can affect performance and data integrity, so all changes to hardware or software should be assessed and approved through your change control system to determine whether re-validation is needed.",
+      },
+      {
+        type: "callout",
+        label: "Risk-Assessment Questions",
+        text: "When assessing validation, including after a change, consider the intended use of the system and whether the change affects a critical component with direct or indirect impact on regulatory obligations. Examples include automation rules that affect ADR assessments or submissions, workflow status that affects electronic reporting timelines, and data quality that may affect the benefit-risk assessment of the drug.",
+      },
+      {
+        type: "heading",
+        text: "Personnel and Training",
+      },
+      {
+        type: "paragraph",
+        text: "Employees involved in pharmacovigilance, whether in-house or contracted, should be qualified and trained on the Canadian requirements relevant to their specific responsibilities. This includes staff who may receive ADR or UFIE information, such as sales and customer service representatives, receptionists, medical science liaisons, and medical information officers, as well as regulatory affairs staff who handle label updates. Identify qualified alternates to cover duties during absences, and maintain records such as organisational charts, proof of qualifications, written work descriptions, and training records.",
+      },
+      {
+        type: "list",
+        items: [
+          "Designate a person to lead and oversee all pharmacovigilance activities, plus a qualified alternate to act in their absence",
+          "Identify a qualified healthcare professional (QHCP), such as a physician, dentist, pharmacist, nurse, or coroner, with appropriate education and therapeutic expertise",
+          "Involve the QHCP in or have them oversee key activities: assessing the clinical significance of follow-up information, verifying coding of complex ADRs, judging seriousness, expectedness, and causality, and writing or approving annual summary reports (ASRs) and issue-related summary reports (IRSRs)",
+          "Have the QHCP provide clinical judgement on signal management and risk mitigation, and determine whether a foreign action relates to a serious risk of injury relevant to Canada",
+          "Justify and document any delegation of these key activities under a risk-based strategy",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Contractual Agreements",
+      },
+      {
+        type: "paragraph",
+        text: "You may delegate a pharmacovigilance activity to a third party, but you remain ultimately responsible for meeting all regulatory requirements and GVP principles. A signed, dated written agreement should exist between your organisation and the third party. At minimum, agreements should exist with global entities under the same ownership (unless covered by corporate procedures), service providers conducting activities on your behalf, external parties who receive ADRs or safety data for you, companies named on the product label such as the Canadian importer or private labellers, and MAHs of cross-licensed products.",
+      },
+      {
+        type: "list",
+        items: [
+          "Define the roles and responsibilities of each party for each delegated activity, the effective date, and the products in scope",
+          "Define relevant pharmacovigilance terms and the timeline and scope of safety information to be exchanged",
+          "Require your written authorisation before a third party subcontracts work to another party",
+          "Set out your right to audit, the third party's duty to assist in audits and regulatory inspections, and to provide records and answer questions in a timely manner",
+          "Require record retention in line with regulatory requirements, dated signatures from both parties, and current contact information",
+          "Where relevant, address reconciliation of pharmacovigilance data, a change control system, and communication of any potential impacts on pharmacovigilance activities",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "For cross-licensed products, each party is responsible for pharmacovigilance on its own DIN(s), and the agreement should ensure proactive communication between licensor and licensee about safety signals, label updates, and actions taken for safety reasons. During a merger, acquisition, or database migration, compliance must continue, a contractual agreement should set out roles and responsibilities, and any impact on ongoing pharmacovigilance activities should be minimised. Refer to the business continuity, computerised system validation, and records retention expectations during these transition periods.",
+      },
+    ],
+  },
   {
     slug: "gvp-p-iii-pregnant-breastfeeding-women-2026",
     title:

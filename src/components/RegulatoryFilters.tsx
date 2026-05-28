@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import type { RegulatoryUpdate, RegulatoryTag, RegulatorySource } from "@/data/regulatory-updates";
 import { RegulatoryUpdateCard } from "@/components/RegulatoryUpdateCard";
 
-const ALL_SOURCES: RegulatorySource[] = ["EMA", "FDA", "MHRA", "ICH"];
+const ALL_SOURCES: RegulatorySource[] = ["EMA", "FDA", "MHRA", "ICH", "Health Canada"];
 
 const ALL_TAGS: RegulatoryTag[] = [
   "GVP",
