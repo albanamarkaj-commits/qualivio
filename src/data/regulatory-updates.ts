@@ -46,7 +46,7 @@ export const regulatoryUpdates: RegulatoryUpdate[] = [
     impact:
       "Market authorisation holders should review their quality system against the updated GVP expectations, including written procedures, deviation handling, audit programmes, validation of computerised systems, designated personnel and the qualified healthcare professional role, and contractual agreements for any delegated activities.",
     sourceUrl:
-      "https://www.canada.ca/en/health-canada/services/drugs-health-products/reports-publications/medeffect-canada/good-pharmacovigilance-practices-guidelines.html",
+      "https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/good-manufacturing-practices/guidance-documents/pharmacovigilance-guidelines-0102.html",
     readTime: "10 min read",
     content: [
       {
