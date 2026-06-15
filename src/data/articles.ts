@@ -36,7 +36,7 @@ export const articles = [
     category: "Pharmacovigilance",
     excerpt:
       "PSURs, DSURs, and ASRs explained: what regulators expect and how to structure submissions with confidence.",
-    readTime: "3 min read",
+    readTime: "4 min read",
     slug: "aggregate-reports-regulatory-expectations",
   },
   {
@@ -44,7 +44,7 @@ export const articles = [
     category: "Pharmacovigilance",
     excerpt:
       "Designing proportionate, fit-for-purpose risk management plans that satisfy regulators and protect patients.",
-    readTime: "3 min read",
+    readTime: "4 min read",
     slug: "risk-management-plans-guide",
   },
 ];
