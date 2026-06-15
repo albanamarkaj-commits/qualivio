@@ -10,16 +10,16 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#2E2E36] bg-[#0D0D0F]/90 backdrop-blur-xl">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
+        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-7"
         aria-label="Main navigation"
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="Qualivio home">
-          <span className="text-white group-hover:text-[#4ECDC4] transition-colors duration-200">
-            <QMark size={32} />
+          <span className="flex items-center text-white group-hover:text-[#4ECDC4] transition-colors duration-200">
+            <QMark size={58} />
           </span>
           <span
-            className="text-xl font-medium text-[#E8E6FF] tracking-tight"
+            className="text-4xl font-medium text-[#E8E6FF] tracking-tight"
             style={{ fontFamily: "var(--font-wordmark)" }}
           >
             Qualivio
@@ -32,7 +32,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-[#9896B6] transition-colors hover:text-[#E8E6FF]"
+              className="text-lg font-medium text-[#9896B6] transition-colors hover:text-[#E8E6FF]"
             >
               {item.label}
             </Link>
