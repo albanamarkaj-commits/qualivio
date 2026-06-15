@@ -4,7 +4,7 @@ export const articles = [
     category: "Pharmacovigilance",
     excerpt:
       "A practical overview of how structured signal management supports safer medicines and better regulatory decisions.",
-    readTime: "6 min read",
+    readTime: "3 min read",
     slug: "signal-detection-modern-pharmacovigilance",
   },
   {
@@ -12,7 +12,7 @@ export const articles = [
     category: "Pharmacovigilance",
     excerpt:
       "Key documentation, process, and quality principles for resilient pharmacovigilance operations under regulatory scrutiny.",
-    readTime: "7 min read",
+    readTime: "3 min read",
     slug: "inspection-ready-safety-systems",
   },
   {
@@ -20,7 +20,7 @@ export const articles = [
     category: "Life Sciences",
     excerpt:
       "How quality culture, training, and data integrity shape clinical and safety excellence in regulated environments.",
-    readTime: "5 min read",
+    readTime: "3 min read",
     slug: "clinical-quality-trends",
   },
   {
@@ -28,7 +28,7 @@ export const articles = [
     category: "Pharmacovigilance",
     excerpt:
       "From receipt to submission: a clear walkthrough of the individual case safety report workflow and key compliance points.",
-    readTime: "8 min read",
+    readTime: "3 min read",
     slug: "icsr-lifecycle",
   },
   {
@@ -36,7 +36,7 @@ export const articles = [
     category: "Pharmacovigilance",
     excerpt:
       "PSURs, DSURs, and ASRs explained: what regulators expect and how to structure submissions with confidence.",
-    readTime: "9 min read",
+    readTime: "3 min read",
     slug: "aggregate-reports-regulatory-expectations",
   },
   {
@@ -44,7 +44,7 @@ export const articles = [
     category: "Pharmacovigilance",
     excerpt:
       "Designing proportionate, fit-for-purpose risk management plans that satisfy regulators and protect patients.",
-    readTime: "7 min read",
+    readTime: "3 min read",
     slug: "risk-management-plans-guide",
   },
 ];
