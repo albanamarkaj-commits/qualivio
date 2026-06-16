@@ -60,48 +60,48 @@ export const articleContent: Record<string, ArticleBody> = {
 
   "inspection-ready-safety-systems": {
     intro:
-      "Pharmacovigilance inspections are a regulatory tool used to verify that marketing authorisation holders (MAHs) and clinical trial sponsors maintain pharmacovigilance systems that are capable of fulfilling their legal obligations. GVP Module III sets out the EU framework for inspections and the expectations that organisations must meet to be considered compliant.",
+      "Pharmacovigilance inspections serve as a regulatory tool to ensure that marketing authorization holders (MAHs) and clinical trial sponsors have pharmacovigilance systems that meet their legal responsibilities. GVP Module III outlines the EU framework for these inspections and defines the expectations organizations must meet for compliance.",
     sections: [
       {
         heading: "The Purpose of Pharmacovigilance Inspections",
         paragraphs: [
-          "Inspections verify that MAHs and sponsors have established, maintain, and operate effective pharmacovigilance systems. They examine not only whether documented procedures exist but whether those procedures are understood, followed, and effective in practice. Inspection findings directly influence regulatory decisions and, in cases of critical deficiencies, can result in suspension or revocation of marketing authorisations.",
-          "Inspections can be routine, triggered by a specific concern, or conducted as part of a PSUR assessment or referral procedure. They may be conducted by the EMA, national competent authorities, or jointly. The scope may cover the entire pharmacovigilance system or be limited to specific products, processes, or sites.",
+          "Inspections confirm that MAHs and sponsors have built, maintained, and operated effective pharmacovigilance systems. Inspectors check not only for documented procedures but also whether these procedures are understood, followed, and effective in practice. The findings from inspections directly affect regulatory decisions. Serious deficiencies may lead to the suspension or revocation of marketing authorizations.",
+          "Inspections may be routine, initiated by specific concerns, or part of a PSUR assessment or referral process. They can be conducted by the EMA, national authorities, or jointly. The inspections can cover the entire pharmacovigilance system or focus on specific products, processes, or locations.",
         ],
       },
       {
         heading: "The Pharmacovigilance System Master File",
         paragraphs: [
-          "The PSMF is the cornerstone document of a pharmacovigilance system. GVP Module II specifies its required content, including a detailed description of the QPPV and their contact details, the organisational structure, computerised systems used in pharmacovigilance, contractual arrangements with third parties, product portfolio, and quality system documentation including SOPs and training records.",
-          "The PSMF must be kept up to date and accurate at all times. It must be made available to competent authorities within seven days of a request and within 24 hours in urgent situations. Inspectors frequently request the PSMF as a first step and use it as a map to guide their review of the pharmacovigilance system.",
+          "The PSMF is essential to a pharmacovigilance system. GVP Module II outlines its required contents, such as a detailed description of the QPPV and their contact information, the organizational structure, computerized systems used in pharmacovigilance, arrangements with third parties, product portfolio, and quality system documentation including SOPs and training records.",
+          "The PSMF must always be accurate and up to date. It must be accessible to competent authorities within seven days of a request and within 24 hours in urgent cases. Inspectors often request the PSMF first and use it to guide their review of the pharmacovigilance system.",
         ],
       },
       {
         heading: "The Role of the QPPV",
         paragraphs: [
-          "The Qualified Person for Pharmacovigilance bears overall responsibility for the establishment, maintenance, and management of the pharmacovigilance system. The QPPV must be a resident and qualified in the European Economic Area, must have continuous access to all safety information across the MAH's product portfolio, and must be available at all times. These requirements are set out in Article 48 of Directive 2001/83/EC and elaborated in GVP Module I.",
-          "Inspectors routinely assess whether the QPPV has genuine oversight and decision-making authority. A QPPV who cannot describe the safety profile of key products, who lacks access to the safety database, or who is not involved in significant pharmacovigilance decisions represents a critical finding. The role requires active engagement, not merely a name on a document.",
+          "The Qualified Person for Pharmacovigilance is responsible for establishing, maintaining, and managing the pharmacovigilance system. The QPPV must reside in the European Economic Area, have continuous access to all safety information related to the MAH's products, and be available at all times. These requirements come from Article 48 of Directive 2001/83/EC and are detailed in GVP Module I.",
+          "Inspectors regularly evaluate whether the QPPV has genuine oversight and decision-making authority. A QPPV who cannot describe the safety profile of key products, lacks access to the safety database, or is not involved in important pharmacovigilance decisions is a significant concern. The role demands active involvement, not just a title on a document.",
         ],
       },
       {
         heading: "Quality Systems and SOPs",
         paragraphs: [
-          "GVP Module I requires that MAHs maintain a documented quality system for pharmacovigilance. This encompasses standard operating procedures (SOPs), working instructions, training programmes, audit plans, deviation management processes, and corrective and preventive action (CAPA) systems. Quality indicators and performance metrics must be defined and monitored.",
-          "Inspectors examine whether SOPs reflect actual practice, are regularly reviewed and updated to reflect current GVP requirements, and are followed consistently across all sites and functions involved in pharmacovigilance. An SOP that describes a process no longer in use, or a process being followed without a corresponding SOP, is equally problematic.",
+          "GVP Module I requires that MAHs keep a documented quality system for pharmacovigilance. This includes standard operating procedures (SOPs), working instructions, training programs, audit plans, deviation management processes, and corrective and preventive action (CAPA) systems. Quality indicators and performance metrics must be established and monitored.",
+          "Inspectors check if SOPs accurately reflect current practices, are reviewed and updated to align with the latest GVP requirements, and are consistently followed across all sites and functions involved in pharmacovigilance. An SOP that describes an obsolete process or a process being followed without a relevant SOP is problematic.",
         ],
       },
       {
         heading: "Common Inspection Findings",
         paragraphs: [
-          "EMA and national competent authority inspection reports consistently identify certain recurring deficiencies. These include failure to detect adverse reaction cases from systematic literature monitoring, late or missing ICSR submissions to EudraVigilance, absence of documented QPPV oversight of safety decisions, inadequate validation of computerised pharmacovigilance systems, gaps in training records for PV staff, and failure to process cases from all sources including digital and patient-reported data.",
-          "Contract research organisations (CROs) and third-party pharmacovigilance service providers are a frequent source of compliance issues. MAHs remain responsible for all pharmacovigilance obligations regardless of outsourcing arrangements. Written agreements must clearly define responsibilities and include provisions for oversight and audit.",
+          "Inspection reports from the EMA and national authorities frequently highlight recurring issues. Common deficiencies include failing to detect adverse reaction cases from systematic literature monitoring, late or missing Individual Case Safety Report (ICSR) submissions to EudraVigilance, lack of documented QPPV oversight in safety decisions, insufficient validation of computerized pharmacovigilance systems, gaps in training records for PV staff, and failure to process cases from all sources, including digital and patient-reported data.",
+          "Contract research organizations (CROs) and third-party pharmacovigilance service providers often contribute to compliance problems. MAHs are responsible for all pharmacovigilance duties despite outsourcing agreements. Written contracts must clearly outline responsibilities and include provisions for oversight and auditing.",
         ],
       },
       {
         heading: "Building an Inspection-Ready Culture",
         paragraphs: [
-          "Inspection readiness is not achieved through document preparation alone. It requires that every member of staff involved in pharmacovigilance understands their role, can articulate the processes they follow, and knows how to escalate a safety concern. Regular internal audits, mock inspections, and training exercises are the most effective preparation.",
-          "An inspection should be treated as an opportunity to demonstrate the quality and effectiveness of the pharmacovigilance system, not as a threat to be managed. Organisations that approach inspections with transparency and a genuine commitment to patient safety consistently achieve better outcomes than those focused primarily on presentation.",
+          "Being ready for inspections goes beyond preparing documents. Every staff member involved in pharmacovigilance must understand their role, can explain the processes they follow, and knows how to escalate safety concerns. Regular internal audits, mock inspections, and training activities are the most effective preparation.",
+          "Organizations should view inspections as an opportunity to showcase the quality and effectiveness of their pharmacovigilance system, rather than as a threat to manage. Those that approach inspections with transparency and a genuine focus on patient safety tend to achieve better results than those primarily concerned with presentation.",
         ],
       },
     ],
