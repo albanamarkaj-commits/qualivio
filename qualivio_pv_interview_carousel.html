@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualivio · PV Interview Questions · LinkedIn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500&family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0D0D0F; --surface:#1A1A1E;
+    --violet:#7C6AF7; --teal:#4ECDC4; --gold:#F7B731;
+    --white:#FFFFFF; --wordmark:#E8E6FF; --muted:#B9B9C4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#2a2a31;font-family:'DM Sans',Inter,Arial,sans-serif;
+    display:flex;flex-direction:column;align-items:center;gap:28px;padding:40px 0;}
+  .hint{color:#d9d9e2;font-size:14px;max-width:1080px;text-align:center;line-height:1.6;padding:0 24px;}
+  .deck{display:flex;flex-direction:column;gap:28px;}
+
+  .slide{width:1080px;height:1080px;position:relative;overflow:hidden;
+    background:var(--ink);color:var(--white);
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:96px 96px 84px;}
+  .slide.surface{background:var(--surface);}
+  .slide.violet{background:var(--violet);}
+  .slide.teal{background:var(--teal);}
+  .slide.gold{background:var(--gold);}
+
+  .topbar,.block,.footer{position:relative;z-index:2;}
+
+  /* big faint question number for movement */
+  .qnum{position:absolute;top:104px;right:70px;z-index:1;pointer-events:none;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:250px;line-height:.8;
+    color:#FFFFFF;opacity:.06;}
+  .slide.violet .qnum,.slide.teal .qnum,.slide.gold .qnum{color:#0D0D0F;opacity:.10;}
+
+  .eyebrow{font-family:'Space Grotesk',sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.16em;font-size:23px;color:var(--gold);}
+  .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;}
+  .qmark{width:60px;height:60px;flex:0 0 auto;}
+
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:74px;line-height:1.05;letter-spacing:-.01em;max-width:840px;}
+  h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1.1;letter-spacing:-.01em;max-width:720px;}
+  .lead{font-size:33px;line-height:1.4;color:var(--muted);font-weight:400;max-width:780px;}
+  .body{font-size:32px;line-height:1.5;color:#E9E9F0;font-weight:400;max-width:820px;}
+  .accent-teal{color:var(--teal);}
+
+  ul.points{list-style:none;display:flex;flex-direction:column;gap:24px;margin-top:6px;max-width:840px;}
+  ul.points li{font-size:31px;line-height:1.38;color:#E9E9F0;padding-left:42px;position:relative;}
+  ul.points li::before{content:"";position:absolute;left:0;top:14px;width:17px;height:17px;border-radius:50%;background:var(--gold);}
+  ul.points li.t::before{background:var(--teal);}
+  ul.points li.v::before{background:var(--violet);}
+
+  .kicker{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;color:var(--gold);margin-top:10px;max-width:820px;}
+
+  /* ICSR flow */
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:14px 16px;max-width:860px;margin-top:6px;}
+  .flow .step{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;
+    background:rgba(255,255,255,.10);border-radius:14px;padding:12px 20px;color:var(--white);}
+  .flow .arrow{font-size:30px;color:var(--gold);font-weight:700;}
+
+  .footer{display:flex;justify-content:space-between;align-items:flex-end;}
+  .pageno{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:23px;color:#5a5a66;letter-spacing:.05em;}
+  .swipe{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;color:var(--teal);letter-spacing:.04em;}
+  .wordmark{font-family:'Sora',sans-serif;font-weight:500;font-size:92px;color:var(--wordmark);letter-spacing:-.01em;}
+  .wordmark-sm{font-family:'Sora',sans-serif;font-weight:500;font-size:44px;color:var(--wordmark);}
+  .tagline{font-family:'Space Grotesk',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.13em;font-size:20px;color:var(--gold);margin-top:14px;}
+  .url{font-family:'DM Sans',sans-serif;font-size:25px;color:var(--teal);margin-top:8px;}
+  .block{display:flex;flex-direction:column;gap:30px;}
+
+  /* dark ink treatment on saturated backgrounds (keeps WCAG AA); Q stays white per colour variant */
+  .slide.violet .eyebrow,.slide.teal .eyebrow,.slide.gold .eyebrow,
+  .slide.violet h1,.slide.teal h1,.slide.gold h1,
+  .slide.violet h2,.slide.teal h2,.slide.gold h2,
+  .slide.violet .body,.slide.teal .body,.slide.gold .body,
+  .slide.violet ul.points li,.slide.teal ul.points li,.slide.gold ul.points li,
+  .slide.violet .kicker,.slide.teal .kicker,.slide.gold .kicker,
+  .slide.violet .flow .step,.slide.teal .flow .step,.slide.gold .flow .step,
+  .slide.violet .flow .arrow,.slide.teal .flow .arrow,.slide.gold .flow .arrow,
+  .slide.violet .wordmark-sm,.slide.teal .wordmark-sm,.slide.gold .wordmark-sm,
+  .slide.violet .swipe,.slide.teal .swipe,.slide.gold .swipe{color:#0D0D0F;}
+  .slide.violet .lead,.slide.teal .lead,.slide.gold .lead{color:#0D0D0F;opacity:.82;}
+  .slide.violet ul.points li::before,.slide.violet ul.points li.t::before,.slide.violet ul.points li.v::before,
+  .slide.teal ul.points li::before,.slide.teal ul.points li.t::before,.slide.teal ul.points li.v::before,
+  .slide.gold ul.points li::before,.slide.gold ul.points li.t::before,.slide.gold ul.points li.v::before{background:#0D0D0F;}
+  .slide.violet .flow .step,.slide.teal .flow .step,.slide.gold .flow .step{background:rgba(13,13,15,.12);}
+  .slide.violet .pageno,.slide.teal .pageno,.slide.gold .pageno{color:rgba(13,13,15,.55);}
+
+  @media print{
+    body{background:#fff;padding:0;gap:0;}
+    .hint{display:none;}
+    .deck{gap:0;}
+    .slide{page-break-after:always;}
+    @page{size:1080px 1080px;margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hint">
+  Qualivio · PV interview carousel · 14 slides · 1080 × 1080 px.<br>
+  Export: open in a browser, Ctrl + P, Save as PDF (margins None), then upload as a LinkedIn document post.
+</div>
+
+<div class="deck">
+
+  <!-- COVER -->
+  <section class="slide gold">
+    <div class="topbar">
+      <div class="eyebrow">Pharmacovigilance</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#0D0D0F" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#0D0D0F" stroke-width="18" stroke-linecap="round"/></svg>
+    </div>
+    <div class="block">
+      <h1>12 PV interview questions that quietly decide the offer</h1>
+      <div class="lead">These are the answers interviewers are really listening for. Swipe through before your next interview does it for you.</div>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="swipe">Swipe →</div></div>
+  </section>
+
+  <!-- Q1 -->
+  <section class="slide">
+    <div class="qnum">01</div>
+    <div class="topbar"><div class="eyebrow">Question 01 · Minimum criteria</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>How do you handle a case that does not meet the minimum reporting criteria?</h2>
+      <ul class="points">
+        <li>Start with the four criteria: an identifiable patient, an identifiable reporter, a suspect drug, and an adverse event.</li>
+        <li class="t">If one is missing, pursue follow up and document every attempt you make to obtain it.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">02 / 14</div></div>
+  </section>
+
+  <!-- Q2 -->
+  <section class="slide teal">
+    <div class="qnum">02</div>
+    <div class="topbar"><div class="eyebrow">Question 02 · SUSAR on a deadline</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>What would you do if a SUSAR appears close to the submission deadline?</h2>
+      <ul class="points">
+        <li>Trigger an immediate medical review.</li>
+        <li>Apply the expedited timelines (7 or 15 days).</li>
+        <li>Escalate through the defined process.</li>
+        <li>Always choose compliance over convenience.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">03 / 14</div></div>
+  </section>
+
+  <!-- Q3 -->
+  <section class="slide surface">
+    <div class="qnum">03</div>
+    <div class="topbar"><div class="eyebrow">Question 03 · Prioritisation</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>How do you prioritise multiple incoming ICSRs?</h2>
+      <ul class="points">
+        <li>Seriousness of the case.</li>
+        <li class="t">Expectedness.</li>
+        <li class="v">Regulatory timelines.</li>
+        <li>Country specific requirements.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">04 / 14</div></div>
+  </section>
+
+  <!-- Q4 -->
+  <section class="slide gold">
+    <div class="qnum">04</div>
+    <div class="topbar"><div class="eyebrow">Question 04 · Signal detection</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>Explain how signal detection is based on risk.</h2>
+      <ul class="points">
+        <li>Data mining.</li>
+        <li>Disproportionality analysis.</li>
+        <li>Clinical review.</li>
+        <li>Benefit and risk assessment.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">05 / 14</div></div>
+  </section>
+
+  <!-- Q5 -->
+  <section class="slide">
+    <div class="qnum">05</div>
+    <div class="topbar"><div class="eyebrow">Question 05 · Missed timeline</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>What happens if a regulatory reporting timeline is missed?</h2>
+      <ul class="points">
+        <li>Document the deviation immediately.</li>
+        <li class="t">Run a root cause analysis.</li>
+        <li class="v">Implement CAPA.</li>
+        <li>Focus on preventing recurrence.</li>
+      </ul>
+      <div class="kicker">Never reduce it to “just apologise”.</div>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">06 / 14</div></div>
+  </section>
+
+  <!-- Q6 -->
+  <section class="slide violet">
+    <div class="qnum">06</div>
+    <div class="topbar"><div class="eyebrow">Question 06 · Cross functional</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>How does pharmacovigilance work with Regulatory Affairs?</h2>
+      <ul class="points">
+        <li>Label updates.</li>
+        <li>Aggregate reports.</li>
+        <li>Risk management plans.</li>
+        <li>Inspection readiness.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">07 / 14</div></div>
+  </section>
+
+  <!-- Q7 -->
+  <section class="slide teal">
+    <div class="qnum">07</div>
+    <div class="topbar"><div class="eyebrow">Question 07 · ICSR lifecycle</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>Explain the lifecycle of an ICSR.</h2>
+      <div class="flow">
+        <span class="step">Detection</span><span class="arrow">→</span>
+        <span class="step">Data entry</span><span class="arrow">→</span>
+        <span class="step">Medical coding</span><span class="arrow">→</span>
+        <span class="step">QC</span><span class="arrow">→</span>
+        <span class="step">Submission</span><span class="arrow">→</span>
+        <span class="step">Follow up</span><span class="arrow">→</span>
+        <span class="step">Closure</span>
+      </div>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">08 / 14</div></div>
+  </section>
+
+  <!-- Q8 -->
+  <section class="slide surface">
+    <div class="qnum">08</div>
+    <div class="topbar"><div class="eyebrow">Question 08 · Validation vs confirmation</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>What is the difference between signal validation and signal confirmation?</h2>
+      <ul class="points">
+        <li>Validation is the initial assessment.</li>
+        <li class="t">Confirmation is the deeper evaluation that drives an action decision.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">09 / 14</div></div>
+  </section>
+
+  <!-- Q9 -->
+  <section class="slide gold">
+    <div class="qnum">09</div>
+    <div class="topbar"><div class="eyebrow">Question 09 · Narrative quality</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>How do you keep data consistent across narratives?</h2>
+      <ul class="points">
+        <li>Chronological clarity.</li>
+        <li>Correct medical terminology (MedDRA).</li>
+        <li>Logical sequencing.</li>
+        <li>No speculation.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">10 / 14</div></div>
+  </section>
+
+  <!-- Q10 -->
+  <section class="slide">
+    <div class="qnum">10</div>
+    <div class="topbar"><div class="eyebrow">Question 10 · Inspections</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>How do inspections affect PV operations?</h2>
+      <ul class="points">
+        <li>Reliable audit trails.</li>
+        <li class="t">SOP adherence.</li>
+        <li class="v">Documentation readiness.</li>
+        <li>An inspection defence mindset.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">11 / 14</div></div>
+  </section>
+
+  <!-- Q11 -->
+  <section class="slide violet">
+    <div class="qnum">11</div>
+    <div class="topbar"><div class="eyebrow">Question 11 · The QPPV</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>What is the role of the QPPV?</h2>
+      <div class="lead">The Qualified Person for Pharmacovigilance ensures:</div>
+      <ul class="points">
+        <li>System compliance.</li>
+        <li>Safety oversight.</li>
+        <li>Regulatory communication.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">12 / 14</div></div>
+  </section>
+
+  <!-- Q12 -->
+  <section class="slide teal">
+    <div class="qnum">12</div>
+    <div class="topbar"><div class="eyebrow">Question 12 · Looking ahead</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>What trends are shaping pharmacovigilance in 2026?</h2>
+      <ul class="points">
+        <li>Case processing powered by AI.</li>
+        <li>Automation.</li>
+        <li>Real world evidence.</li>
+        <li>Rising global reporting standards.</li>
+      </ul>
+    </div>
+    <div class="footer"><div class="wordmark-sm">Qualivio</div><div class="pageno">13 / 14</div></div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="slide">
+    <div class="topbar"><div class="eyebrow">Final advice</div>
+      <svg class="qmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="135" r="65" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/><line x1="190" y1="180" x2="210" y2="204" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/></svg></div>
+    <div class="block">
+      <h2>Patient safety is not a department. It is accountability.</h2>
+      <div class="lead">Strong PV interviews show four things: regulatory awareness, timeline accuracy, risk thinking, and ethical responsibility.</div>
+    </div>
+    <div class="footer">
+      <div>
+        <div class="wordmark">Qualivio</div>
+        <div class="tagline">Pharmacovigilance · Quality Assurance | Life Sciences</div>
+        <div class="url">www.qualiviopharma.com</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

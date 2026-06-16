@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -34,15 +34,15 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div className="rounded-2xl border border-[#4ECDC4]/30 bg-[#F5F4FF] p-8 text-center">
-        <div className="mb-4 text-3xl text-[#4ECDC4]">✓</div>
+        <div className="mb-4 text-3xl text-[#4ECDC4]">âœ“</div>
         <h3
           className="text-xl font-bold text-[#0D0D0F]"
-          style={{ fontFamily: "var(--font-space-grotesk)" }}
+          style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           Message received.
         </h3>
         <p className="mt-3 text-sm text-[#6B6A8F]">
-          We will respond with clarity and care. Expect a reply within 1–2 business days.
+          We will respond with clarity and care. Expect a reply within 1â€“2 business days.
         </p>
       </div>
     );
@@ -92,8 +92,9 @@ export function ContactForm() {
         disabled={status === "loading"}
         className="rounded-full bg-[#7C6AF7] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#6a58e0] hover:-translate-y-0.5 shadow-[0_4px_20px_rgba(124,106,247,0.3)] disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
       >
-        {status === "loading" ? "Sending…" : "Request Consultation →"}
+        {status === "loading" ? "Sendingâ€¦" : "Request Consultation â†’"}
       </button>
     </form>
   );
 }
+

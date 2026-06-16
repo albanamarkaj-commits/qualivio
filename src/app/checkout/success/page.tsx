@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { resources } from "@/data/resources";
 
@@ -27,7 +27,7 @@ export default async function CheckoutSuccessPage({
         </p>
         <h1
           className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl"
-          style={{ fontFamily: "var(--font-space-grotesk)" }}
+          style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           Thank you for your purchase.
         </h1>
@@ -51,7 +51,7 @@ export default async function CheckoutSuccessPage({
               download={filename}
               className="inline-flex items-center gap-2 rounded-full bg-[#7C6AF7] px-8 py-4 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#6a58e6]"
             >
-              Download your guide →
+              Download your guide â†’
             </a>
             <Link
               href="/resources"
@@ -79,3 +79,4 @@ export default async function CheckoutSuccessPage({
     </section>
   );
 }
+

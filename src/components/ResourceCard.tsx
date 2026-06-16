@@ -1,4 +1,4 @@
-import { Card } from "./Card";
+﻿import { Card } from "./Card";
 import { ResourceDownloadCTA } from "./ResourceDownloadCTA";
 import type { Resource } from "@/data/resources";
 
@@ -18,7 +18,7 @@ export function ResourceCard({ resource }: { resource: Resource }) {
           </span>
           <h3
             className="mt-4 text-lg font-bold text-[#0D0D0F]"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             {resource.title}
           </h3>
@@ -49,3 +49,4 @@ export function ResourceCard({ resource }: { resource: Resource }) {
     </Card>
   );
 }
+

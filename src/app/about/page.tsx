@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Section } from "@/components/Section";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
@@ -19,14 +19,14 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      {/* Hero — white */}
+      {/* Hero â€” white */}
       <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/6 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#F7B731]">About</p>
           <h1
             className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             A modern authority for life sciences education.
           </h1>
@@ -42,14 +42,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision — white */}
+      {/* Mission & Vision â€” white */}
       <Section eyebrow="Foundation" title="Why Qualivio exists.">
         <div className="grid gap-6 md:grid-cols-2">
           <Card accent="primary">
             <div className="mb-4 h-0.5 w-8 bg-[#7C6AF7]" />
             <h3
               className="text-2xl font-bold text-[#0D0D0F]"
-              style={{ fontFamily: "var(--font-space-grotesk)" }}
+              style={{ fontFamily: "var(--font-dm-sans)" }}
             >
               Mission
             </h3>
@@ -63,7 +63,7 @@ export default function AboutPage() {
             <div className="mb-4 h-0.5 w-8 bg-[#4ECDC4]" />
             <h3
               className="text-2xl font-bold text-[#0D0D0F]"
-              style={{ fontFamily: "var(--font-space-grotesk)" }}
+              style={{ fontFamily: "var(--font-dm-sans)" }}
             >
               Vision
             </h3>
@@ -76,7 +76,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Values — dark */}
+      {/* Values â€” dark */}
       <Section eyebrow="Values" title="How Qualivio works." dark={true}>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((value, i) => (
@@ -84,7 +84,7 @@ export default function AboutPage() {
               <div className={`mb-4 h-0.5 w-6 ${i % 2 === 0 ? "bg-[#4ECDC4]" : "bg-[#F7B731]"}`} />
               <h3
                 className="font-bold text-[#E8E6FF]"
-                style={{ fontFamily: "var(--font-space-grotesk)" }}
+                style={{ fontFamily: "var(--font-dm-sans)" }}
               >
                 {value.label}
               </h3>
@@ -94,7 +94,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Brand voice — white */}
+      {/* Brand voice â€” white */}
       <Section eyebrow="Brand Voice" title="The way we communicate.">
         <div className="mx-auto max-w-3xl rounded-2xl border border-[#E5E4F0] bg-white p-8 shadow-[0_4px_24px_rgba(124,106,247,0.08)]">
           {[
@@ -111,7 +111,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* CTA — dark */}
+      {/* CTA â€” dark */}
       <section className="border-t border-[#2E2E36] bg-[#0D0D0F] px-6 py-20 text-center">
         <div className="mx-auto mb-4 flex items-center justify-center gap-2">
           <div className="h-px w-8 bg-[#F7B731]" />
@@ -119,7 +119,7 @@ export default function AboutPage() {
         </div>
         <h2
           className="text-3xl font-bold text-[#E8E6FF]"
-          style={{ fontFamily: "var(--font-space-grotesk)" }}
+          style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           Work with Qualivio.
         </h2>
@@ -128,10 +128,11 @@ export default function AboutPage() {
           focused conversation, we are here.
         </p>
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <Button href="/resources">Explore Education →</Button>
+          <Button href="/resources">Explore Education â†’</Button>
           <Button href="/contact" variant="ghost">Get in Touch</Button>
         </div>
       </section>
     </>
   );
 }
+

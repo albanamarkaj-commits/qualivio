@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Section } from "@/components/Section";
 import { ArticleCard } from "@/components/ArticleCard";
 import { articles } from "@/data/articles";
@@ -14,7 +14,7 @@ const categories = ["All", "Pharmacovigilance", "Life Sciences"];
 export default function InsightsPage() {
   return (
     <>
-      {/* Hero — white */}
+      {/* Hero â€” white */}
       <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/6 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
@@ -23,7 +23,7 @@ export default function InsightsPage() {
           </p>
           <h1
             className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             Clear thinking for complex regulations.
           </h1>
@@ -38,7 +38,7 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      {/* Articles — white */}
+      {/* Articles â€” white */}
       <Section>
         {/* Category filters */}
         <div className="mb-10 flex flex-wrap gap-2">
@@ -63,7 +63,7 @@ export default function InsightsPage() {
           </p>
           <h2
             className="mt-3 text-2xl font-bold text-[#0D0D0F] sm:text-3xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             {articles[0].title}
           </h2>
@@ -72,12 +72,12 @@ export default function InsightsPage() {
             <span className="text-xs font-medium uppercase tracking-widest text-[#9896B6]">
               {articles[0].readTime}
             </span>
-            <span className="text-[#E5E4F0]">·</span>
+            <span className="text-[#E5E4F0]">Â·</span>
             <a
               href={`/insights/${articles[0].slug}`}
               className="text-sm font-semibold text-[#7C6AF7] hover:text-[#4ECDC4] transition-colors"
             >
-              Read article →
+              Read article â†’
             </a>
           </div>
         </div>
@@ -92,3 +92,4 @@ export default function InsightsPage() {
     </>
   );
 }
+

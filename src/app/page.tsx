@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { QMark } from "@/components/QMark";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -13,7 +13,7 @@ import { regulatoryUpdates } from "@/data/regulatory-updates";
 export default function Home() {
   return (
     <>
-      {/* ── Hero ── white bg, reduced headline size */}
+      {/* â”€â”€ Hero â”€â”€ white bg, reduced headline size */}
       <section className="relative overflow-hidden bg-white px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[800px] rounded-full bg-[#7C6AF7]/6 blur-[120px]" />
 
@@ -25,20 +25,20 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Eyebrow — gold */}
+          {/* Eyebrow â€” gold */}
           <p className="mb-6 flex flex-wrap justify-center gap-x-[0.85em] text-xs font-semibold uppercase tracking-[0.1em] text-[#F7B731] sm:tracking-[0.3em]">
             <span className="whitespace-nowrap">
-              Pharmacovigilance<span className="mx-[0.5em]">·</span>Quality Assurance
+              Pharmacovigilance<span className="mx-[0.5em]">Â·</span>Quality Assurance
             </span>
             <span className="whitespace-nowrap">
               <span className="mr-[0.85em] opacity-75">|</span>Life Sciences
             </span>
           </p>
 
-          {/* Headline — reduced from 7xl to 6xl max */}
+          {/* Headline â€” reduced from 7xl to 6xl max */}
           <h1
             className="mx-auto max-w-4xl text-4xl font-bold leading-tight tracking-tight text-[#0D0D0F] sm:text-5xl md:text-6xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             Clear thinking for{" "}
             <span className="text-[#7C6AF7]">complex regulations.</span>
@@ -51,9 +51,9 @@ export default function Home() {
             who need regulatory clarity without the complexity.
           </p>
 
-          {/* CTAs — Education first */}
+          {/* CTAs â€” Education first */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href="/resources">Explore Education →</Button>
+            <Button href="/resources">Explore Education â†’</Button>
             <Button href="/insights" variant="ghost">Read Articles</Button>
           </div>
 
@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Dark bar ── */}
+      {/* â”€â”€ Dark bar â”€â”€ */}
       <div className="border-y border-[#2E2E36] bg-[#0D0D0F] px-6 py-6">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-8 text-xs font-medium uppercase tracking-widest text-[#9896B6]">
           {["Pharmacovigilance", "Quality Assurance", "Education", "Consulting"].map(
@@ -79,7 +79,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── 1. Education (priority #1) ── white */}
+      {/* â”€â”€ 1. Education (priority #1) â”€â”€ white */}
       <Section
         eyebrow="Education"
         title="Focused education for serious professionals."
@@ -100,7 +100,7 @@ export default function Home() {
               </div>
               <h3
                 className="mt-4 text-lg font-bold text-[#0D0D0F]"
-                style={{ fontFamily: "var(--font-space-grotesk)" }}
+                style={{ fontFamily: "var(--font-dm-sans)" }}
               >
                 {resource.title}
               </h3>
@@ -109,11 +109,11 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Button href="/resources" variant="ghost">All Education & Resources →</Button>
+          <Button href="/resources" variant="ghost">All Education & Resources â†’</Button>
         </div>
       </Section>
 
-      {/* ── 2. Articles (priority #2) ── dark */}
+      {/* â”€â”€ 2. Articles (priority #2) â”€â”€ dark */}
       <Section
         eyebrow="Articles"
         title="Clear thinking for complex regulations."
@@ -128,7 +128,7 @@ export default function Home() {
               </p>
               <h3
                 className="mt-4 text-lg font-bold leading-snug text-[#E8E6FF]"
-                style={{ fontFamily: "var(--font-space-grotesk)" }}
+                style={{ fontFamily: "var(--font-dm-sans)" }}
               >
                 {article.title}
               </h3>
@@ -141,18 +141,18 @@ export default function Home() {
                   href={`/insights/${article.slug}`}
                   className="text-xs font-semibold text-[#4ECDC4] hover:text-[#7C6AF7] transition-colors"
                 >
-                  Read →
+                  Read â†’
                 </Link>
               </div>
             </div>
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Button href="/insights">All Articles →</Button>
+          <Button href="/insights">All Articles â†’</Button>
         </div>
       </Section>
 
-      {/* ── 3. Regulatory Intelligence ── white */}
+      {/* â”€â”€ 3. Regulatory Intelligence â”€â”€ white */}
       <Section
         eyebrow="Regulatory Intelligence"
         title="Latest pharmacovigilance updates."
@@ -187,7 +187,7 @@ export default function Home() {
               </div>
               <h3
                 className="mt-4 text-2xl font-bold text-[#0D0D0F] sm:text-3xl"
-                style={{ fontFamily: "var(--font-space-grotesk)" }}
+                style={{ fontFamily: "var(--font-dm-sans)" }}
               >
                 {latest.title}
               </h3>
@@ -207,14 +207,14 @@ export default function Home() {
                   href={`/regulatory-updates/${latest.slug}`}
                   className="text-sm font-semibold text-[#7C6AF7] hover:text-[#4ECDC4] transition-colors"
                 >
-                  Read full update →
+                  Read full update â†’
                 </Link>
               </div>
             </div>
           );
         })()}
 
-        {/* Cards grid – latest 3 */}
+        {/* Cards grid â€“ latest 3 */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[...regulatoryUpdates]
             .sort(
@@ -229,12 +229,12 @@ export default function Home() {
         </div>
         <div className="mt-12 text-center">
           <Button href="/regulatory-updates" variant="ghost">
-            All Regulatory Updates →
+            All Regulatory Updates â†’
           </Button>
         </div>
       </Section>
 
-      {/* ── 4. Consulting (priority #4) ── white */}
+      {/* â”€â”€ 4. Consulting (priority #4) â”€â”€ white */}
       <Section
         eyebrow="Consulting"
         title="Specialised support for regulated life sciences teams."
@@ -246,7 +246,7 @@ export default function Home() {
               <div className="mb-4 h-0.5 w-8 bg-[#7C6AF7]" />
               <h3
                 className="text-lg font-bold text-[#0D0D0F]"
-                style={{ fontFamily: "var(--font-space-grotesk)" }}
+                style={{ fontFamily: "var(--font-dm-sans)" }}
               >
                 {service.title}
               </h3>
@@ -255,11 +255,11 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Button href="/consulting" variant="ghost">All Consulting Services →</Button>
+          <Button href="/consulting" variant="ghost">All Consulting Services â†’</Button>
         </div>
       </Section>
 
-      {/* ── CTA ── dark */}
+      {/* â”€â”€ CTA â”€â”€ dark */}
       <section className="relative overflow-hidden bg-[#0D0D0F] px-6 py-20">
         <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-gradient-to-br from-[#7C6AF7]/10 via-transparent to-[#F7B731]/5" />
         <div className="relative mx-auto max-w-3xl text-center">
@@ -268,7 +268,7 @@ export default function Home() {
           </p>
           <h2
             className="text-3xl font-bold text-[#E8E6FF] sm:text-4xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             Start with a focused conversation.
           </h2>
@@ -277,7 +277,7 @@ export default function Home() {
             Qualivio will respond with clarity and care.
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button href="/contact">Book a Consultation →</Button>
+            <Button href="/contact">Book a Consultation â†’</Button>
             <Link
               href={`mailto:hello@qualiviopharma.com`}
               className="text-sm text-[#9896B6] hover:text-[#E8E6FF] transition-colors"
@@ -290,3 +290,4 @@ export default function Home() {
     </>
   );
 }
+

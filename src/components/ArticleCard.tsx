@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Card } from "./Card";
 
 export function ArticleCard({
@@ -19,7 +19,7 @@ export function ArticleCard({
       </p>
       <h3
         className="mt-4 text-lg font-bold leading-snug text-[#0D0D0F]"
-        style={{ fontFamily: "var(--font-space-grotesk)" }}
+        style={{ fontFamily: "var(--font-dm-sans)" }}
       >
         {article.title}
       </h3>
@@ -32,9 +32,10 @@ export function ArticleCard({
           href={`/insights/${article.slug}`}
           className="text-xs font-semibold text-[#7C6AF7] hover:text-[#4ECDC4] transition-colors"
         >
-          Read →
+          Read â†’
         </Link>
       </div>
     </Card>
   );
 }
+

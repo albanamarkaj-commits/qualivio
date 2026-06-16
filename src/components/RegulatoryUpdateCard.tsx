@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { RegulatoryUpdate } from "@/data/regulatory-updates";
 
 const sourceColors: Record<string, string> = {
@@ -53,7 +53,7 @@ export function RegulatoryUpdateCard({ update }: { update: RegulatoryUpdate }) {
       {/* Title */}
       <h3
         className="text-base font-bold leading-snug text-[#0D0D0F] group-hover:text-[#7C6AF7] transition-colors"
-        style={{ fontFamily: "var(--font-space-grotesk)" }}
+        style={{ fontFamily: "var(--font-dm-sans)" }}
       >
         {update.title}
       </h3>
@@ -81,9 +81,10 @@ export function RegulatoryUpdateCard({ update }: { update: RegulatoryUpdate }) {
           {update.readTime}
         </span>
         <span className="text-xs font-semibold text-[#7C6AF7] group-hover:text-[#4ECDC4] transition-colors">
-          Read update →
+          Read update â†’
         </span>
       </div>
     </Link>
   );
 }
+

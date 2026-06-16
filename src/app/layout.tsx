@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Space_Grotesk, DM_Sans, Sora } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
@@ -6,7 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 // Display font for headings, titles, and eyebrows. Restored to Space
-// Grotesk after the Sora trial — Sora is reserved exclusively for the
+// Grotesk after the Sora trial â€” Sora is reserved exclusively for the
 // "Qualivio" wordmark.
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -74,3 +74,4 @@ export default function RootLayout({
     </html>
   );
 }
+

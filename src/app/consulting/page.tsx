@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Section } from "@/components/Section";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
@@ -21,14 +21,14 @@ const steps = [
 export default function ConsultingPage() {
   return (
     <>
-      {/* Hero — white */}
+      {/* Hero â€” white */}
       <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/6 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#F7B731]">Consulting</p>
           <h1
             className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             Specialised support for regulated life sciences teams.
           </h1>
@@ -42,12 +42,12 @@ export default function ConsultingPage() {
             capabilities.
           </p>
           <div className="mt-8">
-            <Button href="#request">Request a Consultation →</Button>
+            <Button href="#request">Request a Consultation â†’</Button>
           </div>
         </div>
       </section>
 
-      {/* Services — white */}
+      {/* Services â€” white */}
       <Section
         eyebrow="Services"
         title="What Qualivio delivers."
@@ -59,7 +59,7 @@ export default function ConsultingPage() {
               <div className="mb-4 h-0.5 w-8 bg-[#7C6AF7]" />
               <h3
                 className="text-lg font-bold text-[#0D0D0F]"
-                style={{ fontFamily: "var(--font-space-grotesk)" }}
+                style={{ fontFamily: "var(--font-dm-sans)" }}
               >
                 {service.title}
               </h3>
@@ -69,7 +69,7 @@ export default function ConsultingPage() {
         </div>
       </Section>
 
-      {/* Process — dark */}
+      {/* Process â€” dark */}
       <Section
         eyebrow="Process"
         title="A calm, structured consulting process."
@@ -82,7 +82,7 @@ export default function ConsultingPage() {
               <p className="text-2xl font-bold text-[#F7B731]">{step.number}</p>
               <h3
                 className="mt-3 font-bold text-[#E8E6FF]"
-                style={{ fontFamily: "var(--font-space-grotesk)" }}
+                style={{ fontFamily: "var(--font-dm-sans)" }}
               >
                 {step.label}
               </h3>
@@ -92,7 +92,7 @@ export default function ConsultingPage() {
         </div>
       </Section>
 
-      {/* Contact form — white */}
+      {/* Contact form â€” white */}
       <Section
         eyebrow="Request Consultation"
         title="Start with a focused conversation."
@@ -106,3 +106,4 @@ export default function ConsultingPage() {
     </>
   );
 }
+
