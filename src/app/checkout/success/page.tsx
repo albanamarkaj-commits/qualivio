@@ -51,7 +51,7 @@ export default async function CheckoutSuccessPage({
               download={filename}
               className="inline-flex items-center gap-2 rounded-full bg-[#7C6AF7] px-8 py-4 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#6a58e6]"
             >
-              Download your guide â†’
+              Download your guide →
             </a>
             <Link
               href="/resources"
@@ -79,4 +79,3 @@ export default async function CheckoutSuccessPage({
     </section>
   );
 }
-

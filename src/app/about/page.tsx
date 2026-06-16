@@ -19,7 +19,7 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      {/* Hero â€” white */}
+      {/* Hero — white */}
       <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/6 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
@@ -42,7 +42,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision â€” white */}
+      {/* Mission & Vision — white */}
       <Section eyebrow="Foundation" title="Why Qualivio exists.">
         <div className="grid gap-6 md:grid-cols-2">
           <Card accent="primary">
@@ -76,7 +76,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Values â€” dark */}
+      {/* Values — dark */}
       <Section eyebrow="Values" title="How Qualivio works." dark={true}>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((value, i) => (
@@ -94,7 +94,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Brand voice â€” white */}
+      {/* Brand voice — white */}
       <Section eyebrow="Brand Voice" title="The way we communicate.">
         <div className="mx-auto max-w-3xl rounded-2xl border border-[#E5E4F0] bg-white p-8 shadow-[0_4px_24px_rgba(124,106,247,0.08)]">
           {[
@@ -111,7 +111,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* CTA â€” dark */}
+      {/* CTA — dark */}
       <section className="border-t border-[#2E2E36] bg-[#0D0D0F] px-6 py-20 text-center">
         <div className="mx-auto mb-4 flex items-center justify-center gap-2">
           <div className="h-px w-8 bg-[#F7B731]" />
@@ -128,11 +128,10 @@ export default function AboutPage() {
           focused conversation, we are here.
         </p>
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <Button href="/resources">Explore Education â†’</Button>
+          <Button href="/resources">Explore Education →</Button>
           <Button href="/contact" variant="ghost">Get in Touch</Button>
         </div>
       </section>
     </>
   );
 }
-

@@ -128,15 +128,15 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
   const inputClasses =
     "mt-2 w-full rounded-lg border border-[#E5E4F0] bg-white px-4 py-3 text-sm text-[#0D0D0F] outline-none focus:border-[#7C6AF7] focus:ring-2 focus:ring-[#7C6AF7]/20";
 
-  const ctaLabel = isFree ? "Download â†’" : `Buy ${price} â†’`;
-  const eyebrowLabel = isFree ? "Free Download" : `Purchase â€” ${price}`;
+  const ctaLabel = isFree ? "Download →" : `Buy ${price} →`;
+  const eyebrowLabel = isFree ? "Free Download" : `Purchase — ${price}`;
   const submitLabel = isFree
     ? status === "submitting"
       ? "Sending..."
       : "Download PDF"
     : status === "submitting"
       ? "Redirecting..."
-      : `Continue to payment â€” ${price}`;
+      : `Continue to payment — ${price}`;
 
   return (
     <>
@@ -167,7 +167,7 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
               aria-label="Close"
               className="absolute right-4 top-4 z-10 text-[#6B6A8F] hover:text-[#0D0D0F] text-xl leading-none"
             >
-              Ã—
+              ×
             </button>
 
             <div className="overflow-y-auto p-8">
@@ -298,4 +298,3 @@ export function ResourceDownloadCTA({ resourceId, title, price, file }: Props) {
     </>
   );
 }
-

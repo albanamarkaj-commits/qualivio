@@ -6,7 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 // Display font for headings, titles, and eyebrows. Restored to Space
-// Grotesk after the Sora trial â€” Sora is reserved exclusively for the
+// Grotesk after the Sora trial — Sora is reserved exclusively for the
 // "Qualivio" wordmark.
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -74,4 +74,3 @@ export default function RootLayout({
     </html>
   );
 }
-

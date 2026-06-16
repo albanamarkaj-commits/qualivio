@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { regulatoryUpdates } from "@/data/regulatory-updates";
@@ -39,7 +39,7 @@ function ContentBlock({ section }: { section: ContentSection }) {
       return (
         <h2
           className="mt-10 mb-4 text-xl font-bold text-[#0D0D0F]"
-          style={{ fontFamily: "var(--font-space-grotesk)" }}
+          style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           {section.text}
         </h2>
@@ -156,7 +156,7 @@ export default async function RegulatoryUpdatePage({
           {/* Title */}
           <h1
             className="text-3xl font-bold leading-tight text-[#0D0D0F] sm:text-4xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             {update.title}
           </h1>
@@ -242,7 +242,7 @@ export default async function RegulatoryUpdatePage({
           <div className="mx-auto max-w-7xl">
             <h2
               className="mb-8 text-xl font-bold text-[#0D0D0F]"
-              style={{ fontFamily: "var(--font-space-grotesk)" }}
+              style={{ fontFamily: "var(--font-dm-sans)" }}
             >
               Related Updates
             </h2>
@@ -265,7 +265,7 @@ export default async function RegulatoryUpdatePage({
                   </div>
                   <h3
                     className="text-sm font-bold leading-snug text-[#0D0D0F] group-hover:text-[#7C6AF7] transition-colors"
-                    style={{ fontFamily: "var(--font-space-grotesk)" }}
+                    style={{ fontFamily: "var(--font-dm-sans)" }}
                   >
                     {r.title}
                   </h3>

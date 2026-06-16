@@ -13,7 +13,7 @@ import { regulatoryUpdates } from "@/data/regulatory-updates";
 export default function Home() {
   return (
     <>
-      {/* â”€â”€ Hero â”€â”€ white bg, reduced headline size */}
+      {/* ── Hero ── white bg, reduced headline size */}
       <section className="relative overflow-hidden bg-white px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[800px] rounded-full bg-[#7C6AF7]/6 blur-[120px]" />
 
@@ -25,17 +25,17 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Eyebrow â€” gold */}
+          {/* Eyebrow — gold */}
           <p className="mb-6 flex flex-wrap justify-center gap-x-[0.85em] text-xs font-semibold uppercase tracking-[0.1em] text-[#F7B731] sm:tracking-[0.3em]">
             <span className="whitespace-nowrap">
-              Pharmacovigilance<span className="mx-[0.5em]">Â·</span>Quality Assurance
+              Pharmacovigilance<span className="mx-[0.5em]">·</span>Quality Assurance
             </span>
             <span className="whitespace-nowrap">
               <span className="mr-[0.85em] opacity-75">|</span>Life Sciences
             </span>
           </p>
 
-          {/* Headline â€” reduced from 7xl to 6xl max */}
+          {/* Headline — reduced from 7xl to 6xl max */}
           <h1
             className="mx-auto max-w-4xl text-4xl font-bold leading-tight tracking-tight text-[#0D0D0F] sm:text-5xl md:text-6xl"
             style={{ fontFamily: "var(--font-dm-sans)" }}
@@ -51,9 +51,9 @@ export default function Home() {
             who need regulatory clarity without the complexity.
           </p>
 
-          {/* CTAs â€” Education first */}
+          {/* CTAs — Education first */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href="/resources">Explore Education â†’</Button>
+            <Button href="/resources">Explore Education →</Button>
             <Button href="/insights" variant="ghost">Read Articles</Button>
           </div>
 
@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ Dark bar â”€â”€ */}
+      {/* ── Dark bar ── */}
       <div className="border-y border-[#2E2E36] bg-[#0D0D0F] px-6 py-6">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-8 text-xs font-medium uppercase tracking-widest text-[#9896B6]">
           {["Pharmacovigilance", "Quality Assurance", "Education", "Consulting"].map(
@@ -79,7 +79,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* â”€â”€ 1. Education (priority #1) â”€â”€ white */}
+      {/* ── 1. Education (priority #1) ── white */}
       <Section
         eyebrow="Education"
         title="Focused education for serious professionals."
@@ -109,11 +109,11 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Button href="/resources" variant="ghost">All Education & Resources â†’</Button>
+          <Button href="/resources" variant="ghost">All Education & Resources →</Button>
         </div>
       </Section>
 
-      {/* â”€â”€ 2. Articles (priority #2) â”€â”€ dark */}
+      {/* ── 2. Articles (priority #2) ── dark */}
       <Section
         eyebrow="Articles"
         title="Clear thinking for complex regulations."
@@ -141,18 +141,18 @@ export default function Home() {
                   href={`/insights/${article.slug}`}
                   className="text-xs font-semibold text-[#4ECDC4] hover:text-[#7C6AF7] transition-colors"
                 >
-                  Read â†’
+                  Read →
                 </Link>
               </div>
             </div>
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Button href="/insights">All Articles â†’</Button>
+          <Button href="/insights">All Articles →</Button>
         </div>
       </Section>
 
-      {/* â”€â”€ 3. Regulatory Intelligence â”€â”€ white */}
+      {/* ── 3. Regulatory Intelligence ── white */}
       <Section
         eyebrow="Regulatory Intelligence"
         title="Latest pharmacovigilance updates."
@@ -207,14 +207,14 @@ export default function Home() {
                   href={`/regulatory-updates/${latest.slug}`}
                   className="text-sm font-semibold text-[#7C6AF7] hover:text-[#4ECDC4] transition-colors"
                 >
-                  Read full update â†’
+                  Read full update →
                 </Link>
               </div>
             </div>
           );
         })()}
 
-        {/* Cards grid â€“ latest 3 */}
+        {/* Cards grid – latest 3 */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[...regulatoryUpdates]
             .sort(
@@ -229,12 +229,12 @@ export default function Home() {
         </div>
         <div className="mt-12 text-center">
           <Button href="/regulatory-updates" variant="ghost">
-            All Regulatory Updates â†’
+            All Regulatory Updates →
           </Button>
         </div>
       </Section>
 
-      {/* â”€â”€ 4. Consulting (priority #4) â”€â”€ white */}
+      {/* ── 4. Consulting (priority #4) ── white */}
       <Section
         eyebrow="Consulting"
         title="Specialised support for regulated life sciences teams."
@@ -255,11 +255,11 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Button href="/consulting" variant="ghost">All Consulting Services â†’</Button>
+          <Button href="/consulting" variant="ghost">All Consulting Services →</Button>
         </div>
       </Section>
 
-      {/* â”€â”€ CTA â”€â”€ dark */}
+      {/* ── CTA ── dark */}
       <section className="relative overflow-hidden bg-[#0D0D0F] px-6 py-20">
         <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-gradient-to-br from-[#7C6AF7]/10 via-transparent to-[#F7B731]/5" />
         <div className="relative mx-auto max-w-3xl text-center">
@@ -277,7 +277,7 @@ export default function Home() {
             Qualivio will respond with clarity and care.
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button href="/contact">Book a Consultation â†’</Button>
+            <Button href="/contact">Book a Consultation →</Button>
             <Link
               href={`mailto:hello@qualiviopharma.com`}
               className="text-sm text-[#9896B6] hover:text-[#E8E6FF] transition-colors"
@@ -290,4 +290,3 @@ export default function Home() {
     </>
   );
 }
-

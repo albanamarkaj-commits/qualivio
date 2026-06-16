@@ -21,7 +21,7 @@ const steps = [
 export default function ConsultingPage() {
   return (
     <>
-      {/* Hero â€” white */}
+      {/* Hero — white */}
       <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/6 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
@@ -42,12 +42,12 @@ export default function ConsultingPage() {
             capabilities.
           </p>
           <div className="mt-8">
-            <Button href="#request">Request a Consultation â†’</Button>
+            <Button href="#request">Request a Consultation →</Button>
           </div>
         </div>
       </section>
 
-      {/* Services â€” white */}
+      {/* Services — white */}
       <Section
         eyebrow="Services"
         title="What Qualivio delivers."
@@ -69,7 +69,7 @@ export default function ConsultingPage() {
         </div>
       </Section>
 
-      {/* Process â€” dark */}
+      {/* Process — dark */}
       <Section
         eyebrow="Process"
         title="A calm, structured consulting process."
@@ -92,7 +92,7 @@ export default function ConsultingPage() {
         </div>
       </Section>
 
-      {/* Contact form â€” white */}
+      {/* Contact form — white */}
       <Section
         eyebrow="Request Consultation"
         title="Start with a focused conversation."
@@ -106,4 +106,3 @@ export default function ConsultingPage() {
     </>
   );
 }
-

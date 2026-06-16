@@ -14,7 +14,7 @@ const categories = ["All", "Pharmacovigilance", "Life Sciences"];
 export default function InsightsPage() {
   return (
     <>
-      {/* Hero â€” white */}
+      {/* Hero — white */}
       <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/6 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
@@ -38,7 +38,7 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      {/* Articles â€” white */}
+      {/* Articles — white */}
       <Section>
         {/* Category filters */}
         <div className="mb-10 flex flex-wrap gap-2">
@@ -72,12 +72,12 @@ export default function InsightsPage() {
             <span className="text-xs font-medium uppercase tracking-widest text-[#9896B6]">
               {articles[0].readTime}
             </span>
-            <span className="text-[#E5E4F0]">Â·</span>
+            <span className="text-[#E5E4F0]">·</span>
             <a
               href={`/insights/${articles[0].slug}`}
               className="text-sm font-semibold text-[#7C6AF7] hover:text-[#4ECDC4] transition-colors"
             >
-              Read article â†’
+              Read article →
             </a>
           </div>
         </div>
@@ -92,4 +92,3 @@ export default function InsightsPage() {
     </>
   );
 }
-

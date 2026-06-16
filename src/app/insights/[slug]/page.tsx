@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+﻿import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { articles } from "@/data/articles";
@@ -50,7 +50,7 @@ export default async function ArticlePage({
           </p>
           <h1
             className="text-3xl font-bold leading-tight text-[#E8E6FF] sm:text-4xl lg:text-5xl"
-            style={{ fontFamily: "var(--font-space-grotesk)" }}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             {article.title}
           </h1>
@@ -83,7 +83,7 @@ export default async function ArticlePage({
               <div key={i}>
                 <h2
                   className="text-2xl font-bold text-[#0D0D0F] mb-5"
-                  style={{ fontFamily: "var(--font-space-grotesk)" }}
+                  style={{ fontFamily: "var(--font-dm-sans)" }}
                 >
                   {section.heading}
                 </h2>
@@ -105,7 +105,7 @@ export default async function ArticlePage({
             </p>
             <h3
               className="text-2xl font-bold text-[#0D0D0F] mb-4"
-              style={{ fontFamily: "var(--font-space-grotesk)" }}
+              style={{ fontFamily: "var(--font-dm-sans)" }}
             >
               Work with Qualivio
             </h3>

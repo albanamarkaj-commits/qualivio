@@ -47,7 +47,7 @@ export default function RegulatoryUpdatesPage() {
             {[
               { label: "Updates Published", value: regulatoryUpdates.length.toString() },
               { label: "Regulatory Sources", value: "EMA" },
-              { label: "Coverage", value: "GVP Â· PASS Â· PSUR Â· Signal" },
+              { label: "Coverage", value: "GVP · PASS · PSUR · Signal" },
               { label: "Last Updated", value: "May 2026" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
@@ -78,7 +78,7 @@ export default function RegulatoryUpdatesPage() {
             rel="noopener noreferrer"
             className="underline hover:text-[#0D0D0F]"
           >
-            Visit EMA â†’
+            Visit EMA →
           </a>
         </p>
       </div>
@@ -111,7 +111,7 @@ export default function RegulatoryUpdatesPage() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[#7C6AF7] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#6a58e0] shadow-[0_0_24px_rgba(124,106,247,0.25)]"
             >
-              Book a Consultation â†’
+              Book a Consultation →
             </a>
             <a
               href="/insights"
@@ -125,4 +125,3 @@ export default function RegulatoryUpdatesPage() {
     </>
   );
 }
-

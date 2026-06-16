@@ -81,10 +81,9 @@ export function RegulatoryUpdateCard({ update }: { update: RegulatoryUpdate }) {
           {update.readTime}
         </span>
         <span className="text-xs font-semibold text-[#7C6AF7] group-hover:text-[#4ECDC4] transition-colors">
-          Read update â†’
+          Read update →
         </span>
       </div>
     </Link>
   );
 }
-

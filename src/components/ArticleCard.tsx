@@ -32,10 +32,9 @@ export function ArticleCard({
           href={`/insights/${article.slug}`}
           className="text-xs font-semibold text-[#7C6AF7] hover:text-[#4ECDC4] transition-colors"
         >
-          Read â†’
+          Read →
         </Link>
       </div>
     </Card>
   );
 }
-

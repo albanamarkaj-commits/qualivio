@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* Hero â€” white */}
+      {/* Hero — white */}
       <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#7C6AF7]/6 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
@@ -26,7 +26,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Form â€” white */}
+      {/* Form — white */}
       <Section>
         <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
           {/* Contact details */}
@@ -57,7 +57,7 @@ export default function ContactPage() {
             </div>
             <div className="mt-8 rounded-xl border border-[#E5E4F0] bg-white p-4">
               <p className="text-xs leading-6 text-[#6B6A8F]">
-                For consulting, training, content partnerships, or life sciences education enquiries, we respond within 1â€“2 business days.
+                For consulting, training, content partnerships, or life sciences education enquiries, we respond within 1–2 business days.
               </p>
             </div>
           </div>
@@ -68,4 +68,3 @@ export default function ContactPage() {
     </>
   );
 }
-

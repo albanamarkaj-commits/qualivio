@@ -10,15 +10,15 @@ export const metadata: Metadata = {
 };
 
 const tiers = [
-  { name: "Free", price: "â‚¬0", description: "Introductory checklists and selected resources, no payment required.", cta: "Access for free", highlight: false },
-  { name: "Professional", price: "â‚¬29â€“â‚¬79", description: "Guides, short books, and focused mini courses for individual practitioners.", cta: "Browse resources", highlight: true },
+  { name: "Free", price: "€0", description: "Introductory checklists and selected resources, no payment required.", cta: "Access for free", highlight: false },
+  { name: "Professional", price: "€29–€79", description: "Guides, short books, and focused mini courses for individual practitioners.", cta: "Browse resources", highlight: true },
   { name: "Team", price: "Custom", description: "Training bundles and organisation-specific education programmes.", cta: "Contact us", highlight: false },
 ];
 
 export default function ResourcesPage() {
   return (
     <>
-      {/* Hero â€” white */}
+      {/* Hero — white */}
       <section className="relative overflow-hidden bg-white px-6 pb-20 pt-24">
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#F7B731]/8 blur-[100px]" />
         <div className="relative mx-auto max-w-3xl text-center">
@@ -42,7 +42,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Resources â€” white */}
+      {/* Resources — white */}
       <Section eyebrow="All Resources" title="Knowledge you can use today.">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {resources.map((resource) => (
@@ -51,7 +51,7 @@ export default function ResourcesPage() {
         </div>
       </Section>
 
-      {/* Pricing â€” dark */}
+      {/* Pricing — dark */}
       <Section
         eyebrow="Pricing"
         title="Simple, scalable tiers."
@@ -97,4 +97,3 @@ export default function ResourcesPage() {
     </>
   );
 }
-
