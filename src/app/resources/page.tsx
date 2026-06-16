@@ -9,11 +9,6 @@ export const metadata: Metadata = {
     "Qualivio mini courses, downloadable guides, and practical resources for pharmacovigilance and life sciences professionals.",
 };
 
-const tiers = [
-  { name: "Free", price: "€0", description: "Introductory checklists and selected resources, no payment required.", cta: "Access for free", highlight: false },
-  { name: "Professional", price: "€29–€79", description: "Guides, short books, and focused mini courses for individual practitioners.", cta: "Browse resources", highlight: true },
-  { name: "Team", price: "Custom", description: "Training bundles and organisation-specific education programmes.", cta: "Contact us", highlight: false },
-];
 
 export default function ResourcesPage() {
   return (
@@ -51,49 +46,6 @@ export default function ResourcesPage() {
         </div>
       </Section>
 
-      {/* Pricing — dark */}
-      <Section
-        eyebrow="Pricing"
-        title="Simple, scalable tiers."
-        description="From free introductory resources to bespoke team training. Clear pricing, no surprises."
-        dark={true}
-      >
-        <div className="grid gap-6 sm:grid-cols-3">
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              className={`rounded-2xl border p-8 transition-all ${
-                tier.highlight
-                  ? "border-[#F7B731]/60 bg-[#F7B731]/8 shadow-[0_0_40px_rgba(247,183,49,0.12)]"
-                  : "border-[#2E2E36] bg-[#1A1A1E]"
-              }`}
-            >
-              {tier.highlight && (
-                <span className="mb-4 inline-block rounded-full bg-[#F7B731]/20 px-3 py-1 text-xs font-semibold text-[#F7B731]">
-                  Most popular
-                </span>
-              )}
-              <h3
-                className="text-xl font-bold text-[#E8E6FF]"
-                style={{ fontFamily: "var(--font-dm-sans)" }}
-              >
-                {tier.name}
-              </h3>
-              <p className="mt-3 text-3xl font-bold text-[#E8E6FF]">{tier.price}</p>
-              <p className="mt-4 text-sm leading-7 text-[#9896B6]">{tier.description}</p>
-              <button
-                className={`mt-6 w-full rounded-full py-3 text-sm font-semibold transition-all hover:-translate-y-0.5 ${
-                  tier.highlight
-                    ? "bg-[#F7B731] text-[#0D0D0F] hover:bg-[#e5a820]"
-                    : "border border-[#2E2E36] text-[#9896B6] hover:border-[#7C6AF7] hover:text-[#E8E6FF]"
-                }`}
-              >
-                {tier.cta}
-              </button>
-            </div>
-          ))}
-        </div>
-      </Section>
     </>
   );
 }
