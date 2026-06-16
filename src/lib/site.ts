@@ -10,6 +10,7 @@ export const site = {
 
 export const navItems = [
   { label: "Home", href: "/" },
+  { label: "Life Sciences", href: "/life-sciences" },
   { label: "Education", href: "/resources" },
   { label: "Articles", href: "/insights" },
   { label: "Regulatory Updates", href: "/regulatory-updates" },
