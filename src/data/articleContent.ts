@@ -11,48 +11,48 @@ export type ArticleBody = {
 export const articleContent: Record<string, ArticleBody> = {
   "signal-detection-modern-pharmacovigilance": {
     intro:
-      "Signal detection is the systematic process through which new or changing safety information about a medicinal product is identified from available data sources. GVP Module IX describes signal management as one of the most critical pharmacovigilance activities, requiring structured processes, qualified staff, and documented outcomes at every step.",
+      "Signal detection is the organized way of finding new or changing safety information about a medicine from available data sources. GVP Module IX highlights signal management as one of the most important activities in pharmacovigilance. It requires structured processes, qualified staff, and documented results at every stage.",
     sections: [
       {
         heading: "What Is a Signal?",
         paragraphs: [
-          "GVP Module IX defines a signal as information arising from one or multiple sources, including observations and experiments, that suggests a new potentially causal association, or a new aspect of a known association, between an intervention and an event or set of related events. The association must be judged to be of sufficient likelihood to justify verificatory action.",
-          "Signals are not confirmed safety findings. They represent a hypothesis that requires further investigation. A signal may originate from a single well-documented serious case or from a pattern identified across thousands of spontaneous reports. What matters is the credibility and clinical significance of the potential association, not the volume of reports alone.",
+          "GVP Module IX defines a signal as information that comes from one or more sources, such as observations or experiments, which suggests a new possible link or a new detail of an existing link between a treatment and an event or a group of related events. The link must appear likely enough to warrant further investigation.",
+          "Signals are not confirmed safety findings. They are hypotheses that need more examination. A signal can come from a single well-documented serious case or from patterns seen across many spontaneous reports. The credibility and clinical relevance of the possible link matter more than the number of reports.",
         ],
       },
       {
         heading: "Sources of Signal Data",
         paragraphs: [
-          "Signals can originate from spontaneous adverse reaction reports submitted to regulatory authorities or marketing authorisation holders (MAHs), published scientific literature, non-interventional studies, disease registries, clinical trial safety data, and information from digital health tools. EMA's EudraVigilance database serves as a central repository for ICSRs across the European Economic Area and is a primary source for signal detection activities at the network level.",
-          "Literature monitoring is a mandatory component of pharmacovigilance systems under GVP Module VI. MAHs are required to screen scientific and medical literature on a weekly basis for reports of suspected adverse reactions. Failure to detect and process literature cases is among the most frequently cited deficiencies in pharmacovigilance inspections.",
+          "Signals can arise from spontaneous reports of adverse reactions submitted to regulatory authorities or marketing authorization holders (MAHs), published scientific studies, non-interventional studies, disease registries, clinical trial safety data, and information from digital health tools. The EMA's EudraVigilance database acts as a central repository for Individual Case Safety Reports (ICSRs) across the European Economic Area and is a primary source for signal detection at the network level.",
+          "Monitoring literature is a necessary part of pharmacovigilance systems under GVP Module VI. MAHs must review scientific and medical literature weekly for reports of suspected adverse reactions. Not detecting and processing literature cases is one of the most common issues cited during pharmacovigilance inspections.",
         ],
       },
       {
         heading: "The Five Steps of Signal Management",
         paragraphs: [
-          "GVP Module IX describes five sequential activities that together constitute the signal management process: signal detection, signal validation, signal prioritisation, signal assessment, and recommendation for action, followed by exchange of information. Each step requires documented procedures, defined timelines, and qualified personnel.",
-          "MAHs are expected to perform continuous signal detection and to review outputs at least monthly for serious listed adverse reactions and at least quarterly for others. EMA and national competent authorities conduct signal detection centrally through EudraVigilance, with findings reviewed by the Pharmacovigilance Risk Assessment Committee (PRAC) at its monthly plenary meetings.",
+          "GVP Module IX outlines five sequential steps that together make up the signal management process: signal detection, signal validation, signal prioritization, signal assessment, and recommendations for action, followed by information exchange. Each step needs documented procedures, set timelines, and qualified staff.",
+          "MAHs are expected to continually detect signals and review results at least monthly for serious listed adverse reactions and quarterly for others. The EMA and national authorities carry out signal detection centrally using EudraVigilance, with results reviewed by the Pharmacovigilance Risk Assessment Committee (PRAC) in its monthly meetings.",
         ],
       },
       {
         heading: "Signal Validation",
         paragraphs: [
-          "Validation is the process of evaluating whether the data supporting a detected signal provide sufficient evidence of a new or changed association to warrant further analysis. During validation, the MAH or regulatory authority considers the strength of the data, the biological plausibility of the association, and whether the reaction is already documented in the current product information.",
-          "A validated signal does not imply that a causal relationship has been established. It means the evidence is credible enough to proceed to prioritisation and, where warranted, formal assessment. Signals that are not validated are closed with documented reasoning.",
+          "Validation is the process of determining if the data supporting a detected signal provide enough evidence of a new or changed link to justify further analysis. During validation, the MAH or regulatory authority assesses the strength of the data, the biological likelihood of the association, and whether the reaction is already described in the current product information.",
+          "A validated signal does not mean a causal relationship has been confirmed. It indicates that the evidence is credible enough to move on to prioritization and, if necessary, formal assessment. Signals that are not validated are closed with documented reasoning.",
         ],
       },
       {
         heading: "Disproportionality Analysis",
         paragraphs: [
-          "Quantitative signal detection methods, including disproportionality analysis techniques such as the Reporting Odds Ratio (ROR) and the Information Component (IC), are routinely applied to large spontaneous reporting databases. These statistical tools identify drug-event combinations that are reported more frequently than would be expected by chance given the overall reporting patterns in the database.",
-          "Disproportionality signals are a starting point, not a conclusion. They must be interpreted alongside clinical context, biological plausibility, temporal relationship, and any available epidemiological evidence. A statistically elevated signal for a drug-event pair does not establish causality and may reflect reporting biases, confounding, or chance variation.",
+          "Quantitative signal detection methods, including disproportionality analysis techniques like the Reporting Odds Ratio (ROR) and the Information Component (IC), are commonly used on large spontaneous reporting databases. These statistical tools identify drug-event pairs that are reported more often than expected, considering the overall reporting trends in the database.",
+          "Disproportionality signals are just a starting point, not a final conclusion. They must be looked at alongside clinical context, biological plausibility, time relationship, and any available epidemiological evidence. A statistically significant signal for a drug-event pair does not prove causality and may reflect reporting biases, confounding factors, or random variation.",
         ],
       },
       {
         heading: "Outcomes and Regulatory Action",
         paragraphs: [
-          "Assessed signals may lead to a range of regulatory outcomes. These include updates to the summary of product characteristics (SmPC) or package leaflet, initiation of a post-authorisation safety study (PASS), introduction or strengthening of risk minimisation measures, communication to healthcare professionals, or formal referral procedures at the EU level. The PRAC issues recommendations following signal assessment, which are then implemented through binding decisions or voluntary actions by MAHs.",
-          "Timely communication of signal outcomes to all relevant parties, including national competent authorities, prescribers, and patients where appropriate, is a regulatory obligation. MAHs must maintain records of all signal management activities in their pharmacovigilance system master file and report relevant outcomes in periodic safety update reports.",
+          "Examined signals can lead to various regulatory actions. These include updates to the summary of product characteristics (SmPC) or package leaflet, starting a post-authorization safety study (PASS), introducing or strengthening risk minimization measures, communicating with healthcare professionals, or formal referral procedures at the EU level. The PRAC provides recommendations after signal assessment, which are then carried out through binding decisions or voluntary actions by MAHs.",
+          "Timely communication of signal outcomes to all relevant parties, including national authorities, prescribers, and patients when appropriate, is a regulatory requirement. MAHs must keep records of all signal management activities in their pharmacovigilance system master file and report relevant outcomes in periodic safety update reports.",
         ],
       },
     ],
