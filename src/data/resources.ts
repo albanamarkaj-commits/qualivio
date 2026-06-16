@@ -38,7 +38,7 @@ export const resources: Resource[] = [
   // Paid resources (Coming soon for now while we finalise the payment provider).
   {
     id: "signal-management-playbook",
-    title: "Signal Management Playbook",
+    title: "Understanding Signal Management",
     type: "Mini Course",
     description:
       "A focused course on structured signal detection, evaluation, and documentation for PV professionals.",
