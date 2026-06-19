@@ -23,7 +23,7 @@ export const resources: Resource[] = [
     title: "Pharmacovigilance Made Simple",
     type: "Plain-Language Guide",
     description:
-      "Follow Martin's journey through the drug safety system — from an unexpected side effect to a global label update. A magazine-style guide for anyone curious about how pharmacovigilance really works.",
+      "Follow Martin's journey through the drug safety system: from an unexpected side effect to a global label update. A magazine-style guide for anyone curious about how pharmacovigilance really works.",
     price: "Free",
     file: "/resources/Qualivio_PV_Made_Simple.pdf",
   },
