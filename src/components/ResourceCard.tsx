@@ -35,6 +35,13 @@ export function ResourceCard({ resource }: { resource: Resource }) {
           price={resource.price}
           file={resource.file}
         />
+      ) : isFree && resource.href ? (
+        <Link
+          href={resource.href}
+          className="mt-6 inline-flex rounded-full bg-[#7C6AF7] px-5 py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90"
+        >
+          Read now
+        </Link>
       ) : !isFree ? (
         <Link
           href="/contact"

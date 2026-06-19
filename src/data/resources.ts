@@ -12,9 +12,21 @@ export type Resource = {
   currency?: string;
   /** Path within /private/resources/ that the download endpoint will serve. */
   file?: string;
+  /** Internal link for web-based free resources (no download required). */
+  href?: string;
 };
 
 export const resources: Resource[] = [
+  // Free, web-based and downloadable resources surface first.
+  {
+    id: "this-is-martin",
+    title: "This is Martin",
+    type: "Plain-Language Guide",
+    description:
+      "Follow one patient's journey through the pharmacovigilance system — from an unexpected side effect to a global safety update. Told in plain language, no prior knowledge needed.",
+    price: "Free",
+    href: "/resources/this-is-martin",
+  },
   // Free, downloadable resources surface first so visitors meet a no-friction
   // CTA at the top of the grid.
   {
