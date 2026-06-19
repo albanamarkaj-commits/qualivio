@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const htmlPath = path.join('C:\\Users\\user\\Desktop', 'pv_magazine_v2.html');
+const htmlPath = path.join('C:\\Users\\user\\Desktop', 'pv_magazine_v3.html');
 const outputPath = path.join('C:\\Users\\user\\Desktop\\QUALIVIO\\private', 'resources', 'Qualivio_PV_Made_Simple.pdf');
 
 console.log('Launching browser...');
