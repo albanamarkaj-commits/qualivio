@@ -3,8 +3,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const htmlPath = path.join('C:\\Users\\user\\Desktop', 'pv_magazine.html');
-const outputPath = path.join('C:\\Users\\user\\Desktop\\QUALIVIO\\public', 'pv_made_simple.pdf');
+const htmlPath = path.join('C:\\Users\\user\\Desktop', 'pv_magazine_v2.html');
+const outputPath = path.join('C:\\Users\\user\\Desktop\\QUALIVIO\\private', 'resources', 'Qualivio_PV_Made_Simple.pdf');
 
 console.log('Launching browser...');
 const browser = await puppeteer.launch({ headless: true });
