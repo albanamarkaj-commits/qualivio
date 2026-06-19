@@ -19,13 +19,13 @@ export type Resource = {
 export const resources: Resource[] = [
   // Free, web-based and downloadable resources surface first.
   {
-    id: "this-is-martin",
-    title: "This is Martin",
+    id: "pv-made-simple",
+    title: "Pharmacovigilance Made Simple",
     type: "Plain-Language Guide",
     description:
-      "Follow one patient's journey through the pharmacovigilance system — from an unexpected side effect to a global safety update. Told in plain language, no prior knowledge needed.",
+      "Follow Martin's journey through the drug safety system — from an unexpected side effect to a global label update. A magazine-style guide for anyone curious about how pharmacovigilance really works.",
     price: "Free",
-    href: "/resources/this-is-martin",
+    file: "/resources/Qualivio_PV_Made_Simple.pdf",
   },
   // Free, downloadable resources surface first so visitors meet a no-friction
   // CTA at the top of the grid.
