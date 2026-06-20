@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 };
 
 const steps = [
-  { number: "01", label: "Discover", body: "A focused conversation to understand your context, priorities, and the regulatory challenge you are navigating." },
-  { number: "02", label: "Assess", body: "A structured review of your current systems, documentation, and processes against regulatory requirements." },
-  { number: "03", label: "Design", body: "Clear, practical recommendations, with no abstractions and no over-engineering. Solutions shaped around your real needs." },
-  { number: "04", label: "Implement", body: "Expert support through delivery, with knowledge transfer so your team is confident after engagement ends." },
+  { number: "01", label: "Discover", body: "A conversation to understand your situation, what you are trying to achieve, and where the main challenges are." },
+  { number: "02", label: "Assess", body: "A review of your current systems, documentation, and processes against the relevant regulatory requirements." },
+  { number: "03", label: "Design", body: "Practical recommendations shaped around your specific situation, not generic frameworks." },
+  { number: "04", label: "Implement", body: "Support through delivery, with knowledge transfer so your team is not dependent on us once the engagement ends." },
 ];
 
 export default function ConsultingPage() {
@@ -30,16 +30,15 @@ export default function ConsultingPage() {
             className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
-            Specialised support for regulated life sciences teams.
+            Consulting for life sciences organisations.
           </h1>
           <div className="mx-auto mt-6 flex items-center justify-center gap-2">
             <div className="h-px w-10 bg-[#7C6AF7]" />
             <div className="h-px w-6 bg-[#F7B731]" />
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
-            Qualivio helps organisations clarify compliance processes, strengthen
-            regulatory frameworks, and build inspection-ready pharmacovigilance
-            capabilities.
+            Qualivio works with organisations to review compliance processes,
+            address regulatory gaps, and prepare for inspections.
           </p>
           <div className="mt-8">
             <Button href="#request">Request a Consultation →</Button>
@@ -51,7 +50,7 @@ export default function ConsultingPage() {
       <Section
         eyebrow="Services"
         title="What Qualivio delivers."
-        description="Flexible consulting support shaped around your operational needs, from regulatory reviews to full implementation."
+        description="Consulting support that fits around your situation, whether you need a focused review or hands-on help through a full project."
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
@@ -72,8 +71,8 @@ export default function ConsultingPage() {
       {/* Process — dark */}
       <Section
         eyebrow="Process"
-        title="A calm, structured consulting process."
-        description="Every engagement follows a clear four-stage workflow designed to deliver real results without unnecessary complexity."
+        title="How we work."
+        description="Every engagement follows four stages, designed to give you a clear outcome without overcomplicating the process."
         dark={true}
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -96,7 +95,7 @@ export default function ConsultingPage() {
       <Section
         eyebrow="Request Consultation"
         title="Start with a focused conversation."
-        description="Tell us what you are building, improving, or preparing for. We will respond with clarity and care."
+        description="Tell us what you are working on or preparing for. We will get back to you within one to two business days."
         id="request"
       >
         <div className="mx-auto max-w-xl">

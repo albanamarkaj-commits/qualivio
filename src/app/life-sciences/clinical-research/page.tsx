@@ -77,10 +77,9 @@ export default function ClinicalResearchPage() {
             <div className="h-px w-6 bg-[#7C6AF7]" />
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
-            Qualivio provides expert support across the clinical development
-            lifecycle, with a focus on regulatory compliance, safety reporting,
-            and quality oversight for investigational medicinal products in
-            early and late-phase development.
+            Qualivio provides practical support across the clinical development
+            lifecycle, covering regulatory compliance, safety reporting, and
+            quality oversight for investigational medicinal products.
           </p>
           <div className="mt-8">
             <Link
@@ -97,7 +96,7 @@ export default function ClinicalResearchPage() {
       <Section
         eyebrow="What We Deliver"
         title="Clinical research services."
-        description="Focused, practical support for clinical development teams navigating GCP compliance, regulatory submissions, and safety reporting obligations."
+        description="Practical support for clinical development teams working through GCP compliance, regulatory submissions, and safety reporting."
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -118,7 +117,7 @@ export default function ClinicalResearchPage() {
       {/* Key areas */}
       <Section
         eyebrow="Scope of Expertise"
-        title="Regulatory coverage for clinical development."
+        title="Areas we cover."
         dark={true}
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -24,21 +24,21 @@ export default function ResourcesPage() {
             className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
-            Focused education for serious professionals.
+            Education built around what you actually need.
           </h1>
           <div className="mx-auto mt-6 flex items-center justify-center gap-2">
             <div className="h-px w-6 bg-[#F7B731]" />
             <div className="h-px w-10 bg-[#7C6AF7]" />
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
-            Mini courses, downloadable guides, and practical tools built around
-            regulatory frameworks and compliance requirements.
+            Guides, checklists, and mini courses covering the topics that matter
+            most in day-to-day pharmacovigilance and quality work.
           </p>
         </div>
       </section>
 
       {/* Resources — white */}
-      <Section eyebrow="All Resources" title="Knowledge you can use today.">
+      <Section eyebrow="All Resources" title="All resources.">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {resources.map((resource) => (
             <ResourceCard key={resource.title} resource={resource} />

@@ -46,9 +46,9 @@ export default function Home() {
 
           {/* Tagline */}
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#6B6A8F]">
-            Trusted insights, education and consulting in pharmacovigilance
-            and quality assurance for life sciences professionals and companies
-            who need regulatory clarity without the complexity.
+            Practical education and consulting in pharmacovigilance and quality
+            assurance, for professionals and organisations working in regulated
+            life sciences.
           </p>
 
           {/* CTAs — Education first */}
@@ -82,8 +82,8 @@ export default function Home() {
       {/* ── 1. Education (priority #1) ── white */}
       <Section
         eyebrow="Education"
-        title="Focused education for serious professionals."
-        description="Mini courses, downloadable guides, and practical tools built around regulatory frameworks and compliance requirements."
+        title="Education built around what you actually need."
+        description="Guides, checklists, and mini courses covering the topics that matter most in day-to-day pharmacovigilance and quality work."
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {resources.slice(0, 3).map((resource) => (
@@ -117,7 +117,7 @@ export default function Home() {
       <Section
         eyebrow="Articles"
         title="Clear thinking for complex regulations."
-        description="Practical articles written for pharmacovigilance professionals navigating regulatory requirements."
+        description="Articles on the topics that come up most often in pharmacovigilance practice."
         dark={true}
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -156,7 +156,7 @@ export default function Home() {
       <Section
         eyebrow="Regulatory Intelligence"
         title="Latest pharmacovigilance updates."
-        description="Timely summaries of EMA GVP guideline revisions, procedural updates, and regulatory changes relevant to your pharmacovigilance operations."
+        description="Summaries of the latest EMA GVP updates, procedural changes, and regulatory developments that affect your pharmacovigilance work."
       >
         {/* Latest update highlight */}
         {(() => {
@@ -237,8 +237,8 @@ export default function Home() {
       {/* ── 4. Consulting (priority #4) ── white */}
       <Section
         eyebrow="Consulting"
-        title="Specialised support for regulated life sciences teams."
-        description="Qualivio helps organisations clarify compliance processes, strengthen regulatory frameworks, and build inspection-ready capabilities."
+        title="Consulting for life sciences organisations."
+        description="Qualivio works with organisations to review compliance processes, address regulatory gaps, and prepare for inspections."
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.slice(0, 6).map((service) => (

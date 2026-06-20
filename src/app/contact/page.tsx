@@ -21,7 +21,7 @@ export default function ContactPage() {
           </h1>
           <div className="mx-auto mt-6 h-px w-16 bg-[#7C6AF7]" />
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
-            Tell us what you are building, improving, or preparing for. Qualivio will respond with clarity and care.
+            Tell us what you are working on or preparing for. We will get back to you within one to two business days.
           </p>
         </div>
       </section>
@@ -57,7 +57,7 @@ export default function ContactPage() {
             </div>
             <div className="mt-8 rounded-xl border border-[#E5E4F0] bg-white p-4">
               <p className="text-xs leading-6 text-[#6B6A8F]">
-                For consulting, training, content partnerships, or life sciences education enquiries, we respond within 1–2 business days.
+                We respond to all enquiries within one to two business days.
               </p>
             </div>
           </div>

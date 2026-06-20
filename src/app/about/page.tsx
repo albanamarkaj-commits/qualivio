@@ -13,7 +13,7 @@ const values = [
   { label: "Integrity", body: "We are accurate, transparent, and honest, even when the answer is complex." },
   { label: "Clarity", body: "We simplify without dumbing down. Clarity is a professional obligation, not a style choice." },
   { label: "Scientific discipline", body: "Everything we produce is grounded in evidence, regulation, and professional expertise." },
-  { label: "Practical excellence", body: "We focus on what works in real-world regulated environments, not just theory." },
+  { label: "Practical excellence", body: "We focus on what actually works in regulated environments, not just what looks good on paper." },
 ];
 
 export default function AboutPage() {
@@ -28,16 +28,15 @@ export default function AboutPage() {
             className="text-4xl font-bold leading-tight text-[#0D0D0F] sm:text-5xl"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
-            A modern authority for life sciences education.
+            Education and expertise for life sciences professionals.
           </h1>
           <div className="mx-auto mt-6 flex items-center justify-center gap-2">
             <div className="h-px w-10 bg-[#7C6AF7]" />
             <div className="h-px w-6 bg-[#F7B731]" />
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
-            Qualivio exists to make regulatory and pharmacovigilance knowledge
-            clearer, more practical, and more accessible for professionals
-            working in regulated life sciences environments.
+            Qualivio was built to make pharmacovigilance and regulatory knowledge
+            more accessible. Practical enough to use, clear enough to trust.
           </p>
         </div>
       </section>
@@ -54,9 +53,9 @@ export default function AboutPage() {
               Mission
             </h3>
             <p className="mt-4 leading-8 text-[#6B6A8F]">
-              To advance excellence in pharmacovigilance through trusted
-              education, consulting, and practical resources, making complex
-              regulations accessible to every professional who needs them.
+              To make pharmacovigilance knowledge more accessible through
+              education, consulting, and practical resources that professionals
+              can actually use.
             </p>
           </Card>
           <Card accent="teal">
@@ -68,9 +67,9 @@ export default function AboutPage() {
               Vision
             </h3>
             <p className="mt-4 leading-8 text-[#6B6A8F]">
-              A life sciences ecosystem where compliance is clear, human-centred,
-              and continuously improving, powered by professionals who are
-              confident in their regulatory knowledge.
+              A life sciences industry where professionals understand the
+              regulations they work under, and have the tools and knowledge
+              to apply them with confidence.
             </p>
           </Card>
         </div>

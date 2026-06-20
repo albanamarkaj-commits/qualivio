@@ -49,18 +49,17 @@ export default function LifeSciencesPage() {
             className="text-4xl font-bold leading-tight text-[#E8E6FF] sm:text-5xl"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
-            Specialised expertise across regulated disciplines.
+            Expert support across pharmacovigilance, quality assurance, and clinical research.
           </h1>
           <div className="mx-auto mt-6 flex items-center justify-center gap-2">
             <div className="h-px w-10 bg-[#7C6AF7]" />
             <div className="h-px w-6 bg-[#4ECDC4]" />
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#9896B6]">
-            Qualivio brings practical, regulatory-grounded expertise to
-            pharmacovigilance, quality assurance, and clinical research.
-            Whether you are building a system, preparing for inspection, or
-            navigating a regulatory challenge, we deliver support that is
-            clear, proportionate, and grounded in current requirements.
+            Qualivio provides practical support across the three main regulated
+            disciplines in life sciences. Whether you are building a system from
+            scratch, preparing for an inspection, or working through a specific
+            regulatory challenge, we can help.
           </p>
         </div>
       </section>
@@ -104,15 +103,15 @@ export default function LifeSciencesPage() {
       <Section
         eyebrow="Our Approach"
         title="Practical expertise, not generic advice."
-        description="Every engagement is shaped around your specific regulatory context, organisational structure, and operational priorities. We do not apply templates where nuance is required."
+        description="Every engagement is shaped around your situation. We do not apply generic templates to problems that need careful thinking."
         dark={true}
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { title: "Regulatory Grounded", body: "All work is anchored in current GVP, GCP, and GxP guidance. We keep pace with regulatory developments so you do not have to." },
-            { title: "Proportionate", body: "Solutions are sized to your actual risk profile and operational capacity, not to the maximum possible scope." },
-            { title: "Transfer-Focused", body: "Every engagement builds internal capability. When we leave, your team is confident and self-sufficient." },
-            { title: "Transparent", body: "Clear scope, honest timelines, and direct communication throughout. No hidden complexity, no unnecessary jargon." },
+            { title: "Regulatory Grounded", body: "All work is based on current GVP, GCP, and GxP guidance. We follow regulatory developments closely so you do not have to." },
+            { title: "Proportionate", body: "We size our recommendations to what your organisation actually needs, not to the maximum possible scope." },
+            { title: "Transfer-Focused", body: "We work with your team throughout, not just alongside them. When the engagement ends, they can carry the work forward independently." },
+            { title: "Transparent", body: "Clear scope, honest timelines, and direct communication. No hidden complexity." },
           ].map((item) => (
             <div key={item.title} className="rounded-2xl border border-[#2E2E36] bg-[#1A1A1E] p-6">
               <div className="mb-3 h-0.5 w-8 bg-[#7C6AF7]" />

@@ -77,10 +77,9 @@ export default function QualityAssurancePage() {
             <div className="h-px w-6 bg-[#7C6AF7]" />
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
-            Qualivio supports life sciences organisations in establishing and
-            maintaining quality management systems that meet GxP expectations,
-            hold up under regulatory scrutiny, and support sustainable
-            compliance across the business.
+            Qualivio supports life sciences organisations in building and
+            maintaining quality management systems that meet GxP requirements
+            and hold up under regulatory scrutiny.
           </p>
           <div className="mt-8">
             <Link
@@ -97,7 +96,7 @@ export default function QualityAssurancePage() {
       <Section
         eyebrow="What We Deliver"
         title="Quality assurance services."
-        description="Practical, regulation-grounded quality support designed around your organisation's actual structure and risk profile."
+        description="Practical quality support designed around your organisation's structure and the regulations that apply to it."
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -118,7 +117,7 @@ export default function QualityAssurancePage() {
       {/* Key areas */}
       <Section
         eyebrow="Scope of Expertise"
-        title="Quality coverage across GxP disciplines."
+        title="Areas we cover."
         dark={true}
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -77,11 +77,10 @@ export default function PharmacovigilancePage() {
             <div className="h-px w-6 bg-[#F7B731]" />
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
-            From safety system design to inspection readiness, Qualivio
-            supports organisations in building and maintaining
-            pharmacovigilance systems that are compliant, documented, and
-            ready for regulatory scrutiny at every stage of the product
-            lifecycle.
+            Qualivio supports organisations in building and maintaining
+            pharmacovigilance systems that are compliant, well documented,
+            and ready for regulatory inspections at every stage of the
+            product lifecycle.
           </p>
           <div className="mt-8">
             <Link
@@ -98,7 +97,7 @@ export default function PharmacovigilancePage() {
       <Section
         eyebrow="What We Deliver"
         title="Pharmacovigilance services."
-        description="Practical, regulation-anchored support across the full scope of medicines safety obligations."
+        description="Practical support across the full scope of medicines safety obligations."
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -119,7 +118,7 @@ export default function PharmacovigilancePage() {
       {/* Key areas */}
       <Section
         eyebrow="Scope of Expertise"
-        title="Regulatory coverage you can rely on."
+        title="Areas we cover."
         dark={true}
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

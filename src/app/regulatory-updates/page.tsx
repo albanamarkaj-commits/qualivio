@@ -36,8 +36,8 @@ export default function RegulatoryUpdatesPage() {
             <div className="h-px w-6 bg-[#F7B731]" />
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6B6A8F]">
-            Timely summaries of EMA GVP guideline revisions, procedural updates,
-            and regulatory intelligence relevant to life sciences professionals.
+            Summaries of the latest EMA GVP updates, procedural changes, and
+            regulatory developments that affect your pharmacovigilance work.
           </p>
         </div>
 
@@ -102,9 +102,8 @@ export default function RegulatoryUpdatesPage() {
             Need expert guidance on these updates?
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-[#9896B6]">
-            Qualivio can help you interpret regulatory changes, assess their
-            impact on your pharmacovigilance system, and implement compliant
-            solutions.
+            Qualivio can help you understand what these changes mean for your
+            organisation and what you may need to do about them.
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <a
