@@ -21,9 +21,9 @@ export const resources: Resource[] = [
   {
     id: "pv-made-simple",
     title: "Pharmacovigilance Made Simple",
-    type: "Plain-Language Guide",
+    type: "Guide",
     description:
-      "Understand how the global drug safety system works and why it matters, written for anyone with no prior pharmacovigilance knowledge.",
+      "Understand how the global drug safety system works and why it matters.",
     price: "Free",
     file: "/resources/Qualivio_PV_Made_Simple.pdf",
   },
