@@ -47,4 +47,12 @@ export const articles = [
     readTime: "4 min read",
     slug: "risk-management-plans-guide",
   },
+  {
+    title: "FDA Retires FAERS: What the Move to AEMS Means for Pharmacovigilance",
+    category: "Pharmacovigilance",
+    excerpt:
+      "On 11 March 2026, the FDA officially retired FAERS and launched the Adverse Event Monitoring System. Here is what changed, what it means for PV professionals, and where the industry is heading.",
+    readTime: "4 min read",
+    slug: "fda-faers-aems-transition-2026",
+  },
 ];

@@ -302,4 +302,47 @@ export const articleContent: Record<string, ArticleBody> = {
       },
     ],
   },
+
+  "fda-faers-aems-transition-2026": {
+    intro:
+      "On 11 March 2026, the FDA officially retired FAERS, the FDA Adverse Event Reporting System, and replaced it with AEMS, the Adverse Event Monitoring System. For most people outside pharmacovigilance, this barely registered. For those working in drug safety, regulatory affairs, and medicines surveillance, it is one of the most significant infrastructure changes in recent years.",
+    sections: [
+      {
+        heading: "What Was FAERS?",
+        paragraphs: [
+          "FAERS was the FDA's primary database for collecting and analysing adverse event reports associated with drugs and therapeutic biological products. Launched in 2012 as a replacement for its predecessor AERS, it became the backbone of post-market safety surveillance in the United States. At the time of its retirement, FAERS held over 32.8 million adverse event reports, submitted by healthcare professionals, patients, and pharmaceutical companies from across the world.",
+          "The database was publicly accessible through a dashboard and quarterly data releases, making it one of the most widely used pharmacovigilance data sources globally. Regulators, pharmaceutical companies, academic researchers, and independent safety scientists all relied on it for signal detection, post-marketing surveillance, and benefit-risk assessments. Its data underpinned regulatory decisions, informed labelling updates, and supported research into the real-world safety of authorised medicines.",
+        ],
+      },
+      {
+        heading: "Why Did the FDA Retire It?",
+        paragraphs: [
+          "FAERS served the industry well for over a decade, but it was built on infrastructure that reflected the technology landscape of the early 2010s. As reporting volumes grew and expectations around data timeliness, accessibility, and analytical capability increased, the limitations of the system became harder to work around. Quarterly data releases, for example, meant that the public database was always weeks or months behind the most current information held internally by the FDA.",
+          "The broader shift toward real-time surveillance, AI-assisted pharmacovigilance, and integrated safety monitoring created an expectation that regulatory databases should be able to keep pace with modern data environments. FAERS was not designed with those capabilities in mind. The transition to AEMS reflects a deliberate decision by the FDA to invest in infrastructure that can support the next generation of drug safety science, rather than continuing to patch a system with structural constraints.",
+        ],
+      },
+      {
+        heading: "What AEMS Introduces",
+        paragraphs: [
+          "The Adverse Event Monitoring System is designed around several significant improvements over its predecessor. The most notable is near real-time data updates, which address one of the longest-standing criticisms of FAERS: the gap between when reports were received and when they became visible to the public and to researchers. AEMS is intended to close that gap substantially.",
+          "The new system also introduces centralised whistleblower reporting, a feature that recognises the importance of safety concerns raised by individuals within organisations and creates a more structured channel for capturing that information. Alongside this, AEMS includes modernised safety monitoring infrastructure and enhanced capabilities designed specifically for AI-enabled pharmacovigilance, reflecting the direction the field is moving.",
+        ],
+      },
+      {
+        heading: "What This Means for PV Professionals",
+        paragraphs: [
+          "For pharmacovigilance professionals working in MAHs and CROs, the transition raises several practical questions. Processes that relied on FAERS data exports, particularly those built around the quarterly public release cadence, will need to be reviewed. Any automated workflows that pulled FAERS data for signal detection or competitive intelligence purposes may require reconfiguration to align with AEMS data formats and update schedules.",
+          "More broadly, the move to near real-time data has implications for how signal detection is approached. When safety data updates continuously rather than quarterly, the expectation around monitoring frequency and responsiveness may shift. Organisations should start reviewing whether their current signal detection processes are designed to take advantage of more timely data, or whether they were built around the slower cadence of the old system.",
+        ],
+      },
+      {
+        heading: "The Broader Direction of Travel",
+        paragraphs: [
+          "The FAERS to AEMS transition is part of a pattern. Across the major regulatory jurisdictions, there is a clear push toward more modern, data-driven pharmacovigilance infrastructure. EudraVigilance has been through significant updates in recent years. ICH E2B(R3) standardised the electronic transmission of ICSRs. IDMP implementation continues to progress. The common thread is a shift toward structured data, interoperability, and the ability to do more with safety information faster.",
+          "AI-enabled pharmacovigilance, referenced explicitly in the AEMS announcement, is no longer a theoretical future state. Tools that use natural language processing to identify adverse events in unstructured text, algorithms that flag safety signals earlier than traditional statistical methods, and platforms that can integrate safety data across multiple sources are already in use in parts of the industry. The regulatory infrastructure is now being built to support and keep pace with those capabilities.",
+          "For professionals in pharmacovigilance, regulatory affairs, and drug safety, the question is not whether to engage with these changes. It is how quickly and how well organisations can adapt their processes, their people, and their systems to operate effectively in an environment that will continue to evolve.",
+        ],
+      },
+    ],
+  },
 };

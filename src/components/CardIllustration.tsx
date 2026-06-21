@@ -578,6 +578,66 @@ function PASSPSURIll() {
   );
 }
 
+function FDATransitionIll({ dark = false }: { dark?: boolean }) {
+  const bg = dark ? "#141418" : "#EEE9FF";
+  const glowOp = dark ? 0.12 : 0.07;
+  const cardFill = dark ? "#1a1a22" : "white";
+  const cardOp = dark ? 0.85 : 0.92;
+  const lineLight = dark ? "#2a2838" : "#DDD9FF";
+  const lineAccent = dark ? "#4a4668" : "#C5BBFF";
+  return (
+    <svg viewBox="0 0 360 128" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+      <rect width="360" height="128" fill={bg}/>
+      <circle cx="50" cy="20" r="65" fill="#7C6AF7" fillOpacity={glowOp}/>
+      <circle cx="320" cy="118" r="55" fill="#7C6AF7" fillOpacity={glowOp * 0.8}/>
+      {/* Old system box (FAERS) - faded/crossed */}
+      <rect x="62" y="28" width="82" height="72" rx="6" fill={cardFill} fillOpacity={dark ? 0.4 : 0.55}/>
+      <rect x="62" y="28" width="82" height="14" rx="6" fill="#9896B6" fillOpacity="0.3"/>
+      <rect x="62" y="35" width="82" height="7" rx="0" fill="#9896B6" fillOpacity="0.3"/>
+      <rect x="72" y="50" width="62" height="2.5" rx="1.25" fill="#9896B6" fillOpacity="0.35"/>
+      <rect x="72" y="58" width="48" height="2.5" rx="1.25" fill="#9896B6" fillOpacity="0.25"/>
+      <rect x="72" y="66" width="55" height="2.5" rx="1.25" fill="#9896B6" fillOpacity="0.25"/>
+      <rect x="72" y="74" width="38" height="2.5" rx="1.25" fill="#9896B6" fillOpacity="0.25"/>
+      <rect x="72" y="82" width="52" height="2.5" rx="1.25" fill="#9896B6" fillOpacity="0.25"/>
+      {/* Cross out FAERS */}
+      <line x1="66" y1="32" x2="140" y2="96" stroke="#9896B6" strokeWidth="2" strokeOpacity="0.45" strokeLinecap="round"/>
+      <line x1="140" y1="32" x2="66" y2="96" stroke="#9896B6" strokeWidth="2" strokeOpacity="0.45" strokeLinecap="round"/>
+      {/* Label FAERS */}
+      <rect x="74" y="30" width="38" height="8" rx="3" fill="#9896B6" fillOpacity="0.25"/>
+      <rect x="77" y="33" width="32" height="2.5" rx="1.25" fill="#9896B6" fillOpacity="0.4"/>
+      {/* Arrow right */}
+      <path d="M152 64 L178 64" stroke="#7C6AF7" strokeWidth="2.5" strokeLinecap="round"/>
+      <polygon points="174,59 182,64 174,69" fill="#7C6AF7" fillOpacity="0.8"/>
+      {/* New system box (AEMS) - bright/active */}
+      <rect x="186" y="18" width="106" height="92" rx="6" fill={cardFill} fillOpacity={cardOp}/>
+      <rect x="186" y="18" width="106" height="18" rx="6" fill="#7C6AF7" fillOpacity="0.3"/>
+      <rect x="186" y="29" width="106" height="7" rx="0" fill="#7C6AF7" fillOpacity="0.3"/>
+      {/* AEMS label */}
+      <rect x="196" y="21" width="36" height="9" rx="3" fill="#7C6AF7" fillOpacity="0.5"/>
+      <rect x="199" y="24" width="30" height="3" rx="1.5" fill="white" fillOpacity="0.75"/>
+      {/* Near real-time indicator */}
+      <circle cx="200" cy="48" r="4" fill="#4ECDC4" fillOpacity="0.8"/>
+      <circle cx="200" cy="48" r="7" fill="#4ECDC4" fillOpacity="0.18"/>
+      <rect x="212" y="45" width="68" height="2.5" rx="1.25" fill={lineAccent}/>
+      <rect x="212" y="52" width="50" height="2" rx="1" fill={lineLight}/>
+      {/* AI indicator */}
+      <circle cx="200" cy="66" r="4" fill="#7C6AF7" fillOpacity="0.7"/>
+      <circle cx="200" cy="66" r="7" fill="#7C6AF7" fillOpacity="0.15"/>
+      <rect x="212" y="63" width="68" height="2.5" rx="1.25" fill={lineAccent}/>
+      <rect x="212" y="70" width="44" height="2" rx="1" fill={lineLight}/>
+      {/* Reporting indicator */}
+      <circle cx="200" cy="84" r="4" fill="#F7B731" fillOpacity="0.7"/>
+      <circle cx="200" cy="84" r="7" fill="#F7B731" fillOpacity="0.15"/>
+      <rect x="212" y="81" width="68" height="2.5" rx="1.25" fill={lineAccent}/>
+      <rect x="212" y="88" width="56" height="2" rx="1" fill={lineLight}/>
+      {/* Pulse line on AEMS */}
+      <path d="M192 104 L210 104 L214 96 L218 112 L222 100 L226 106 L230 104 L288 104" stroke="#7C6AF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" strokeOpacity="0.5"/>
+      <circle cx="46" cy="74" r="4" fill="#7C6AF7" fillOpacity={dark ? 0.18 : 0.2}/>
+      <circle cx="318" cy="38" r="5" fill="#7C6AF7" fillOpacity={dark ? 0.14 : 0.14}/>
+    </svg>
+  );
+}
+
 /* ── PUBLIC EXPORTS ── */
 
 const resourceMap: Record<string, () => React.ReactElement> = {
@@ -597,6 +657,7 @@ const articleMap: Record<string, (dark: boolean) => React.ReactElement> = {
   "icsr-lifecycle": (d) => <ICSRLifecycleIll dark={d}/>,
   "aggregate-reports-regulatory-expectations": (d) => <AggregateReportsIll dark={d}/>,
   "risk-management-plans-guide": (d) => <RiskManagementIll dark={d}/>,
+  "fda-faers-aems-transition-2026": (d) => <FDATransitionIll dark={d}/>,
 };
 
 const regulatoryMap: Record<string, () => React.ReactElement> = {
