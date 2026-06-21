@@ -105,9 +105,10 @@ export default async function ArticlePage({
             </p>
             <h3
               className="text-2xl font-bold text-[#0D0D0F] mb-4"
-              style={{ fontFamily: "var(--font-dm-sans)" }}
+              style={{ fontFamily: "var(--font-space-grotesk)" }}
             >
-              Work with Qualivio
+              Work with{" "}
+              <span style={{ fontFamily: "var(--font-wordmark)" }}>Qualivio</span>
             </h3>
             <p className="text-[#6B6A8F] mb-6 max-w-md mx-auto">
               Our pharmacovigilance consultants help organisations build

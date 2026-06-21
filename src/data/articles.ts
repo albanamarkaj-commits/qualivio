@@ -1,6 +1,6 @@
 export const articles = [
   {
-    title: "Signal Detection in Modern Pharmacovigilance",
+    title: "Signal detection in modern pharmacovigilance",
     category: "Pharmacovigilance",
     excerpt:
       "A practical overview of how structured signal management supports safer medicines and better regulatory decisions.",
@@ -8,7 +8,7 @@ export const articles = [
     slug: "signal-detection-modern-pharmacovigilance",
   },
   {
-    title: "Building Inspection-Ready Safety Systems",
+    title: "Building inspection-ready safety systems",
     category: "Pharmacovigilance",
     excerpt:
       "Key documentation, process, and quality principles for resilient pharmacovigilance operations under regulatory scrutiny.",
@@ -16,7 +16,7 @@ export const articles = [
     slug: "inspection-ready-safety-systems",
   },
   {
-    title: "Life Sciences Trends Shaping Pharmacovigilance Practice",
+    title: "Life sciences trends shaping pharmacovigilance practice",
     category: "Life Sciences",
     excerpt:
       "How quality culture, training, and data integrity shape clinical and safety excellence in regulated environments.",
@@ -24,7 +24,7 @@ export const articles = [
     slug: "clinical-quality-trends",
   },
   {
-    title: "Understanding the ICSR Lifecycle",
+    title: "Understanding the ICSR lifecycle",
     category: "Pharmacovigilance",
     excerpt:
       "From receipt to submission: a clear walkthrough of the individual case safety report workflow and key compliance points.",
@@ -32,7 +32,7 @@ export const articles = [
     slug: "icsr-lifecycle",
   },
   {
-    title: "Regulatory Expectations for Aggregate Reports",
+    title: "Regulatory expectations for aggregate reports",
     category: "Pharmacovigilance",
     excerpt:
       "PSURs, DSURs, and ASRs explained: what regulators expect and how to structure submissions with confidence.",
@@ -40,7 +40,7 @@ export const articles = [
     slug: "aggregate-reports-regulatory-expectations",
   },
   {
-    title: "Risk Management Plans: A Practical Guide",
+    title: "Risk management plans: a practical guide",
     category: "Pharmacovigilance",
     excerpt:
       "Designing proportionate, fit-for-purpose risk management plans that satisfy regulators and protect patients.",
@@ -48,7 +48,7 @@ export const articles = [
     slug: "risk-management-plans-guide",
   },
   {
-    title: "FDA Retires FAERS: What the Move to AEMS Means for Pharmacovigilance",
+    title: "FDA retires FAERS: what the move to AEMS means for pharmacovigilance",
     category: "Pharmacovigilance",
     excerpt:
       "On 11 March 2026, the FDA officially retired FAERS and launched the Adverse Event Monitoring System. Here is what changed, what it means for PV professionals, and where the industry is heading.",
