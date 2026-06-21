@@ -5,7 +5,7 @@ import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RegulatoryUpdateCard } from "@/components/RegulatoryUpdateCard";
-import { DarkArticleIllustration } from "@/components/CardIllustration";
+import { DarkArticleIllustration, ResourceIllustration } from "@/components/CardIllustration";
 import { articles } from "@/data/articles";
 import { services } from "@/data/services";
 import { resources } from "@/data/resources";
@@ -89,6 +89,9 @@ export default function Home() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {resources.slice(0, 3).map((resource) => (
             <Card key={resource.title}>
+              <div className="-mx-6 -mt-6 mb-5">
+                <ResourceIllustration id={resource.id} />
+              </div>
               <div className="flex items-start justify-between gap-4">
                 <span className="inline-block rounded-full bg-[#F7B731]/15 px-3 py-1 text-xs font-semibold text-[#B8860B]">
                   {resource.type}
@@ -124,7 +127,7 @@ export default function Home() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {articles.slice(0, 3).map((article) => (
             <div key={article.slug} className="overflow-hidden rounded-2xl border border-[#2E2E36] bg-[#1A1A1E] transition-all duration-300 hover:-translate-y-1 hover:border-[#7C6AF7]/60">
-              <DarkArticleIllustration category={article.category} />
+              <DarkArticleIllustration slug={article.slug} />
               <div className="p-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-[#F7B731]">
                 {article.category}

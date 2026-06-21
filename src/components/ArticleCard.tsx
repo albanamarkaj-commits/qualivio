@@ -16,7 +16,7 @@ export function ArticleCard({
   return (
     <Card>
       <div className="-mx-6 -mt-6 mb-5">
-        <ArticleIllustration category={article.category} />
+        <ArticleIllustration slug={article.slug} />
       </div>
       <p className="text-xs font-semibold uppercase tracking-widest text-[#4ECDC4]">
         {article.category}

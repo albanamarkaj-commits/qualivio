@@ -11,7 +11,7 @@ export function ResourceCard({ resource }: { resource: Resource }) {
   return (
     <Card>
       <div className="-mx-6 -mt-6 mb-5">
-        <ResourceIllustration type={resource.type} />
+        <ResourceIllustration id={resource.id} />
       </div>
       <div className="flex items-start justify-between gap-4">
         <div>

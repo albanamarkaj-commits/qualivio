@@ -39,7 +39,7 @@ export function RegulatoryUpdateCard({ update }: { update: RegulatoryUpdate }) {
     >
       {/* Illustration */}
       <div className="-mx-6 -mt-6 mb-5 overflow-hidden rounded-t-2xl">
-        <RegulatoryIllustration />
+        <RegulatoryIllustration slug={update.slug} />
       </div>
       {/* Source + date row */}
       <div className="mb-4 flex items-center justify-between gap-3">
