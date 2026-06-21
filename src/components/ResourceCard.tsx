@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import { Card } from "./Card";
 import { ResourceDownloadCTA } from "./ResourceDownloadCTA";
+import { ResourceIllustration } from "./CardIllustration";
 import type { Resource } from "@/data/resources";
 
 export function ResourceCard({ resource }: { resource: Resource }) {
@@ -9,6 +10,9 @@ export function ResourceCard({ resource }: { resource: Resource }) {
 
   return (
     <Card>
+      <div className="-mx-6 -mt-6 mb-5">
+        <ResourceIllustration type={resource.type} />
+      </div>
       <div className="flex items-start justify-between gap-4">
         <div>
           <span className="inline-block rounded-full bg-[#7C6AF7]/10 px-3 py-1 text-xs font-semibold text-[#7C6AF7]">

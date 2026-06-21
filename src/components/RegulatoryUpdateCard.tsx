@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
 import type { RegulatoryUpdate } from "@/data/regulatory-updates";
+import { RegulatoryIllustration } from "./CardIllustration";
 
 const sourceColors: Record<string, string> = {
   EMA: "bg-[#7C6AF7]/15 text-[#7C6AF7]",
@@ -36,6 +37,10 @@ export function RegulatoryUpdateCard({ update }: { update: RegulatoryUpdate }) {
       href={`/regulatory-updates/${update.slug}`}
       className="group flex flex-col rounded-2xl border border-[#E5E4F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#7C6AF7]/50 hover:shadow-[0_8px_40px_rgba(124,106,247,0.12)]"
     >
+      {/* Illustration */}
+      <div className="-mx-6 -mt-6 mb-5 overflow-hidden rounded-t-2xl">
+        <RegulatoryIllustration />
+      </div>
       {/* Source + date row */}
       <div className="mb-4 flex items-center justify-between gap-3">
         <span
