@@ -325,7 +325,7 @@ export const articleContent: Record<string, ArticleBody> = {
         heading: "What AEMS is",
         paragraphs: [
           "AEMS is a single, unified platform for collecting, monitoring, and analysing adverse event reports across all FDA-regulated product categories. It is broader in scope than FAERS, which covered only drugs and biologics. AEMS brings together adverse events related to medicines, vaccines, medical devices, food, cosmetics, tobacco, and animal products into one searchable dashboard.",
-          "Beyond adverse event reporting, AEMS also serves as a centralised platform for managing consumer complaints, regulatory misconduct reports, and whistleblower submissions across all FDA centres. The public dashboard is designed to allow anyone — patients, researchers, healthcare professionals — to query safety data directly, without needing to file a FOIA request.",
+          "Beyond adverse event reporting, AEMS also serves as a centralised platform for managing consumer complaints, regulatory misconduct reports, and whistleblower submissions across all FDA centres. The public dashboard is designed to allow anyone (patients, researchers, healthcare professionals) to query safety data directly, without needing to file a FOIA request.",
           "Chief AI Officer Jeremy Walsh described the launch as \"the biggest technical transformation in agency history.\" The FDA expects to save approximately $120 million over the next five years as a result of the consolidation.",
         ],
       },
