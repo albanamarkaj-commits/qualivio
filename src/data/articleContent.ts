@@ -332,23 +332,23 @@ export const articleContent: Record<string, ArticleBody> = {
       {
         heading: "Real time data: what actually changes",
         paragraphs: [
-          "The most significant practical change for pharmacovigilance professionals is the move from quarterly data releases to real-time publication. Under FAERS, reports were always weeks or months behind the most current information held internally by the FDA. AEMS is designed to publish reports as they are submitted, consistent with privacy obligations.",
-          "By the end of May 2026, AEMS was expected to contain real-time adverse event data for all FDA-regulated products. For signal detection processes that were built around the FAERS quarterly cadence, this shift has direct operational implications. Monitoring workflows, data pull frequencies, and internal review timelines may all need to be reviewed.",
-          "It is important to note that in the short term, submission workflows and regulatory obligations remain unchanged. Pharmaceutical companies can continue using existing submission methods, including the Safety Reporting Portal. The pharmacovigilance data itself does not change in nature — it becomes more accessible and easier to query within an integrated environment.",
+          "The most significant practical change for pharmacovigilance professionals is the move from quarterly data releases to real time publication. Under FAERS, reports were always weeks or months behind the most current information held internally by the FDA. Reports are now published as they are submitted, subject to patient privacy requirements.",
+          "By the end of May 2026, AEMS was expected to provide real time data across all FDA-regulated products. For organisations whose signal detection relied on FAERS quarterly exports, this is a good moment to review whether current processes are still fit for purpose.",
+          "It is important to note that in the short term, submission workflows and regulatory obligations remain unchanged. Pharmaceutical companies can continue using existing submission methods, including the Safety Reporting Portal. The data itself has not changed. What has changed is how easily it can be accessed and searched.",
         ],
       },
       {
         heading: "The E2B(R3) deadline: an action point for October 2026",
         paragraphs: [
           "One concrete and specific implication of the AEMS transition is the E2B(R3) submission deadline. Submitters may continue to use E2B(R2) data standards during the implementation period through 30 September 2026. From 1 October 2026, all ICSRs submitted via the ESG NextGen must use E2B(R3) standards.",
-          "For MAHs and CROs submitting adverse event reports to the FDA, this is the most actionable item to plan for now. Organisations that have not yet validated their systems against E2B(R3) should begin that process without delay, as the deadline is firm and the lead time required for system validation and testing is significant.",
+          "For MAHs and CROs submitting reports to the FDA, the E2B(R3) transition is the most urgent issue to consider. The deadline is 1 October 2026 and system validation often does not allow for last-minute preparation.",
         ],
       },
       {
         heading: "The broader direction the field is heading",
         paragraphs: [
-          "The AEMS transition is part of a wider pattern across major regulatory jurisdictions. EudraVigilance has been through significant updates in recent years. ICH E2B(R3) is now being enforced as the global standard for ICSR transmission. IDMP implementation continues to progress across the EU. The common thread is a shift toward structured data, interoperability, and the ability to do more with safety information faster.",
-          "AI-enabled pharmacovigilance, referenced explicitly in the AEMS launch, is no longer a future aspiration. Tools that use natural language processing to identify adverse events in unstructured text, algorithms that detect safety signals earlier than traditional statistical methods, and platforms that integrate safety data across multiple sources are already in use across the industry. Regulatory infrastructure is now being built to support and keep pace with those capabilities.",
+          "The AEMS transition fits into a broader pattern of regulatory modernisation. EudraVigilance has been through significant updates in recent years. ICH E2B(R3) is now being enforced as the global standard for ICSR transmission. IDMP implementation continues to progress across the EU. In each case, the direction is the same: more structured data, greater interoperability, and faster access to safety information.",
+          "AI-enabled pharmacovigilance, referenced explicitly in the AEMS launch, is no longer a future aspiration. Tools that use natural language processing to identify adverse events in unstructured text, algorithms that detect safety signals earlier than traditional statistical methods, and platforms that integrate safety data across multiple sources are already in use across the industry. The infrastructure is now being built to match those ambitions.",
           "For professionals working in pharmacovigilance and regulatory affairs, the question is not whether to engage with these changes. It is how quickly organisations can adapt their processes, their systems, and their people to operate effectively in an environment that will continue to evolve.",
         ],
       },
