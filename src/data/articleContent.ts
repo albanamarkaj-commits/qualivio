@@ -311,13 +311,13 @@ export const articleContent: Record<string, ArticleBody> = {
 
   "fda-faers-aems-transition-2026": {
     intro:
-      "On 11 March 2026, the FDA launched AEMS, the Adverse Event Monitoring System — a single unified platform to replace a fragmented collection of seven legacy adverse event databases. For pharmacovigilance professionals, the transition carries both immediate and longer-term implications worth understanding.",
+      "On 11 March 2026, the FDA launched AEMS, the Adverse Event Monitoring System. It is a single unified platform designed to replace a fragmented collection of six legacy adverse event databases. For pharmacovigilance professionals, the transition carries both immediate and longer-term implications worth understanding.",
     sections: [
       {
         heading: "The legacy systems AEMS replaces",
         paragraphs: [
           "Before AEMS, the FDA processed approximately 6 million adverse event reports per year across a patchwork of seven separate databases. These systems were expensive, had poor user interfaces, and made data difficult to search and access. Together they cost the agency approximately $37 million per year to operate.",
-          "The systems being replaced are: FAERS (drugs, biologics, cosmetics, and colour additives), VAERS (vaccines, co-managed with the CDC), and AERS (animal drugs and animal food), which migrated to AEMS on 11 March 2026. MAUDE (medical devices), HFCS (human foods and dietary supplements), and CTPAE (tobacco products) were scheduled to follow by the end of May 2026.",
+          "The systems being replaced are: FAERS (drugs, biologics, cosmetics, and colour additives), VAERS (vaccines, jointly managed with the CDC), and AERS (animal drugs and animal food), which migrated to AEMS on 11 March 2026. MAUDE (medical devices), HFCS (human foods and dietary supplements), and CTPAE (tobacco products) were scheduled to follow by the end of May 2026.",
           "In Commissioner Marty Makary's words: \"The FDA's previous adverse event reporting systems were outdated and fragmented and made important data difficult to access. These clunky systems also wasted millions of taxpayer dollars and created blind spots in our postmarket surveillance of products ranging from drugs and vaccines to cosmetics.\"",
         ],
       },
@@ -330,7 +330,7 @@ export const articleContent: Record<string, ArticleBody> = {
         ],
       },
       {
-        heading: "Real-time data: what actually changes",
+        heading: "Real time data: what actually changes",
         paragraphs: [
           "The most significant practical change for pharmacovigilance professionals is the move from quarterly data releases to real-time publication. Under FAERS, there was always a lag of weeks or months between a report being received and it becoming visible in the public database. AEMS is designed to publish reports as they are submitted, consistent with privacy obligations.",
           "By the end of May 2026, AEMS was expected to contain real-time adverse event data for all FDA-regulated products. For signal detection processes that were built around the FAERS quarterly cadence, this shift has direct operational implications. Monitoring workflows, data pull frequencies, and internal review timelines may all need to be reviewed.",
@@ -340,7 +340,7 @@ export const articleContent: Record<string, ArticleBody> = {
       {
         heading: "The E2B(R3) deadline: an action point for October 2026",
         paragraphs: [
-          "One concrete and time-bound implication of the AEMS transition is the E2B(R3) submission deadline. Submitters may continue to use E2B(R2) data standards during the implementation period through 30 September 2026. From 1 October 2026, all ICSRs submitted via the ESG NextGen must use E2B(R3) standards.",
+          "One concrete and specific implication of the AEMS transition is the E2B(R3) submission deadline. Submitters may continue to use E2B(R2) data standards during the implementation period through 30 September 2026. From 1 October 2026, all ICSRs submitted via the ESG NextGen must use E2B(R3) standards.",
           "For MAHs and CROs submitting adverse event reports to the FDA, this is the most actionable item to plan for now. Organisations that have not yet validated their systems against E2B(R3) should begin that process without delay, as the deadline is firm and the lead time required for system validation and testing is significant.",
         ],
       },
@@ -355,7 +355,7 @@ export const articleContent: Record<string, ArticleBody> = {
     ],
     sources: [
       {
-        label: "FDA press announcement: FDA launches new adverse event look-up tool (11 March 2026)",
+        label: "FDA press announcement: FDA launches new adverse event lookup tool (11 March 2026)",
         url: "https://www.fda.gov/news-events/press-announcements/fda-launches-new-adverse-event-look-tool",
       },
       {

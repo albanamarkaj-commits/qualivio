@@ -3,7 +3,7 @@ export const articles = [
     title: "FDA retires FAERS: what the transition to AEMS means for pharmacovigilance",
     category: "Pharmacovigilance",
     excerpt:
-      "On 11 March 2026, the FDA launched AEMS to replace seven legacy adverse event databases. What changed, what the E2B(R3) October deadline means for submissions, and where the field is heading.",
+      "On 11 March 2026, the FDA launched AEMS to replace six legacy adverse event databases. A look at what changed, what the E2B(R3) October deadline means for submissions, and where the field is heading.",
     readTime: "5 min read",
     slug: "fda-faers-aems-transition-2026",
   },
