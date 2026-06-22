@@ -305,7 +305,7 @@ export const articleContent: Record<string, ArticleBody> = {
 
   "fda-faers-aems-transition-2026": {
     intro:
-      "On 11 March 2026, the FDA officially retired FAERS, the FDA Adverse Event Reporting System, and replaced it with AEMS, the Adverse Event Monitoring System. The change attracted little attention outside the field. Within pharmacovigilance, regulatory affairs, and drug safety, it represents one of the most significant shifts in post-market surveillance infrastructure in over a decade.",
+      "On 11 March 2026, the FDA officially retired FAERS, the FDA Adverse Event Reporting System, and replaced it with AEMS, the Adverse Event Monitoring System. Within pharmacovigilance, regulatory affairs, and drug safety, it represents one of the most significant shifts in post-market surveillance infrastructure in over a decade.",
     sections: [
       {
         heading: "What was FAERS?",
