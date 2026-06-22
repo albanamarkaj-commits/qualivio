@@ -325,14 +325,14 @@ export const articleContent: Record<string, ArticleBody> = {
         heading: "What AEMS introduces",
         paragraphs: [
           "The Adverse Event Monitoring System is designed around several significant improvements over its predecessor. The most notable is near real-time data updates, which address one of the longest-standing criticisms of FAERS: the gap between when reports were received and when they became visible to the public and to researchers. AEMS is intended to close that gap substantially.",
-          "The new system also introduces centralised whistleblower reporting, a feature that recognises the importance of safety concerns raised by individuals within organisations and creates a more structured channel for capturing that information. Alongside this, AEMS includes modernised safety monitoring infrastructure and enhanced capabilities designed specifically for AI-enabled pharmacovigilance, reflecting the direction the field is moving.",
+          "The new system also introduces centralised whistleblower reporting, a feature that recognises the importance of safety concerns raised by individuals within organisations and creates a more structured channel for capturing that information. Alongside this, AEMS includes modernised safety monitoring infrastructure and enhanced capabilities designed specifically for AI-enabled pharmacovigilance. This reflects the direction the field is moving.",
         ],
       },
       {
         heading: "What this means for PV professionals",
         paragraphs: [
           "For pharmacovigilance professionals working in MAHs and CROs, the transition raises several practical questions. Processes that relied on FAERS data exports, particularly those built around the quarterly public release cadence, will need to be reviewed. Any automated workflows that pulled FAERS data for signal detection or competitive intelligence purposes may require reconfiguration to align with AEMS data formats and update schedules.",
-          "More broadly, the move to near real-time data has implications for how signal detection is approached. When safety data updates continuously rather than quarterly, the expectation around monitoring frequency and responsiveness may shift. Organisations should start reviewing whether their current signal detection processes are designed to take advantage of more timely data, or whether they were built around the slower cadence of the old system.",
+          "More broadly, the move to near real-time data has implications for how signal detection is approached. When safety data updates continuously rather than quarterly, the expectation around monitoring frequency and responsiveness may shift. Organisations should start reviewing whether their current signal detection processes are designed to take advantage of more timely data.",
         ],
       },
       {
