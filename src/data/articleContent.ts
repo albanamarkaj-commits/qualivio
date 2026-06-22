@@ -340,8 +340,9 @@ export const articleContent: Record<string, ArticleBody> = {
       {
         heading: "The E2B(R3) deadline: an action point for October 2026",
         paragraphs: [
-          "One concrete and specific implication of the AEMS transition is the E2B(R3) submission deadline. Submitters may continue to use E2B(R2) data standards during the implementation period through 30 September 2026. From 1 October 2026, all ICSRs submitted via the ESG NextGen must use E2B(R3) standards.",
-          "For MAHs and CROs submitting reports to the FDA, the E2B(R3) transition is the most urgent issue to consider. The deadline is 1 October 2026 and system validation often does not allow for last-minute preparation.",
+          "Until 30 September 2026, organisations submitting ICSRs to the FDA can continue using E2B(R2), the older data standard that most safety reporting systems have used for years. From 1 October 2026, that changes. The FDA will only accept submissions sent via ESG NextGen in E2B(R3) format. Any submission still using E2B(R2) after that date will not be accepted.",
+          "In practice, this means organisations need to confirm that their pharmacovigilance systems can generate and transmit reports in E2B(R3) format before the deadline. For many, this is not a simple configuration change. It may require a system upgrade, technical validation, and end-to-end testing with the FDA gateway. Some safety database vendors have already released E2B(R3)-compatible versions; others are still in the process of doing so.",
+          "For MAHs and CROs submitting reports to the FDA, the question to ask now is straightforward: can our current system produce a valid E2B(R3) file and transmit it successfully through ESG NextGen? If the answer is not a confident yes, that is where attention should be focused. The deadline is firm, and the validation process typically takes longer than expected.",
         ],
       },
       {
