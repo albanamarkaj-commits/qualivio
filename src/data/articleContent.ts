@@ -332,7 +332,7 @@ export const articleContent: Record<string, ArticleBody> = {
       {
         heading: "Real time data: what actually changes",
         paragraphs: [
-          "The most significant practical change for pharmacovigilance professionals is the move from quarterly data releases to real-time publication. Under FAERS, there was always a lag of weeks or months between a report being received and it becoming visible in the public database. AEMS is designed to publish reports as they are submitted, consistent with privacy obligations.",
+          "The most significant practical change for pharmacovigilance professionals is the move from quarterly data releases to real-time publication. Under FAERS, reports were always weeks or months behind the most current information held internally by the FDA. AEMS is designed to publish reports as they are submitted, consistent with privacy obligations.",
           "By the end of May 2026, AEMS was expected to contain real-time adverse event data for all FDA-regulated products. For signal detection processes that were built around the FAERS quarterly cadence, this shift has direct operational implications. Monitoring workflows, data pull frequencies, and internal review timelines may all need to be reviewed.",
           "It is important to note that in the short term, submission workflows and regulatory obligations remain unchanged. Pharmaceutical companies can continue using existing submission methods, including the Safety Reporting Portal. The pharmacovigilance data itself does not change in nature — it becomes more accessible and easier to query within an integrated environment.",
         ],
