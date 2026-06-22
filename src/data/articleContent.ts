@@ -336,7 +336,7 @@ export const articleContent: Record<string, ArticleBody> = {
         ],
       },
       {
-        heading: "The broader direction of travel",
+        heading: "The broader direction the field is heading",
         paragraphs: [
           "The FAERS to AEMS transition is part of a pattern. Across the major regulatory jurisdictions, there is a clear push toward more modern, data-driven pharmacovigilance infrastructure. EudraVigilance has been through significant updates in recent years. ICH E2B(R3) standardised the electronic transmission of ICSRs. IDMP implementation continues to progress. The common thread is a shift toward structured data, interoperability, and the ability to do more with safety information faster.",
           "AI-enabled pharmacovigilance, referenced explicitly in the AEMS announcement, is no longer a theoretical future state. Tools that use natural language processing to identify adverse events in unstructured text, algorithms that flag safety signals earlier than traditional statistical methods, and platforms that can integrate safety data across multiple sources are already in use in parts of the industry. The regulatory infrastructure is now being built to support and keep pace with those capabilities.",
