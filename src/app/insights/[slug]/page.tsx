@@ -105,7 +105,7 @@ export default async function ArticlePage({
               <ul className="space-y-2">
                 {content.sources.map((source, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-[#7C6AF7] text-sm mt-0.5">—</span>
+                    <span className="text-[#7C6AF7] text-sm mt-0.5">·</span>
                     <a
                       href={source.url}
                       target="_blank"

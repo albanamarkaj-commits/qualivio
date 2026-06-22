@@ -316,7 +316,7 @@ export const articleContent: Record<string, ArticleBody> = {
       {
         heading: "The legacy systems AEMS replaces",
         paragraphs: [
-          "Before AEMS, the FDA processed approximately 6 million adverse event reports per year across a patchwork of seven separate databases. These systems were expensive, had poor user interfaces, and made data difficult to search and access. Together they cost the agency approximately $37 million per year to operate.",
+          "Before AEMS, the FDA processed approximately 6 million adverse event reports per year across a patchwork of six separate databases. These systems were expensive, had poor user interfaces, and made data difficult to search and access. Together they cost the agency approximately $37 million per year to operate.",
           "The systems being replaced are: FAERS (drugs, biologics, cosmetics, and colour additives), VAERS (vaccines, jointly managed with the CDC), and AERS (animal drugs and animal food), which migrated to AEMS on 11 March 2026. MAUDE (medical devices), HFCS (human foods and dietary supplements), and CTPAE (tobacco products) were scheduled to follow by the end of May 2026.",
           "In Commissioner Marty Makary's words: \"The FDA's previous adverse event reporting systems were outdated and fragmented and made important data difficult to access. These clunky systems also wasted millions of taxpayer dollars and created blind spots in our postmarket surveillance of products ranging from drugs and vaccines to cosmetics.\"",
         ],
@@ -359,7 +359,7 @@ export const articleContent: Record<string, ArticleBody> = {
         url: "https://www.fda.gov/news-events/press-announcements/fda-launches-new-adverse-event-look-tool",
       },
       {
-        label: "FDA Adverse Event Monitoring System (AEMS) — overview page",
+        label: "FDA Adverse Event Monitoring System (AEMS), overview page",
         url: "https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems",
       },
       {
@@ -371,11 +371,11 @@ export const articleContent: Record<string, ArticleBody> = {
         url: "https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-public-dashboard",
       },
       {
-        label: "Early evaluation of FDA AEMS: an analysis of over 32 million pharmacovigilance reports — Cureus (2026)",
+        label: "Early evaluation of FDA AEMS: an analysis of over 32 million pharmacovigilance reports. Cureus (2026)",
         url: "https://www.cureus.com/articles/476442-early-evaluation-of-the-food-and-drug-administration-fda-adverse-event-monitoring-system-aems-an-analysis-of-over-32-million-pharmacovigilance-reports",
       },
       {
-        label: "New FDA adverse event platform: impact on safety data — SafetyDrugs (2026)",
+        label: "New FDA adverse event platform: impact on safety data. SafetyDrugs (2026)",
         url: "https://safetydrugs.it/en/new-fda-adverse-event-platform/",
       },
     ],
