@@ -98,6 +98,28 @@ export default async function ArticlePage({
             ))}
           </div>
 
+          {/* Sources */}
+          {content.sources && content.sources.length > 0 && (
+            <div className="mt-16 border-t border-[#E5E4F0] pt-10">
+              <p className="text-xs font-semibold uppercase tracking-widest text-[#9896B6] mb-5">Sources</p>
+              <ul className="space-y-2">
+                {content.sources.map((source, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-[#7C6AF7] text-sm mt-0.5">—</span>
+                    <a
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-[#6B6A8F] hover:text-[#7C6AF7] transition-colors leading-6"
+                    >
+                      {source.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* Footer CTA */}
           <div className="mt-16 rounded-2xl bg-[#F5F4FF] border border-[#E5E4F0] p-8 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#7C6AF7] mb-3">

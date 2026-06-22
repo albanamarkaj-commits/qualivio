@@ -3,9 +3,15 @@ export type ArticleSection = {
   paragraphs: string[];
 };
 
+export type ArticleSource = {
+  label: string;
+  url: string;
+};
+
 export type ArticleBody = {
   intro: string;
   sections: ArticleSection[];
+  sources?: ArticleSource[];
 };
 
 export const articleContent: Record<string, ArticleBody> = {
@@ -305,43 +311,72 @@ export const articleContent: Record<string, ArticleBody> = {
 
   "fda-faers-aems-transition-2026": {
     intro:
-      "On 11 March 2026, the FDA officially retired FAERS, the FDA Adverse Event Reporting System, and replaced it with AEMS, the Adverse Event Monitoring System. Within pharmacovigilance and regulatory affairs, it represents one of the most significant shifts in post-market surveillance infrastructure in over a decade.",
+      "On 11 March 2026, the FDA launched AEMS, the Adverse Event Monitoring System — a single unified platform to replace a fragmented collection of seven legacy adverse event databases. For pharmacovigilance professionals, the transition carries both immediate and longer-term implications worth understanding.",
     sections: [
       {
-        heading: "What was FAERS?",
+        heading: "The legacy systems AEMS replaces",
         paragraphs: [
-          "FAERS was the FDA's primary database for collecting and analysing adverse event reports associated with drugs and therapeutic biological products. Launched in 2012 as a replacement for its predecessor AERS, it became the backbone of post-market safety surveillance in the United States. At the time of its retirement, FAERS held over 32.8 million adverse event reports, submitted by healthcare professionals, patients, and pharmaceutical companies from across the world.",
-          "The database was publicly accessible through a dashboard and quarterly data releases, making it one of the most widely used pharmacovigilance data sources globally. Regulators, pharmaceutical companies, academic researchers, and independent safety scientists all relied on it for signal detection, post-marketing surveillance, and benefit-risk assessments. Its data underpinned regulatory decisions, informed labelling updates, and supported research into the real-world safety of authorised medicines.",
+          "Before AEMS, the FDA processed approximately 6 million adverse event reports per year across a patchwork of seven separate databases. These systems were expensive, had poor user interfaces, and made data difficult to search and access. Together they cost the agency approximately $37 million per year to operate.",
+          "The systems being replaced are: FAERS (drugs, biologics, cosmetics, and colour additives), VAERS (vaccines, co-managed with the CDC), and AERS (animal drugs and animal food), which migrated to AEMS on 11 March 2026. MAUDE (medical devices), HFCS (human foods and dietary supplements), and CTPAE (tobacco products) were scheduled to follow by the end of May 2026.",
+          "In Commissioner Marty Makary's words: \"The FDA's previous adverse event reporting systems were outdated and fragmented and made important data difficult to access. These clunky systems also wasted millions of taxpayer dollars and created blind spots in our postmarket surveillance of products ranging from drugs and vaccines to cosmetics.\"",
         ],
       },
       {
-        heading: "Why did the FDA retire it?",
+        heading: "What AEMS is",
         paragraphs: [
-          "FAERS served the industry well for over a decade, but it was built on infrastructure that reflected the technology landscape of the early 2010s. As reporting volumes grew and expectations around data timeliness, accessibility, and analytical capability increased, the limitations of the system became harder to work around. Quarterly data releases, for example, meant that the public database was always weeks or months behind the most current information held internally by the FDA.",
-          "The broader shift toward real-time surveillance, AI-assisted pharmacovigilance, and integrated safety monitoring created an expectation that regulatory databases should be able to keep pace with modern data environments. FAERS was not designed with those capabilities in mind. The transition to AEMS reflects a deliberate decision by the FDA to invest in infrastructure that can support the next generation of drug safety science, rather than continuing to patch a system with structural constraints.",
+          "AEMS is a single, unified platform for collecting, monitoring, and analysing adverse event reports across all FDA-regulated product categories. It is broader in scope than FAERS, which covered only drugs and biologics. AEMS brings together adverse events related to medicines, vaccines, medical devices, food, cosmetics, tobacco, and animal products into one searchable dashboard.",
+          "Beyond adverse event reporting, AEMS also serves as a centralised platform for managing consumer complaints, regulatory misconduct reports, and whistleblower submissions across all FDA centres. The public dashboard is designed to allow anyone — patients, researchers, healthcare professionals — to query safety data directly, without needing to file a FOIA request.",
+          "Chief AI Officer Jeremy Walsh described the launch as \"the biggest technical transformation in agency history.\" The FDA expects to save approximately $120 million over the next five years as a result of the consolidation.",
         ],
       },
       {
-        heading: "What AEMS introduces",
+        heading: "Real-time data: what actually changes",
         paragraphs: [
-          "The Adverse Event Monitoring System is designed around several significant improvements over its predecessor. The most notable is near real-time data updates, which address one of the longest-standing criticisms of FAERS: the gap between when reports were received and when they became visible to the public and to researchers. AEMS is intended to close that gap substantially.",
-          "The new system also introduces centralised whistleblower reporting, a feature that recognises the importance of safety concerns raised by individuals within organisations and creates a more structured channel for capturing that information. Alongside this, AEMS includes modernised safety monitoring infrastructure and enhanced capabilities designed specifically for AI-enabled pharmacovigilance. This reflects the direction the field is moving.",
+          "The most significant practical change for pharmacovigilance professionals is the move from quarterly data releases to real-time publication. Under FAERS, there was always a lag of weeks or months between a report being received and it becoming visible in the public database. AEMS is designed to publish reports as they are submitted, consistent with privacy obligations.",
+          "By the end of May 2026, AEMS was expected to contain real-time adverse event data for all FDA-regulated products. For signal detection processes that were built around the FAERS quarterly cadence, this shift has direct operational implications. Monitoring workflows, data pull frequencies, and internal review timelines may all need to be reviewed.",
+          "It is important to note that in the short term, submission workflows and regulatory obligations remain unchanged. Pharmaceutical companies can continue using existing submission methods, including the Safety Reporting Portal. The pharmacovigilance data itself does not change in nature — it becomes more accessible and easier to query within an integrated environment.",
         ],
       },
       {
-        heading: "What this means for PV professionals",
+        heading: "The E2B(R3) deadline: an action point for October 2026",
         paragraphs: [
-          "For pharmacovigilance professionals working in MAHs and CROs, the transition raises several practical questions. Processes that relied on FAERS data exports, particularly those built around the quarterly public release cadence, will need to be reviewed. Any automated workflows that pulled FAERS data for signal detection or competitive intelligence purposes may require reconfiguration to align with AEMS data formats and update schedules.",
-          "More broadly, the move to near real-time data has implications for how signal detection is approached. When safety data updates continuously rather than quarterly, the expectation around monitoring frequency and responsiveness may shift. Organisations should start reviewing whether their current signal detection processes are designed to take advantage of more timely data.",
+          "One concrete and time-bound implication of the AEMS transition is the E2B(R3) submission deadline. Submitters may continue to use E2B(R2) data standards during the implementation period through 30 September 2026. From 1 October 2026, all ICSRs submitted via the ESG NextGen must use E2B(R3) standards.",
+          "For MAHs and CROs submitting adverse event reports to the FDA, this is the most actionable item to plan for now. Organisations that have not yet validated their systems against E2B(R3) should begin that process without delay, as the deadline is firm and the lead time required for system validation and testing is significant.",
         ],
       },
       {
         heading: "The broader direction the field is heading",
         paragraphs: [
-          "The FAERS to AEMS transition is part of a pattern. Across the major regulatory jurisdictions, there is a clear push toward more modern, data-driven pharmacovigilance infrastructure. EudraVigilance has been through significant updates in recent years. ICH E2B(R3) standardised the electronic transmission of ICSRs. IDMP implementation continues to progress. The common thread is a shift toward structured data, interoperability, and the ability to do more with safety information faster.",
-          "AI-enabled pharmacovigilance, referenced explicitly in the AEMS announcement, is no longer a theoretical future state. Tools that use natural language processing to identify adverse events in unstructured text, algorithms that flag safety signals earlier than traditional statistical methods, and platforms that can integrate safety data across multiple sources are already in use in parts of the industry. The regulatory infrastructure is now being built to support and keep pace with those capabilities.",
-          "For professionals in pharmacovigilance, regulatory affairs, and drug safety, the question is not whether to engage with these changes. It is how quickly and how well organisations can adapt their processes, their people, and their systems to operate effectively in an environment that will continue to evolve.",
+          "The AEMS transition is part of a wider pattern across major regulatory jurisdictions. EudraVigilance has been through significant updates in recent years. ICH E2B(R3) is now being enforced as the global standard for ICSR transmission. IDMP implementation continues to progress across the EU. The common thread is a shift toward structured data, interoperability, and the ability to do more with safety information faster.",
+          "AI-enabled pharmacovigilance, referenced explicitly in the AEMS launch, is no longer a future aspiration. Tools that use natural language processing to identify adverse events in unstructured text, algorithms that detect safety signals earlier than traditional statistical methods, and platforms that integrate safety data across multiple sources are already in use across the industry. Regulatory infrastructure is now being built to support and keep pace with those capabilities.",
+          "For professionals working in pharmacovigilance and regulatory affairs, the question is not whether to engage with these changes. It is how quickly organisations can adapt their processes, their systems, and their people to operate effectively in an environment that will continue to evolve.",
         ],
+      },
+    ],
+    sources: [
+      {
+        label: "FDA press announcement: FDA launches new adverse event look-up tool (11 March 2026)",
+        url: "https://www.fda.gov/news-events/press-announcements/fda-launches-new-adverse-event-look-tool",
+      },
+      {
+        label: "FDA Adverse Event Monitoring System (AEMS) — overview page",
+        url: "https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems",
+      },
+      {
+        label: "FDA AEMS electronic submissions and E2B(R3) standards",
+        url: "https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-electronic-submissions",
+      },
+      {
+        label: "FDA AEMS public dashboard",
+        url: "https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-public-dashboard",
+      },
+      {
+        label: "Early evaluation of FDA AEMS: an analysis of over 32 million pharmacovigilance reports — Cureus (2026)",
+        url: "https://www.cureus.com/articles/476442-early-evaluation-of-the-food-and-drug-administration-fda-adverse-event-monitoring-system-aems-an-analysis-of-over-32-million-pharmacovigilance-reports",
+      },
+      {
+        label: "New FDA adverse event platform: impact on safety data — SafetyDrugs (2026)",
+        url: "https://safetydrugs.it/en/new-fda-adverse-event-platform/",
       },
     ],
   },
