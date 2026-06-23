@@ -1,6 +1,15 @@
+export type ArticleTable = {
+  headers: string[];
+  rows: string[][];
+};
+
 export type ArticleSection = {
   heading: string;
   paragraphs: string[];
+  quote?: { text: string; attribution: string };
+  postQuoteParagraphs?: string[];
+  table?: ArticleTable;
+  closing?: string[];
 };
 
 export type ArticleSource = {
@@ -9,56 +18,104 @@ export type ArticleSource = {
 };
 
 export type ArticleBody = {
-  intro: string;
+  intro: string | string[];
   sections: ArticleSection[];
   sources?: ArticleSource[];
 };
 
 export const articleContent: Record<string, ArticleBody> = {
   "human-error-root-cause-analysis": {
-    intro:
-      "Part of the problem with having human error as a root cause is that there is little you can do with your conclusion. To err is human, and if that is the end of the investigation, nothing changes. People make errors for a reason, and understanding why an error occurred leads to a more productive path: actions that can actually prevent recurrence. When a critical document is omitted from a regulatory submission, the investigation should not end with a note about oversight. It should reach the document management process, the approval workflow, and the automated checks that should have caught the gap. When a serious adverse event is missed or reported late, the question is not who failed to report it but why the system allowed the failure to go undetected. Every incident is an opportunity to strengthen processes, improve technology, and better protect patient safety. Mistakes and errors are not root causes to be fixed in isolation. They are causal factors: failures that directly lead to an incident or that fail to mitigate the consequences of an original error. Cognitive error models developed by Jens Rasmussen and Dr. James Reason provide the framework for understanding why those failures occur.",
+    intro: [
+      "Part of the problem with having 'human error' as a root cause is that there isn't much you can do with your conclusion. What you are doing with assigning human error as a root cause is saying we did not investigate deeply enough, and therefore exposing the company to a regulatory finding. To err is human after all, so let's move on to something else. But people make errors for a reason, and trying to understand why they made the error can lead us down a much more fruitful path to actions we can implement to try to prevent recurrence.",
+      "If a critical document is omitted from a regulatory submission, we do not simply attribute the oversight to human error. We review the document management process, approval workflows, and automated checks to identify systemic improvements that make such omissions less likely. When a serious adverse event is missed or reported late, we should go beyond attributing it to 'human error' and investigate why the error occurred. As pharmacovigilance systems become increasingly data-driven and automated, every incident is an opportunity to strengthen processes, improve technology, and better protect patient safety.",
+      "If you investigate deviations, learning about skill, rule, and knowledge models (developed by Jens Rasmussen and Dr. James Reason) helps to understand the different levels of conscious effort workers must apply to industrial tasks, and how this affects decision-making.",
+      "Mistakes and errors people make are not root causes (that you fix) but are probably causal factors. Causal factors are mistakes, errors, or failures that directly lead to (or cause) an incident, or fail to mitigate the consequences of the original error. Today, we'll learn about research findings that changed our thinking about how people make mistakes and errors. This knowledge changes the way we view 'human error' in the workplace because we often think of mistakes as character flaws, but these research models reveal that workers will make mistakes due to normal thought processes.",
+    ],
     sections: [
       {
-        heading: "Skills, Rules, Knowledge: three levels of cognitive effort",
+        heading: "Skills, Rules, Knowledge (SRK) Model",
         paragraphs: [
-          "Jens Rasmussen was a human factors expert who developed the Skills, Rules, Knowledge framework to describe how people process information and make decisions when operating complex systems. The framework identifies three distinct levels of cognitive activity, each requiring a different degree of mental effort. Understanding which level a worker is operating at when an error occurs is essential to identifying the right corrective action.",
-          "At the skill-based level, tasks are performed automatically, with minimal conscious thought. A quality control analyst who has reviewed hundreds of batch records navigates the document structure and signature fields without deliberate attention to each step. At the rule-based level, some conscious decision-making is required. A pharmacovigilance associate follows a documented procedure for deviation classification, applying a set of criteria to each case. At the knowledge-based level, the worker faces a situation for which no familiar pattern or rule applies and must reason through the problem from first principles. A clinical trial coordinator managing a mid-study protocol amendment that conflicts with an existing regulatory commitment has no SOP to consult and must construct a response from available knowledge. Each level carries a different risk profile for error, and each requires a different type of corrective intervention.",
+          "Jens Rasmussen was a human factors expert who developed the Skills, Rules, Knowledge (SRK) framework. The framework helps designers determine how information should be displayed best for workers to understand and operate systems, considering things like the worker's attention, reaction time, memory, and hand-eye coordination.",
+          "The framework describes three levels of cognitive activity people experience when making decisions and solving problems while working. Following are the three levels.",
+          "Skill-based level: This level requires minimal mental resources. When you are very familiar with a task or situation, you do something automatically, with little conscious thought about doing it. Skills can be physical or cognitive. For example, a quality control analyst who has reviewed hundreds of batch records will navigate the document structure and signature fields automatically, without consciously thinking through each step.",
+          "Rule-based level: This level requires some conscious decision-making for task performance and therefore requires some mental resources. You make decisions based on rules. The rules may be taught or communicated (for example, an SOP for deviation classification) or people may create their own rules from experience. For example, a pharmacovigilance associate may know the company process requires manager sign-off for expedited reports, but if the manager is always available on chat, she starts submitting for approval informally without following the official workflow. She has created her own rule.",
+          "Knowledge-based level: If you are facing a unique and unfamiliar situation, you would make decisions at this level. Since the decision is not automatic and reflexive (skill-based), and you do not have any rules to guide you (rule-based), you expend more mental energy and time making a knowledge-based decision. You must think through the facts and possible consequences and create a plan based on your knowledge and experience. For example, a clinical trial coordinator encountering a protocol amendment mid-study that conflicts with an existing regulatory commitment must reason through the regulatory, ethical, and operational implications without a specific procedure to follow.",
+          "Although Rasmussen was an electrical engineer, his work was groundbreaking in cognitive psychology. He introduced the idea that blaming a worker for a mistake was not useful because humans make errors due to cognitive processes they are unaware of and not always because of factors they can control.",
         ],
       },
       {
-        heading: "Generic Error-Modelling System: when cognitive load leads to failure",
+        heading: "Generic Error-Modelling System (GEMS)",
         paragraphs: [
-          "When the demands of a job exceed a worker's cognitive capacity, the ability to process critical information, react to it, and make good decisions is compromised. Dr. James Reason, a professor of psychology at the University of Manchester, built on Rasmussen's framework to develop the Generic Error-Modelling System, which maps cognitive load directly onto four distinct error types: slips, lapses, rule-based mistakes, and knowledge-based mistakes. Reason's model has been applied to understand errors in high-risk environments including aviation, surgery, and nuclear operations. The same principles apply directly to GMP manufacturing, pharmacovigilance processing, and clinical trial conduct.",
-          "Reason's central argument was that blaming a worker for a mistake is not analytically useful because errors arise from cognitive processes the worker is unaware of and cannot reliably control. A pharmacovigilance specialist processing large volumes of individual case safety reports may automatically select the wrong seriousness classification on a case that clearly meets serious criteria, not because of carelessness but because the habitual action bypasses conscious review. A manufacturing scientist may apply a calculation method that has always worked for previous formulations to a new excipient combination for which it is inappropriate, not because of insufficient expertise but because the familiar rule was applied without triggering a knowledge-based check. The system that placed those workers in that situation, without adequate safeguards, is where the investigation must go.",
+          "When the demands of a job exceed a worker's cognitive capacity, the ability to process critical information, react to it, and make good decisions is compromised. This increases the chances of human error.",
+          "GEMS, developed by Dr. James Reason, is based heavily on Rasmussen's framework described above. Reason was a professor of psychology in the UK. GEMS takes Rasmussen's model toward the cognitive factors leading to human error.",
+          "Reason's model has been applied to understand human errors in high-risk, high-consequence situations such as pilots operating aircraft, doctors performing surgeries, and operators working in nuclear control rooms. In Life Sciences, the same principles apply directly to GMP manufacturing, pharmacovigilance processing, and clinical trial conduct.",
+          "Reason's model has four basic error types: slips and lapses (skill-based), rule-based and knowledge-based. Let's examine how bad decisions can result from cognitive processes in a Life Sciences context.",
+          "Skill-based slips and lapses: Slips are when someone does something that is not what they intended to do; lapses are memory failures. For example, a pharmacovigilance specialist who processes large volumes of individual case safety reports (ICSRs) daily may automatically select 'non-serious' on a case that clearly meets seriousness criteria, simply because the action is so habitual that it bypasses conscious review. This is also called an 'action error.' The specialist relied on muscle memory built from repetition, rather than consciously evaluating that specific case.",
+          "Rule-based mistakes: These mistakes involve judgment and decision-making. For example, a clinical trial coordinator always schedules follow-up visits within a 3-day window as required by the protocol. When a bank holiday falls within the scheduled window, she books the visit as usual without adjusting for the calendar constraint. She applied the rule correctly but failed to account for a situational variable that changed what the rule required. This is not an action error but a thinking error, because some conscious decision-making was involved.",
+          "Knowledge-based mistakes: This is a mistake that involves higher-level judgment and decision-making. For example, a regulatory affairs associate is preparing a submission for a new market where the team has no prior experience. There is no specific guidance document available, and the associate applies assumptions based on another region's requirements. The submission is rejected because the format and content expectations differ significantly. The associate developed a plan for an unfamiliar situation with no rules to follow, but the plan did not work out.",
+          "If we think of how we can support skill- and rule-based behaviors in familiar tasks, more of a worker's cognitive resources may be devoted to knowledge-based behaviors. This is important for managing unanticipated events and mitigating mistakes.",
         ],
       },
       {
-        heading: "Action errors: slips and lapses in regulated environments",
+        heading: "Error Types and Corrective Actions",
         paragraphs: [
-          "Slips are errors where someone does something other than what they intended. Lapses are failures of memory. Both are skill-based errors and they are among the most common error types in high-volume, routine processing environments. A QC analyst who selects the wrong test method code in a LIMS system when entering stability results is experiencing a slip: the interface lists similar codes adjacently, and the habitual selection behaviour produces the wrong outcome. A GMP operator who forgets to record a temperature excursion during a busy changeover between production batches has experienced a lapse: the task was not executed because the intention was not held in memory long enough.",
-          "Corrective actions for action errors should focus on reducing the cognitive burden of the task and introducing system-level controls that catch errors before they propagate. Field-level validation and confirmation prompts in LIMS or eDC systems address slips by requiring the worker to confirm an unusual or potentially incorrect selection. Automated continuous monitoring systems with alerts, combined with mandatory sign-off steps in batch records, address lapses by removing reliance on memory entirely. The principle underlying both approaches is the same: if the system makes the correct action easier than the incorrect one, the error rate falls regardless of individual effort or attention.",
+          "By getting beyond human error and considering different error types, we can start to think of what actions we can implement to try to stop the errors occurring. These are called corrective actions. Ideally, we want processes and systems to be easy and intuitive and the people to be well trained. When people are well trained but the process or system is complex, there are likely to be errors from time to time.",
+        ],
+        quote: {
+          text: "A bad system will beat a good person every time.",
+          attribution: "W. Edwards Deming",
+        },
+        postQuoteParagraphs: [
+          "Below are examples of each of the error types and example corrective actions relevant to Life Sciences environments.",
+        ],
+        table: {
+          headers: ["Error Type", "Life Sciences Example", "Example Corrective Action"],
+          rows: [
+            [
+              "Action errors (slips)",
+              "A QC analyst selects the wrong test method code in the LIMS system when entering results for a routine stability sample, because the interface lists similar codes adjacently.",
+              "Implement field-level validation and a confirmation prompt when test method codes with similar naming are selected.",
+            ],
+            [
+              "Action errors (lapses)",
+              "A GMP operator forgets to record a temperature excursion for investigational product cold storage during a busy changeover between production batches.",
+              "Introduce an automated continuous temperature monitoring system with alerts and a batch record checklist requiring sign-off before release.",
+            ],
+            [
+              "Thinking errors (rule based)",
+              "A PV associate applies a 15-day reporting timeline to a fatal SAE that required 7-day expedited reporting, because she applied the standard rule without checking seriousness criteria first.",
+              "Embed a system-guided triage decision tree that enforces timeline selection based on seriousness and expectedness answers before a case can be submitted.",
+            ],
+            [
+              "Thinking errors (knowledge based)",
+              "A manufacturing scientist incorrectly calculates a yield adjustment for a new formulation, having never worked with that excipient combination before and lacking specific training on the calculation method.",
+              "Require documented training and competency assessment before authorising staff to perform the calculation. Restrict access in the system to only qualified personnel.",
+            ],
+            [
+              "Non-compliance (routine, situational and exceptional)",
+              "A clinical trial coordinator skips the required dual verification of informed consent documentation at a busy site during a high-enrolment period, judging the check as low-risk under time pressure.",
+              "Make the dual sign-off mandatory and system-enforced in the eTMF or CTMS so the step cannot be bypassed. Conduct regular compliance monitoring with feedback to site staff.",
+            ],
+          ],
+        },
+        closing: [
+          "These are examples and you should be able to think of additional possible corrective actions. But then which ones would you actually implement? You want the most effective and efficient ones of course. You want your actions to be focused on the root cause, or the chain of cause and effect that leads to the problem.",
         ],
       },
       {
-        heading: "Thinking errors: rule-based and knowledge-based mistakes",
+        heading: "Effectiveness of Corrective Actions",
         paragraphs: [
-          "Rule-based mistakes occur when a worker applies a known rule incorrectly or applies the right rule in the wrong situation. These are thinking errors rather than action errors because some conscious decision-making is involved. A pharmacovigilance associate who applies a 15-day reporting timeline to a fatal serious adverse event that required 7-day expedited reporting has made a rule-based mistake. She used the rule she knew, but applied it without first working through the seriousness and expectedness assessment that determines which rule governs. A clinical trial coordinator who books a follow-up visit within the usual 3-day protocol window, without accounting for a bank holiday that falls within the window, has made the same class of error: the rule was applied correctly in form but incorrectly in context.",
-          "Knowledge-based mistakes occur when a worker faces a genuinely novel situation and constructs a response from available knowledge without a rule to guide them. A regulatory affairs associate preparing a submission for a market where the team has no prior experience, and who applies assumptions drawn from another region's requirements, has made a knowledge-based mistake. There was no procedure to follow, and the plan developed from existing knowledge did not account for the differences in format and content expectations. Corrective actions for thinking errors must address the decision point itself. A system-guided triage decision tree that enforces timeline selection based on seriousness and expectedness answers before a case can be submitted removes the opportunity for a rule-based mistake in expedited reporting. Documented training with competency assessment, restricted system access for personnel who have not been assessed as qualified, and access to reference materials at the point of decision all reduce the risk of knowledge-based errors.",
+          "The most effective actions are those that eliminate the problem completely. In a clinical data context, for example, automating the calculation of derived variables such as change from baseline or dose per kilogram removes the opportunity for calculation error entirely. If it cannot go wrong, it will not go wrong. This is the principle of mistake-proofing, sometimes called poka-yoke, and it is the gold standard for corrective action design.",
+          "The next most effective actions are those that help people to get it right. Structured data entry screens with controlled vocabularies, MedDRA autocomplete for adverse event coding, or pre-populated fields from validated reference data all reduce the cognitive burden on the user. Although instructions and guidance documents also belong in this category, they do have their limitations, as I will discuss in a future post.",
         ],
-      },
-      {
-        heading: "Matching corrective actions to error types",
-        paragraphs: [
-          "Getting beyond human error and identifying the specific error type makes it possible to select corrective actions that address the mechanism of the failure. Ideally, processes and systems should be easy, intuitive, and designed so that the correct action is also the easiest one. When people are well trained but the process or system is complex, errors will occur. As W. Edwards Deming observed, a bad system will beat a good person every time. The goal of corrective action design is to change the system.",
-          "Non-compliance, whether routine, situational, or exceptional, occupies a distinct category from cognitive errors. A clinical trial coordinator who skips the required dual verification of informed consent documentation during a high-enrolment period is making a deliberate choice under time pressure, not an inadvertent cognitive failure. The corrective response for non-compliance is different from the response to a slip or a rule-based mistake. Making the dual sign-off mandatory and system-enforced in the eTMF or CTMS removes the opportunity to bypass it. Regular compliance monitoring with feedback to site staff addresses the situational factors that create the pressure to cut steps. Consequences for non-compliance, applied consistently, address the exceptional cases where the shortcut is taken knowingly.",
-        ],
-      },
-      {
-        heading: "Designing corrective actions that actually work",
-        paragraphs: [
-          "The most effective corrective actions are those that eliminate the possibility of error entirely. In a clinical data context, automating the calculation of derived variables such as change from baseline, dose per kilogram, or creatinine clearance removes the opportunity for calculation error regardless of the operator's workload or attention. If the system cannot produce an incorrect result, the error type ceases to exist. This is the principle of mistake-proofing, sometimes called poka-yoke, and it represents the highest level of corrective action design. Automated calculation of BMI from entered height and weight values, rather than expecting staff to calculate it manually and enter the result, is a straightforward application of the same principle in a clinical trial setting.",
-          "The next most effective actions are those that help the worker get it right: structured data entry screens with controlled vocabularies, MedDRA autocomplete for adverse event coding, decision trees that enforce the correct pathway, and pre-populated fields from validated reference data. These reduce cognitive burden without removing human involvement entirely. The least effective actions are those that rely on a check at the end of the process to catch errors that have already been made. A pharmacist verifying a dispensing record before issuing investigational medicinal product is a necessary control, but it is the last line of defence, not the primary one. End-process checks should be present, but they should not be the main barrier between an error and its consequences. Corrective actions closest to the source of the error, and designed into the system rather than relying on individual vigilance, are the ones that consistently reduce recurrence.",
+        quote: {
+          text: "No-one goes to work to do a bad job!",
+          attribution: "W. Edwards Deming",
+        },
+        closing: [
+          "The least effective actions are ones that rely on a check catching an error right at the end of the process. For example, a pharmacist verifying a dispensing record before issuing investigational medicinal product. That is not to say these checks should not be there, but rather they should be thought of as the last line of defence, not the primary control.",
+          "Ideally, you also want some sort of check to make sure the revised process is working. This check is an early signal as to whether your actions are effective at fixing the problem.",
+          "The next time a deviation report concludes with 'human error', ask one more question: why did that error occur? The answer is where the real corrective action begins.",
         ],
       },
     ],

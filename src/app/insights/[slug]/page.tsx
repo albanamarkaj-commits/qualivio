@@ -73,20 +73,25 @@ export default async function ArticlePage({
       <article className="bg-white px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-3xl">
           {/* Intro */}
-          <p className="text-lg leading-9 text-[#3D3C5A] mb-12 border-l-4 border-[#7C6AF7] pl-6">
-            {content.intro}
-          </p>
+          <div className="text-lg leading-9 text-[#3D3C5A] mb-12 border-l-4 border-[#7C6AF7] pl-6 space-y-5">
+            {Array.isArray(content.intro)
+              ? content.intro.map((p, i) => <p key={i}>{p}</p>)
+              : <p>{content.intro}</p>}
+          </div>
 
           {/* Sections */}
           <div className="space-y-12">
             {content.sections.map((section, i) => (
               <div key={i}>
-                <h2
-                  className="text-2xl font-bold text-[#0D0D0F] mb-5"
-                  style={{ fontFamily: "var(--font-dm-sans)" }}
-                >
-                  {section.heading}
-                </h2>
+                {section.heading && (
+                  <h2
+                    className="text-2xl font-bold text-[#0D0D0F] mb-5"
+                    style={{ fontFamily: "var(--font-space-grotesk)" }}
+                  >
+                    {section.heading}
+                  </h2>
+                )}
+                {/* Main paragraphs */}
                 <div className="space-y-4">
                   {section.paragraphs.map((p, j) => (
                     <p key={j} className="text-base leading-8 text-[#4A4868]">
@@ -94,6 +99,73 @@ export default async function ArticlePage({
                     </p>
                   ))}
                 </div>
+                {/* Block quote */}
+                {section.quote && (
+                  <blockquote className="my-8 rounded-xl bg-[#F5F4FF] border-l-4 border-[#7C6AF7] px-6 py-5">
+                    <p className="text-lg italic text-[#3D3C5A] leading-8">
+                      &ldquo;{section.quote.text}&rdquo;
+                    </p>
+                    <footer className="mt-3 text-sm font-semibold text-[#7C6AF7]">
+                      {section.quote.attribution}
+                    </footer>
+                  </blockquote>
+                )}
+                {/* Paragraphs between quote and table */}
+                {section.postQuoteParagraphs && section.postQuoteParagraphs.length > 0 && (
+                  <div className="space-y-4 mt-4">
+                    {section.postQuoteParagraphs.map((p, j) => (
+                      <p key={j} className="text-base leading-8 text-[#4A4868]">
+                        {p}
+                      </p>
+                    ))}
+                  </div>
+                )}
+                {/* Table */}
+                {section.table && (
+                  <div className="my-6 overflow-x-auto rounded-xl border border-[#E5E4F0]">
+                    <table className="w-full border-collapse text-sm">
+                      <thead>
+                        <tr className="bg-[#0D0D0F]">
+                          {section.table.headers.map((h, j) => (
+                            <th
+                              key={j}
+                              className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-white"
+                            >
+                              {h}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {section.table.rows.map((row, j) => (
+                          <tr
+                            key={j}
+                            className={j % 2 === 0 ? "bg-white" : "bg-[#F9F8FF]"}
+                          >
+                            {row.map((cell, k) => (
+                              <td
+                                key={k}
+                                className={`px-4 py-3 text-[#4A4868] border-b border-[#E5E4F0] align-top leading-6 ${k === 0 ? "font-medium text-[#0D0D0F]" : ""}`}
+                              >
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+                {/* Closing paragraphs */}
+                {section.closing && section.closing.length > 0 && (
+                  <div className="space-y-4 mt-4">
+                    {section.closing.map((p, j) => (
+                      <p key={j} className={`text-base leading-8 ${j === section.closing!.length - 1 && i === (content.sections.length - 1) ? "font-medium text-[#0D0D0F]" : "text-[#4A4868]"}`}>
+                        {p}
+                      </p>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>

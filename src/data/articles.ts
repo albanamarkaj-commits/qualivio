@@ -1,6 +1,6 @@
 export const articles = [
   {
-    title: "To err is human but human error is not a root cause",
+    title: "To Err is Human But Human Error is Not a Root Cause",
     category: "Quality Assurance",
     excerpt:
       "Attributing an incident to human error is the start of an investigation, not the conclusion. A look at cognitive error models and how they guide more effective corrective actions in regulated environments.",
