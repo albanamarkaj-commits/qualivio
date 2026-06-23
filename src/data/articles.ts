@@ -1,5 +1,13 @@
 export const articles = [
   {
+    title: "To err is human but human error is not a root cause",
+    category: "Quality Assurance",
+    excerpt:
+      "Attributing an incident to human error is the start of an investigation, not the conclusion. A look at cognitive error models and how they guide more effective corrective actions in regulated environments.",
+    readTime: "6 min read",
+    slug: "human-error-root-cause-analysis",
+  },
+  {
     title: "FDA retires FAERS: what the transition to AEMS means for pharmacovigilance",
     category: "Pharmacovigilance",
     excerpt:
