@@ -10,10 +10,7 @@ export function ResourceCard({ resource }: { resource: Resource }) {
 
   return (
     <Card>
-      <div className="-mx-6 -mt-6 mb-5">
-        <ResourceIllustration id={resource.id} />
-      </div>
-      <div className="flex items-start justify-between gap-4">
+<div className="flex items-start justify-between gap-4">
         <div>
           <span className="inline-block rounded-full bg-[#7C6AF7]/10 px-3 py-1 text-xs font-semibold text-[#7C6AF7]">
             {resource.type}
