@@ -26,6 +26,20 @@ export type ArticleBody = {
 export const articleContent: Record<string, ArticleBody> = {
   "human-error-root-cause-analysis": {
     intro: "Part of the problem with having 'human error' as a root cause is that there is not much you can do with your conclusion. To err is human after all, so let's move on to something else. But people make errors for a reason. And trying to understand why they made the error can lead us down a much more fruitful path toward actions we can implement to prevent recurrence.",
+    sources: [
+      {
+        label: "Rasmussen, J. (1983). Skills, rules, and knowledge; signals, signs, and symbols, and other distinctions in human performance models. IEEE Transactions on Systems, Man, and Cybernetics, 13(3), 257–266.",
+        url: "https://doi.org/10.1109/TSMC.1983.6313160",
+      },
+      {
+        label: "Reason, J. (1990). Human Error. Cambridge University Press.",
+        url: "https://scholar.google.com/scholar?q=Human+Error+James+Reason+1990+Cambridge+University+Press",
+      },
+      {
+        label: "The W. Edwards Deming Institute — principles and quotes.",
+        url: "https://deming.org",
+      },
+    ],
     sections: [
       {
         heading: "Skills, Rules, Knowledge (SRK) Model",
