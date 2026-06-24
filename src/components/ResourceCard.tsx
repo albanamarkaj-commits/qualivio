@@ -1,7 +1,6 @@
 ﻿import Link from "next/link";
 import { Card } from "./Card";
 import { ResourceDownloadCTA } from "./ResourceDownloadCTA";
-import { ResourceIllustration } from "./CardIllustration";
 import type { Resource } from "@/data/resources";
 
 export function ResourceCard({ resource }: { resource: Resource }) {

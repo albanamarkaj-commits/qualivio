@@ -1,7 +1,5 @@
 ﻿import Link from "next/link";
 import { Card } from "./Card";
-import { ArticleIllustration } from "./CardIllustration";
-
 export function ArticleCard({
   article,
 }: {
@@ -15,10 +13,7 @@ export function ArticleCard({
 }) {
   return (
     <Card>
-      <div className="-mx-6 -mt-6 mb-5">
-        <ArticleIllustration slug={article.slug} />
-      </div>
-      <p className="text-xs font-semibold uppercase tracking-widest text-[#4ECDC4]">
+<p className="text-xs font-semibold uppercase tracking-widest text-[#4ECDC4]">
         {article.category}
       </p>
       <h3
