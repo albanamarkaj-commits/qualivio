@@ -25,7 +25,7 @@ export type ArticleBody = {
 
 export const articleContent: Record<string, ArticleBody> = {
   "human-error-root-cause-analysis": {
-    intro: "Part of the problem with having 'human error' as a root cause is that there is not much you can do with your conclusion. To err is human after all, so let's move on to something else. But people make errors for a reason, and trying to understand why they made the error can lead us down a much more fruitful path to actions we can implement to try to prevent recurrence.",
+    intro: "Part of the problem with having 'human error' as a root cause is that there is not much you can do with your conclusion. To err is human after all, so let's move on to something else. But people make errors for a reason. And trying to understand why they made the error can lead us down a much more fruitful path toward actions we can implement to prevent recurrence.",
     sections: [
       {
         heading: "Skills, Rules, Knowledge (SRK) Model",
