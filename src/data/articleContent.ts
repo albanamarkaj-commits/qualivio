@@ -25,12 +25,7 @@ export type ArticleBody = {
 
 export const articleContent: Record<string, ArticleBody> = {
   "human-error-root-cause-analysis": {
-    intro: [
-      "Part of the problem with having 'human error' as a root cause is that there isn't much you can do with your conclusion. What you are doing with assigning human error as a root cause is saying we did not investigate deeply enough, and therefore exposing the company to a regulatory finding. To err is human after all, so let's move on to something else. But people make errors for a reason, and trying to understand why they made the error can lead us down a much more fruitful path to actions we can implement to try to prevent recurrence.",
-      "If a critical document is omitted from a regulatory submission, we do not simply attribute the oversight to human error. We review the document management process, approval workflows, and automated checks to identify systemic improvements that make such omissions less likely. When a serious adverse event is missed or reported late, we should go beyond attributing it to 'human error' and investigate why the error occurred. As pharmacovigilance systems become increasingly data-driven and automated, every incident is an opportunity to strengthen processes, improve technology, and better protect patient safety.",
-      "If you investigate deviations, learning about skill, rule, and knowledge models (developed by Jens Rasmussen and Dr. James Reason) helps to understand the different levels of conscious effort workers must apply to industrial tasks, and how this affects decision-making.",
-      "Mistakes and errors people make are not root causes (that you fix) but are probably causal factors. Causal factors are mistakes, errors, or failures that directly lead to (or cause) an incident, or fail to mitigate the consequences of the original error. Today, we'll learn about research findings that changed our thinking about how people make mistakes and errors. This knowledge changes the way we view 'human error' in the workplace because we often think of mistakes as character flaws, but these research models reveal that workers will make mistakes due to normal thought processes.",
-    ],
+    intro: "Part of the problem with having 'human error' as a root cause is that there is not much you can do with your conclusion. To err is human after all, so let's move on to something else. But people make errors for a reason, and trying to understand why they made the error can lead us down a much more fruitful path to actions we can implement to try to prevent recurrence.",
     sections: [
       {
         heading: "Skills, Rules, Knowledge (SRK) Model",
@@ -39,7 +34,7 @@ export const articleContent: Record<string, ArticleBody> = {
           "The framework describes three levels of cognitive activity people experience when making decisions and solving problems while working. Following are the three levels.",
           "Skill-based level: This level requires minimal mental resources. When you are very familiar with a task or situation, you do something automatically, with little conscious thought about doing it. Skills can be physical or cognitive. For example, a quality control analyst who has reviewed hundreds of batch records will navigate the document structure and signature fields automatically, without consciously thinking through each step.",
           "Rule-based level: This level requires some conscious decision-making for task performance and therefore requires some mental resources. You make decisions based on rules. The rules may be taught or communicated (for example, an SOP for deviation classification) or people may create their own rules from experience. For example, a pharmacovigilance associate may know the company process requires manager sign-off for expedited reports, but if the manager is always available on chat, she starts submitting for approval informally without following the official workflow. She has created her own rule.",
-          "Knowledge-based level: If you are facing a unique and unfamiliar situation, you would make decisions at this level. Since the decision is not automatic and reflexive (skill-based), and you do not have any rules to guide you (rule-based), you expend more mental energy and time making a knowledge-based decision. You must think through the facts and possible consequences and create a plan based on your knowledge and experience. For example, a clinical trial coordinator encountering a protocol amendment mid-study that conflicts with an existing regulatory commitment must reason through the regulatory, ethical, and operational implications without a specific procedure to follow.",
+          "Knowledge-based level: If you are facing a unique and unfamiliar situation, you would make decisions at this level. Since the decision is not automatic and reflexive (skill-based), and you do not have any rules to guide you (rule-based), you spend more mental energy and time making a knowledge-based decision. You must think through the facts and possible consequences and create a plan based on your knowledge and experience. For example, a clinical trial coordinator encountering a protocol amendment mid-study that conflicts with an existing regulatory commitment must reason through the regulatory, ethical, and operational implications without a specific procedure to follow.",
           "Although Rasmussen was an electrical engineer, his work was groundbreaking in cognitive psychology. He introduced the idea that blaming a worker for a mistake was not useful because humans make errors due to cognitive processes they are unaware of and not always because of factors they can control.",
         ],
       },
@@ -65,39 +60,6 @@ export const articleContent: Record<string, ArticleBody> = {
           text: "A bad system will beat a good person every time.",
           attribution: "W. Edwards Deming",
         },
-        postQuoteParagraphs: [
-          "Below are examples of each of the error types and example corrective actions relevant to Life Sciences environments.",
-        ],
-        table: {
-          headers: ["Error Type", "Life Sciences Example", "Example Corrective Action"],
-          rows: [
-            [
-              "Action errors (slips)",
-              "A QC analyst selects the wrong test method code in the LIMS system when entering results for a routine stability sample, because the interface lists similar codes adjacently.",
-              "Implement field-level validation and a confirmation prompt when test method codes with similar naming are selected.",
-            ],
-            [
-              "Action errors (lapses)",
-              "A GMP operator forgets to record a temperature excursion for investigational product cold storage during a busy changeover between production batches.",
-              "Introduce an automated continuous temperature monitoring system with alerts and a batch record checklist requiring sign-off before release.",
-            ],
-            [
-              "Thinking errors (rule based)",
-              "A PV associate applies a 15-day reporting timeline to a fatal SAE that required 7-day expedited reporting, because she applied the standard rule without checking seriousness criteria first.",
-              "Embed a system-guided triage decision tree that enforces timeline selection based on seriousness and expectedness answers before a case can be submitted.",
-            ],
-            [
-              "Thinking errors (knowledge based)",
-              "A manufacturing scientist incorrectly calculates a yield adjustment for a new formulation, having never worked with that excipient combination before and lacking specific training on the calculation method.",
-              "Require documented training and competency assessment before authorising staff to perform the calculation. Restrict access in the system to only qualified personnel.",
-            ],
-            [
-              "Non-compliance (routine, situational and exceptional)",
-              "A clinical trial coordinator skips the required dual verification of informed consent documentation at a busy site during a high-enrolment period, judging the check as low-risk under time pressure.",
-              "Make the dual sign-off mandatory and system-enforced in the eTMF or CTMS so the step cannot be bypassed. Conduct regular compliance monitoring with feedback to site staff.",
-            ],
-          ],
-        },
         closing: [
           "These are examples and you should be able to think of additional possible corrective actions. But then which ones would you actually implement? You want the most effective and efficient ones of course. You want your actions to be focused on the root cause, or the chain of cause and effect that leads to the problem.",
         ],
@@ -113,7 +75,7 @@ export const articleContent: Record<string, ArticleBody> = {
           attribution: "W. Edwards Deming",
         },
         closing: [
-          "The least effective actions are ones that rely on a check catching an error right at the end of the process. For example, a pharmacist verifying a dispensing record before issuing investigational medicinal product. That is not to say these checks should not be there, but rather they should be thought of as the last line of defence, not the primary control.",
+          "The least effective actions are ones that rely on a check catching an error right at the end of the process. That is not to say these checks should not be there, but rather they should be thought of as the last line of defence, not the primary control.",
           "Ideally, you also want some sort of check to make sure the revised process is working. This check is an early signal as to whether your actions are effective at fixing the problem.",
           "The next time a deviation report concludes with 'human error', ask one more question: why did that error occur? The answer is where the real corrective action begins.",
         ],

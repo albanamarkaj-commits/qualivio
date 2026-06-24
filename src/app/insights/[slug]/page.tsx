@@ -62,7 +62,7 @@ export default async function ArticlePage({
               {article.readTime}
             </span>
             <span className="text-[#2E2E36]">|</span>
-            <span className="text-xs font-medium uppercase tracking-widest text-[#9896B6]">
+            <span className="text-xs font-medium uppercase tracking-widest text-[#9896B6]" style={{ fontFamily: "var(--font-wordmark)" }}>
               Qualivio
             </span>
           </div>
