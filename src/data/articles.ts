@@ -1,5 +1,13 @@
 export const articles = [
   {
+    title: "Health Canada GVP inspections 2026: what inspectors asked companies to fix",
+    category: "Pharmacovigilance",
+    excerpt:
+      "Health Canada started 23 good pharmacovigilance practices inspections between January and August 2026. Seventeen of the 19 that finished were rated compliant, and those companies still averaged 5.5 findings each. An analysis of the 69 published findings.",
+    readTime: "8 min read",
+    slug: "health-canada-gvp-inspections-2026",
+  },
+  {
     title: "To Err is Human But Human Error is Not a Root Cause",
     category: "Quality Assurance",
     excerpt:

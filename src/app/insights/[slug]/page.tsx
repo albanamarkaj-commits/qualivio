@@ -99,6 +99,54 @@ export default async function ArticlePage({
                     </p>
                   ))}
                 </div>
+                {/* Headline figures */}
+                {section.stats && section.stats.length > 0 && (
+                  <div className="my-8 grid gap-px overflow-hidden rounded-xl border border-[#E5E4F0] bg-[#E5E4F0] sm:grid-cols-3">
+                    {section.stats.map((s, j) => (
+                      <div key={j} className="flex flex-col gap-1.5 bg-white p-5">
+                        <span className="text-3xl font-medium tabular-nums tracking-tight text-[#7C6AF7]">
+                          {s.value}
+                        </span>
+                        <span className="text-sm leading-snug text-[#56546A]">
+                          {s.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {/* Bar chart */}
+                {section.bars && section.bars.items.length > 0 && (
+                  <div className="my-8">
+                    <div className="flex flex-col gap-3">
+                      {section.bars.items.map((b, j) => (
+                        <div
+                          key={j}
+                          className="grid items-center gap-x-4 gap-y-1 [grid-template-columns:1fr_4rem] sm:[grid-template-columns:minmax(0,14rem)_1fr_4rem]"
+                        >
+                          <span className="text-sm leading-snug text-[#4A4868]">
+                            {b.label}
+                          </span>
+                          <span className="order-last col-span-2 h-4 rounded-sm bg-[#F5F4FF] sm:order-none sm:col-span-1">
+                            <span
+                              className="block h-full rounded-sm bg-[#7C6AF7]"
+                              style={{
+                                width: `${Math.round((b.value / section.bars!.max) * 100)}%`,
+                              }}
+                            />
+                          </span>
+                          <span className="text-right text-sm font-medium tabular-nums text-[#0D0D0F]">
+                            {b.display ?? b.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    {section.bars.caption && (
+                      <p className="mt-3 text-xs leading-6 text-[#56546A]">
+                        {section.bars.caption}
+                      </p>
+                    )}
+                  </div>
+                )}
                 {/* Block quote */}
                 {section.quote && (
                   <blockquote className="my-8 rounded-xl bg-[#F5F4FF] border-l-4 border-[#7C6AF7] px-6 py-5">
@@ -155,6 +203,25 @@ export default async function ArticlePage({
                       </tbody>
                     </table>
                   </div>
+                )}
+                {section.table?.caption && (
+                  <p className="-mt-3 mb-6 text-xs leading-6 text-[#56546A]">
+                    {section.table.caption}
+                  </p>
+                )}
+                {/* Bulleted list */}
+                {section.list && section.list.length > 0 && (
+                  <ul className="my-6 space-y-3">
+                    {section.list.map((item, j) => (
+                      <li
+                        key={j}
+                        className="flex gap-3 text-base leading-8 text-[#4A4868]"
+                      >
+                        <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[#7C6AF7]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 )}
                 {/* Closing paragraphs */}
                 {section.closing && section.closing.length > 0 && (

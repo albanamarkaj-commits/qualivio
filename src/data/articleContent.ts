@@ -1,14 +1,31 @@
 export type ArticleTable = {
   headers: string[];
   rows: string[][];
+  caption?: string;
+};
+
+/** A row of headline figures, for data-led articles. */
+export type ArticleStat = {
+  value: string;
+  label: string;
+};
+
+/** A horizontal bar chart. Each `value` is plotted against `max`. */
+export type ArticleBars = {
+  max: number;
+  items: { label: string; value: number; display?: string }[];
+  caption?: string;
 };
 
 export type ArticleSection = {
   heading: string;
   paragraphs: string[];
+  stats?: ArticleStat[];
+  bars?: ArticleBars;
   quote?: { text: string; attribution: string };
   postQuoteParagraphs?: string[];
   table?: ArticleTable;
+  list?: string[];
   closing?: string[];
 };
 
@@ -24,6 +41,152 @@ export type ArticleBody = {
 };
 
 export const articleContent: Record<string, ArticleBody> = {
+  "health-canada-gvp-inspections-2026": {
+    intro: [
+      "Health Canada publishes the result of every good pharmacovigilance practices inspection it carries out, along with the findings inspectors recorded. Between 1 January and 19 August 2026 it started 23 of them. Sixteen report cards have been published so far, and 12 of those carry the full detail.",
+      "Because Health Canada writes these findings as standard phrases, the same wording appears at company after company. That makes it possible to count them and see what inspectors are actually looking for.",
+    ],
+    sources: [
+      {
+        label: "Health Canada. Good pharmacovigilance practices (GVP) inspections database. Retrieved 19 August 2026.",
+        url: "https://www.drug-inspections.canada.ca/gvp/searchResult-en.html?estName=&ref=&site=&prov=&rate=&startDate=2026-01-01&endDate=2026-08-19",
+      },
+      {
+        label: "Food and Drug Regulations (C.R.C., c. 870), Part C, Division 1 and Division 8.",
+        url: "https://laws-lois.justice.gc.ca/eng/regulations/c.r.c.,_c._870/",
+      },
+    ],
+    sections: [
+      {
+        heading: "The Year So Far",
+        paragraphs: [
+          "Of the 19 inspections that reached a rating, 17 were compliant and two were not. The two non-compliant results went to Teva Canada and Panacea Biotec Pharma. Four inspections were still in progress at the time of writing.",
+        ],
+        stats: [
+          { value: "23", label: "GVP inspections started in the period" },
+          { value: "17", label: "of the 19 that finished were rated compliant" },
+          { value: "69", label: "findings published across 12 full report cards" },
+        ],
+        closing: [
+          "Thirteen of the 23 inspected sites were in Canada, nine of those in Ontario and four in Quebec. The other ten were spread across Belgium, Sweden, Japan, China, South Korea, France, Switzerland, the United States and India.",
+        ],
+      },
+      {
+        heading: "A Compliant Rating Does Not Mean There Was Nothing to Fix",
+        paragraphs: [
+          "The compliant group is the more interesting one. The 11 compliant sites with a full report card published still averaged 5.5 written findings each, with a median of 6 and a range of 1 to 10. Passing an inspection and passing it cleanly are two different things.",
+          "The number of findings also tells you very little about the outcome. Mantra Pharma collected 10 findings and was rated compliant. Teva Canada collected 8 and was rated non-compliant. What matters is what the findings are about, not how many there are.",
+          "Foreign sites did no worse than Canadian ones. Among the report cards published in full, sites outside Canada averaged 5.7 findings and Canadian sites 5.8. The two non-compliant ratings also came from opposite ends of that split, one Canadian and one Indian.",
+        ],
+      },
+      {
+        heading: "The Areas That Came Up Most",
+        paragraphs: [
+          "We grouped every published finding by what it was about. Thirteen areas came up. One came up far more than the rest. The figures below count how many of the 12 sites with a full report card were cited in each area.",
+        ],
+        bars: {
+          max: 12,
+          items: [
+            { label: "Case processing and evaluation", value: 10, display: "10 / 12" },
+            { label: "Reporting deadlines", value: 8, display: "8 / 12" },
+            { label: "Agreements with partners", value: 7, display: "7 / 12" },
+            { label: "Annual summary reports and signal detection", value: 7, display: "7 / 12" },
+            { label: "Records: quality, availability, retention", value: 6, display: "6 / 12" },
+            { label: "Quality system controls", value: 5, display: "5 / 12" },
+            { label: "Foreign action awareness and notification", value: 5, display: "5 / 12" },
+            { label: "Written procedures", value: 4, display: "4 / 12" },
+            { label: "Complaint handling", value: 3, display: "3 / 12" },
+            { label: "Literature surveillance", value: 2, display: "2 / 12" },
+            { label: "Product safety labelling updates", value: 2, display: "2 / 12" },
+            { label: "Unusual failure in efficacy", value: 2, display: "2 / 12" },
+            { label: "Roles and job descriptions", value: 1, display: "1 / 12" },
+          ],
+          caption:
+            "Number of sites cited in each area, out of the 12 with a full report card published. A finding that covers two areas is counted in both.",
+        },
+        closing: [
+          "Case processing is the one almost nobody avoided. Ten of the 12 sites were told to fix something about how adverse drug reactions are received, handled or evaluated. The specific findings ranged from follow up not being sought, to cases not being coded properly, to the reason for invalidating a case not being written down.",
+          "Eight of the 12 sites were cited on a reporting deadline, and six of those had actually missed one. This is the finding spread most evenly across the group. It is not just small companies. Large multinationals with established safety databases are in there too.",
+          "The deadline findings cluster around the date a company first became aware of a case, not around the submission step itself. If day zero is set inconsistently for cases arriving through affiliates, partners, medical information lines or social media, the clock starts late and the submission is late with it.",
+        ],
+      },
+      {
+        heading: "Two Thirds of the Findings Cite the Same Section",
+        paragraphs: [
+          "C.01.017 of the Food and Drug Regulations covers serious adverse drug reaction reporting. In practice Health Canada records most of the pharmacovigilance system against it. Procedures, agreements, change control, self-inspection and computer validation all end up here.",
+        ],
+        table: {
+          headers: ["Regulation", "What it covers", "Findings"],
+          rows: [
+            ["C.01.017", "Serious ADR reporting and the PV system", "44"],
+            ["C.01.018", "Annual summary reports and case reports", "10"],
+            ["C.01.020", "Maintenance of records", "7"],
+            ["C.01.050", "Notification of a serious risk of injury to human health", "5"],
+            ["C.08.008", "Unusual failure in efficacy of new drugs", "2"],
+            ["C.08.003", "Label update with new safety information", "1"],
+          ],
+          caption:
+            "Because C.01.017 covers so much ground, the split by regulation does not tell you much on its own. Read it alongside the areas above.",
+        },
+      },
+      {
+        heading: "The Same Findings Keep Coming Up",
+        paragraphs: [
+          "Seventeen findings appeared at more than one company. Together they account for 43 of the 69 published findings, so more than half of what inspectors wrote in 2026 repeats something already written at another company. These are the ones that recurred most.",
+        ],
+        table: {
+          headers: ["Finding as published", "Sites"],
+          rows: [
+            ["The systems and processes for handling and evaluating adverse drug reactions were inadequate.", "5"],
+            ["Some of the contractual agreements that defined the responsibilities of all parties involved in pharmacovigilance activities did not reflect the company's current practices.", "4"],
+            ["Some of the contractual agreements that defined the responsibilities of all parties involved in pharmacovigilance activities were inadequate.", "3"],
+            ["The rationale to invalidate adverse drug reaction reports was not properly documented.", "3"],
+            ["The systems and processes for receiving adverse drug reactions were inadequate.", "3"],
+            ["The company did not record, handle, and store all information about adverse drug reactions to allow for complete and accurate reporting, interpretation, and verification.", "3"],
+          ],
+          caption:
+            "The six findings that appeared at three or more sites. Eleven more appeared at two sites each.",
+        },
+      },
+      {
+        heading: "The Four Inspections Still Open",
+        paragraphs: [
+          "Gilead Sciences Canada, Argenx, Celltrion and Hugel Canada were still in progress at the time of writing. Their initial report cards name the problem areas but not the detailed wording. All four were flagged under C.01.017, and three of the four under both annual summary reports and foreign action notification.",
+          "C.01.019, issue-related summary reports, appears in two of these four and nowhere in the 69 published findings. It is worth watching when these report cards are finished.",
+        ],
+      },
+      {
+        heading: "Six Things to Check Before Your Next Inspection",
+        paragraphs: [
+          "None of these require a new system. They are the places this year's findings landed most often.",
+        ],
+        list: [
+          "Take ten closed cases and rebuild each one from first receipt through to submission. Inspectors keep finding a gap between what the procedure says and what the case file shows.",
+          "Check how day zero is set for every route a case can arrive by, including affiliates, partners, medical information and social media.",
+          "Read every partner, licensor and vendor agreement against what your team actually does today, and put a review date on each one.",
+          "Write down why a case was invalidated, at the time you decide it. Three sites were cited for exactly this, and it costs nothing to prevent.",
+          "Confirm that a foreign regulatory action would reach you inside 72 hours. Health Canada wants to see how you find out, not only what you do once you know.",
+          "Look at what your own self-inspections found last year. If your audits are not picking these things up, the inspector will.",
+        ],
+      },
+      {
+        heading: "How This Was Counted",
+        paragraphs: [
+          "A note on what these numbers do and do not show.",
+        ],
+        list: [
+          "Scope: all GVP inspections in Health Canada's public database with a start date between 1 January and 19 August 2026 inclusive. Data retrieved 19 August 2026.",
+          "The 69 findings come from 12 inspections, not 23. Seven have no report card published yet, including one of the two non-compliant results. Four more have an initial report card only.",
+          "Areas were assigned by matching the published wording. A finding covering two areas is counted in both, so the area figures do not sum to 69.",
+          "Health Canada does not publish a risk rating against individual GVP findings, so every finding is counted equally. This is why the number of findings and the rating do not line up.",
+          "Twelve sites is a small sample. The order of the main areas is clear, but a difference of one or two findings between categories does not mean much.",
+        ],
+        closing: [
+          "All establishment names, ratings and findings are reproduced as published by Health Canada. The findings are predictable, which is the most useful thing about them, because it means most of them are preventable.",
+        ],
+      },
+    ],
+  },
   "human-error-root-cause-analysis": {
     intro: "Part of the problem with having 'human error' as a root cause is that there is not much you can do with your conclusion. To err is human after all, so let's move on to something else. But people make errors for a reason. And trying to understand why they made the error can lead us down a much more fruitful path toward actions we can implement to prevent recurrence.",
     sources: [
